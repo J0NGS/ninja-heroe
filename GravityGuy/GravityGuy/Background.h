@@ -1,9 +1,9 @@
 /**********************************************************************************
 // Background (Arquivo de Cabeçalho)
-// 
-// Criação:     09 Out 2022
-// Atualização: 09 Out 2022
-// Compilador:  Visual C++ 2022
+//
+// Criação:     21 Abr 2012
+// Atualização: 02 Set 2021
+// Compilador:  Visual C++ 2019
 //
 // Descrição:   Plano de fundo do jogo
 //
@@ -23,22 +23,17 @@
 class Background : public Object
 {
 private:
-    float xF, xB;                      // posição horizontal dos sprites
     Image* imgF;                       // imagem de fundo frontal
-    Image * imgM;                      // imagem de fundo meio
-    Image* imgB;                       // imagem de fundo traseira    
-    Image * imgLights;                 // imagem das luzes    
+    Image* imgM;                       // imagem de fundo MEIO
+    Image* imgB;                       // imagem de fundo traseira
+    Image* imgL;                       // imagem de fundo traseira
 
-    Sprite* bgB;                          // fundo estático camada BACK
-    Sprite* bgM;                          // fundo estático camada MIDDLE
-    Sprite* bgF;                          // fundo estático camada FRONT
-
-    //Sprite * backgF1;                   // pano de fundo dinâmico (frontal 1)
-    //Sprite * backgF2;                   // pano de fundo dinâmico (frontal 2)
-    //Sprite * backgB1;                   // pano de fundo dinâmico (traseiro 1)
-    //Sprite * backgB2;                   // pano de fundo dinâmico (traseiro 2)
-
-    Color color;                        // cor do pano de fundo
+    Sprite* frontbg;
+    Sprite* midlebg;
+    Sprite* lowerbg;
+    Sprite* backbg;
+    
+    Color color;                       // cor do plano de fundo
 
 public:
     Background(Color tint);             // construtor
@@ -46,7 +41,7 @@ public:
 
     void Update();                      // atualização do objeto
     void Draw();                        // desenho do objeto
-}; 
+};
 
 // ---------------------------------------------------------------------------------
 

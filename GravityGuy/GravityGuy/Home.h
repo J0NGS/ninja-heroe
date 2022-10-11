@@ -1,6 +1,6 @@
 /**********************************************************************************
 // Home (Arquivo de Cabeçalho)
-// 
+//
 // Criação:     14 Fev 2013
 // Atualização: 27 Set 2021
 // Compilador:  Visual C++ 2019
@@ -9,8 +9,8 @@
 //
 **********************************************************************************/
 
-#ifndef _GRAVITYGUY_HOME_H_
-#define _GRAVITYGUY_HOME_H_
+#ifndef _NINJAHEROE_HOME_H_
+#define _NINJAHEROE_HOME_H_
 
 // ------------------------------------------------------------------------------
 // Inclusões
@@ -25,9 +25,9 @@
 class Home : public Game
 {
 private:
-    Sprite * backg = nullptr;       // pano de fundo
-    TileSet * tileset = nullptr;    // tileset da animação
-    Animation * anim = nullptr;     // animação do menu
+    Sprite* backg = nullptr;       // pano de fundo
+    TileSet* tileset = nullptr;    // tileset da animação
+    Animation* anim = nullptr;     // animação do menu
 
 public:
     void Init();                    // inicia nível

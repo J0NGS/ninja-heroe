@@ -84,10 +84,10 @@
     <ClCompile Include="Background.cpp">
       <Filter>Game\Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="GameOver.cpp">
+    <ClCompile Include="NinjaHeroe.cpp">
       <Filter>Game\Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="GravityGuy.cpp">
+    <ClCompile Include="Player.cpp">
       <Filter>Game\Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Home.cpp">
@@ -96,20 +96,8 @@
     <ClCompile Include="Level1.cpp">
       <Filter>Game\Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Platform.cpp">
-      <Filter>Game\Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Game\Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Level2.cpp">
-      <Filter>Game\Arquivos de Origem</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Resources.h">
-      <Filter>Game\Arquivos de Cabeçalho</Filter>
-    </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>Engine\Arquivos de Cabeçalho</Filter>
     </ClInclude>
@@ -167,25 +155,19 @@
     <ClInclude Include="Background.h">
       <Filter>Game\Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="GameOver.h">
+    <ClInclude Include="NinjaHeroe.h">
       <Filter>Game\Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="GravityGuy.h">
+    <ClInclude Include="Resources.h">
+      <Filter>Game\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>Game\Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Home.h">
       <Filter>Game\Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Level1.h">
-      <Filter>Game\Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Platform.h">
-      <Filter>Game\Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Game\Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Level2.h">
       <Filter>Game\Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
@@ -196,18 +178,5 @@
     <FxCompile Include="Pixel.hlsl">
       <Filter>Engine\Arquivos de Sombreamento</Filter>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Resources.rc">
-      <Filter>Game\Arquivos de Recurso</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Level1.txt">
-      <Filter>Game\Arquivos de Recurso</Filter>
-    </Text>
-    <Text Include="Level2.txt">
-      <Filter>Game\Arquivos de Recurso</Filter>
-    </Text>
   </ItemGroup>
 </Project>

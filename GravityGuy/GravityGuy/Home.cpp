@@ -1,6 +1,6 @@
 /**********************************************************************************
-// Home (Código Fonte) 
-// 
+// Home (Código Fonte)
+//
 // Criação:     14 Fev 2013
 // Atualização: 27 Set 2021
 // Compilador:  Visual C++ 2019
@@ -10,7 +10,7 @@
 **********************************************************************************/
 
 #include "Engine.h"
-#include "GravityGuy.h"
+#include "NinjaHeroe.h"
 #include "Home.h"
 #include "Level1.h"
 
@@ -18,10 +18,10 @@
 
 void Home::Init()
 {
-    backg = new Sprite("Resources/TitleScreen.png");
+    backg = new Sprite("Resources/Home/Background.jpg");
     tileset = new TileSet("Resources/PressEnter.png", 72, 48, 1, 5);
     anim = new Animation(tileset, 0.180f, true);
-    GravityGuy::audio->Play(MENU, true);
+    NinjaHeroe::audio->Play(MENU, true);
 }
 
 // ------------------------------------------------------------------------------
@@ -31,12 +31,12 @@ void Home::Update()
     // sai com o pressionar do ESC
     if (window->KeyPress(VK_ESCAPE))
         window->Close();
-    
+
     // se a tecla ENTER for pressionada
     if (window->KeyPress(VK_RETURN))
     {
-        GravityGuy::audio->Stop(MENU);
-        GravityGuy::NextLevel<Level1>();
+        NinjaHeroe::audio->Stop(MENU);
+        NinjaHeroe::NextLevel<Level1>();
     }
     else
     {
