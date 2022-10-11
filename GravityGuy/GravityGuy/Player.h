@@ -21,16 +21,35 @@
 
 // ------------------------------------------------------------------------------
 
-enum STATE { RUN };
+enum STATE {RUNING, ATCK_1, ATCK_2, IDLE, FALLING, JUMPING, TAKE_HIT_1, TAKE_HIT_2, DEATH};
 
 // ---------------------------------------------------------------------------------
 
 class Player : public Object
 {
 private:
-    TileSet   * tileset;                // folha de sprites do personagem
-    Animation * anim;                   // animação do personagem
-    uint        state;                  // gravidade atuando sobre o jogador
+    TileSet   * tilesetRun;             // folha de sprites do personagem
+    TileSet   * tilesetFall;            // folha de sprites do personagem
+    TileSet   * tilesetAtck2;           // folha de sprites do personagem
+    TileSet   * tilesetAtck1;           // folha de sprites do personagem
+    TileSet   * tilesetJump;            // folha de sprites do personagem
+    TileSet   * tilesetTakeHit1;        // folha de sprites do personagem
+    TileSet   * tilesetTakeHit2;        // folha de sprites do personagem
+    TileSet   * tilesetDeath;           // folha de sprites do personagem
+    TileSet   * tilesetIdle;            // folha de sprites do personagem
+    
+    Animation * animFall;                // animação do personagem
+    Animation * animJump;               // animação do personagem
+    Animation * animIdle;               // animação do personagem
+    Animation * animAtck1;              // animação do personagem
+    Animation * animAtck2;              // animação do personagem
+    Animation * animTH1;                // animação do personagem
+    Animation * animTH2;                // animação do personagem
+    Animation * animDeath;              // animação do personagem
+    Animation * animRun;                // animação do personagem
+    
+    uint        state;                  // estado do personalgem
+    
     int         level;                  // nível finalizado
     
     
