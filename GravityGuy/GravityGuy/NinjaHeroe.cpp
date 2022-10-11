@@ -87,7 +87,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
     // configura o motor
     engine->window->Mode(WINDOWED);
-    engine->window->Size(800, 600);
+    engine->window->Size(800, 400);
     engine->window->Color(30, 50, 80);
     engine->window->Title("Ninja Heroe");
     engine->window->Icon(IDI_ICON);
