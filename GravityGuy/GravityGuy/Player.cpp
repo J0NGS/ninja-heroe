@@ -36,7 +36,7 @@ Player::Player()
     animDeath = new Animation(tilesetDeath, 0.120f, false);
 
     tilesetAtck = new TileSet("Resources/Personagem/Attack.png", 200, 200, 12, 12);
-    animAtck = new Animation(tilesetAtck, 0.120f, true);
+    animAtck = new Animation(tilesetAtck, 0.200f, true);
 
     //sequencia de animações
     uint run[8] = { 1,2,3,4,5,6,7,8 };
@@ -66,6 +66,7 @@ Player::Player()
     // inicializa estado do player
     state = IDLE;
     level = 0;
+    
     // posição inicial
     MoveTo(window->CenterX(),window->CenterY() + (window->CenterY()/2), Layer::FRONT);
 }
@@ -145,16 +146,21 @@ void Player::Update()
     }
     else if (window->KeyDown(VK_SPACE)) {
         space = true;
-        state = ATCK1;
+
+        if(state == IDLE)
+            state = ATCK1;
+        if (state == ATCK1 && animAtck->Frame() == 6) 
+            state = ATCK2;
+        if (state == ATCK2 && animAtck->Frame() == 1){
+            state = ATCK1;
+        }
+        
+        if(state == ATCK1 || state == ATCK2){
         animAtck->Select(state);
         animAtck->NextFrame();
+        }
     }
-    else if (animAtck->Frame() == 6) {
-        state = ATCK2;
-        animAtck->Select(state);
-        animAtck->NextFrame();
-    }
-    
+
     //------------------------------------------------------
     //enquanto está parado roda a animação
     if (state == IDLE) {
