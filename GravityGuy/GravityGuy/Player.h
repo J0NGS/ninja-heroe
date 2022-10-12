@@ -28,16 +28,28 @@ enum STATE { RUNING, IDLE, ATCK, TAKEHIT, DEATH, JUMPING, FALLING};         // t
 class Player : public Object
 {
 private:
-    TileSet* tilesetJump;               // folha de sprites do personagem
-    TileSet* tilesetRun;                // folha de sprites do personagem
-    TileSet* tilesetIdle;               // folha de sprites do personagem
-    TileSet* tilesetAtck;               // folha de sprites do personagem
-    TileSet* tilesetDeath;              // folha de sprites do personagem
-    TileSet* tilesetFall;               // folha de sprites do personagem
-    TileSet* tilesetTake;               // folha de sprites do personagem
-    
-    Animation* anim;                    // animação do personagem
-    
+    //---------------------------tileset--------------------------------------------------//
+    TileSet* tilesetJump;               // folha de sprites do personagem pulando
+    TileSet* tilesetRun;                // folha de sprites do personagem correndo
+    TileSet* tilesetIdle;               // folha de sprites do personagem parado
+    TileSet* tilesetAtck;               // folha de sprites do personagem atacando
+    TileSet* tilesetDeath;              // folha de sprites do personagem morrendo
+    TileSet* tilesetFall;               // folha de sprites do personagem caindo
+    TileSet* tilesetTake;               // folha de sprites do personagem tomando um hit
+    //-----------------------------animation---------------------------------------------//
+    Animation* animRun;                 // animação do personagem correndo
+    Animation* animJump;                // animação do personagem pulando
+    Animation* animIdle;                // animação do personagem parado
+    Animation* animAtck;                // animação do personagem atacando
+    Animation* animDeath;               // animação do personagem morrendo
+    Animation* animFall;                // animação do personagem caindo
+    Animation* animTake;                // animação do personagem tomando um hit
+    //---------------------------controls-----------------------------------------------//
+    bool right;
+    bool up;
+    bool left;
+    bool space;
+
     uint        state;                  // estado do jogador
     int         level;                  // nível finalizado
 
@@ -50,7 +62,7 @@ public:
     float Bottom();                     // coordenadas da base
     float Top();                        // coordenadas do topo
 
-    void OnCollision(Object* obj);     // resolução da colisão
+    void OnCollision(Object* obj);      // resolução da colisão
     void Update();                      // atualização do objeto
     void Draw();                        // desenho do objeto
 };
