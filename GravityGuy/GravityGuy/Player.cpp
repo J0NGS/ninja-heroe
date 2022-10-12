@@ -36,14 +36,14 @@ Player::Player()
     animDeath = new Animation(tilesetDeath, 0.120f, false);
 
     tilesetAtck = new TileSet("Resources/Personagem/Attack.png", 200, 200, 12, 12);
-    animAtck = new Animation(tilesetAtck, 0.200f, true);
+    animAtck = new Animation(tilesetAtck, 0.240f, false);
 
     //sequencia de animações
     uint run[8] = { 1,2,3,4,5,6,7,8 };
     uint jump[2] = { 1,2 };
     uint idle[8] = { 1,2,3,4,5,6,7,8 };
     uint death[6] = { 1,2,3,4,5,6};
-    uint atck1[6] = { 1,2,3,4,5,6};
+    uint atck1[12] = { 1,2,3,4,5,6};
     uint atck2[6] = {7,8,9,10,11,12};
     uint take[8] = { 1,2,3,4,5,6,7,8 };
     uint fall[8] = { 1,2,3,4,5,6,7,8 };
@@ -147,18 +147,15 @@ void Player::Update()
     else if (window->KeyDown(VK_SPACE)) {
         space = true;
 
-        if(state == IDLE)
+        if(state == IDLE )
             state = ATCK1;
-        if (state == ATCK1 && animAtck->Frame() == 6) 
-            state = ATCK2;
-        if (state == ATCK2 && animAtck->Frame() == 1){
-            state = ATCK1;
-        }
         
-        if(state == ATCK1 || state == ATCK2){
+        if (state == ATCK1 && animAtck->Inactive()){
+            state = ATCK2;
+            animAtck->Restart();
+        }
         animAtck->Select(state);
         animAtck->NextFrame();
-        }
     }
 
     //------------------------------------------------------
