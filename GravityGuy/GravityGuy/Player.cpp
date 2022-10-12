@@ -35,15 +35,16 @@ Player::Player()
     tilesetDeath = new TileSet("Resources/Personagem/Death.png", 200, 200, 6, 6);
     animDeath = new Animation(tilesetDeath, 0.120f, false);
 
-    tilesetAtck = new TileSet("Resources/Personagem/Attack1.png", 200, 200, 6, 6);
-    animAtck = new Animation(tilesetAtck, 0.080f, true);
+    tilesetAtck = new TileSet("Resources/Personagem/Attack.png", 200, 200, 12, 12);
+    animAtck = new Animation(tilesetAtck, 0.120f, true);
 
     //sequencia de animações
     uint run[8] = { 1,2,3,4,5,6,7,8 };
     uint jump[2] = { 1,2 };
     uint idle[8] = { 1,2,3,4,5,6,7,8 };
     uint death[6] = { 1,2,3,4,5,6};
-    uint atck[8] = { 1,2,3,4,5,6,7,8 };
+    uint atck1[6] = { 1,2,3,4,5,6};
+    uint atck2[6] = {7,8,9,10,11,12};
     uint take[8] = { 1,2,3,4,5,6,7,8 };
     uint fall[8] = { 1,2,3,4,5,6,7,8 };
     
@@ -52,6 +53,8 @@ Player::Player()
     animJump->Add(JUMPING, jump, 2);
     animIdle->Add(RUNING, run, 8);
     animDeath->Add(DEATH, death, 6);
+    animAtck->Add(ATCK1, atck1, 6);
+    animAtck->Add(ATCK2, atck2, 6);
     
     // cria bounding box
     BBox(new Rect(
@@ -141,11 +144,17 @@ void Player::Update()
         animAtck->Restart();
     }
     else if (window->KeyDown(VK_SPACE)) {
-        state = ATCK;
         space = true;
+        state = ATCK1;
         animAtck->Select(state);
         animAtck->NextFrame();
     }
+    else if (animAtck->Frame() == 6) {
+        state = ATCK2;
+        animAtck->Select(state);
+        animAtck->NextFrame();
+    }
+    
     //------------------------------------------------------
     //enquanto está parado roda a animação
     if (state == IDLE) {
@@ -164,8 +173,11 @@ void Player::Draw()
         animRun->Draw(x, y, z);
     if (state == IDLE)
         animIdle->Draw(x, y, z);
-    if (state == ATCK)
+    if (space == true)
         animAtck->Draw(x, y, z);
+    //if (state == ATCK2) 
+      //  animAtck->Draw(x, y, z);
+ 
 }
 
 // ---------------------------------------------------------------------------------

@@ -21,7 +21,7 @@
 
 // ------------------------------------------------------------------------------
 
-enum STATE { RUNING, IDLE, ATCK, TAKEHIT, DEATH, JUMPING, FALLING};         // tipo da gravidade
+enum STATE { RUNING, IDLE, ATCK1, ATCK2 ,TAKEHIT, DEATH, JUMPING, FALLING};         // Estados do player
 
 // ---------------------------------------------------------------------------------
 
