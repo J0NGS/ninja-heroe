@@ -2,15 +2,15 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\jneto\Desktop\JOGO 2\GravityGuy\x64\Debug\NINJA HEROE.exe</FullPath>
+      <FullPath>C:\Users\joao1\Documents\ninja-heroe\GravityGuy\x64\Debug\NINJA HEROE.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\jneto\Desktop\JOGO 2\GravityGuy\GravityGuy\Shaders\Pixel.cso</FullPath>
+      <FullPath>C:\Users\joao1\Documents\ninja-heroe\GravityGuy\GravityGuy\Shaders\Pixel.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\jneto\Desktop\JOGO 2\GravityGuy\GravityGuy\Shaders\Vertex.cso</FullPath>
+      <FullPath>C:\Users\joao1\Documents\ninja-heroe\GravityGuy\GravityGuy\Shaders\Vertex.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

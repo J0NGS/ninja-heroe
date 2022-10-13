@@ -38,7 +38,9 @@ void Level1::Init()
 
     // adiciona jogador na cena
     scene->Add(NinjaHeroe::player, MOVING);
-
+    
+    // movendo cenario
+    
     // ----------------------
     // plataformas
     // ----------------------

@@ -116,10 +116,12 @@ void Player::Update()
 {
     //comando para animação quando aperta para a direita
     if (right && window->KeyUp(VK_RIGHT)) {
+        moving = false;
         right = false;
         state = IDLE;
     }
     else if (window->KeyDown(VK_RIGHT)) {
+        moving = true;
         state = RUNING;
         right = true;
         animRun->Select(state);

@@ -23,6 +23,8 @@
 class Background : public Object
 {
 private:
+    float xF, xM, xB, xL;                       // posição horizontal dos sprites
+
     Image* imgF;                       // imagem de fundo frontal
     Image* imgM;                       // imagem de fundo MEIO
     Image* imgB;                       // imagem de fundo traseira
@@ -32,6 +34,8 @@ private:
     Sprite* midlebg;
     Sprite* lowerbg;
     Sprite* backbg;
+
+    bool moving = false;                        // Booleano para controlar movimento do bckg
     
     Color color;                       // cor do plano de fundo
 
@@ -41,7 +45,28 @@ public:
 
     void Update();                      // atualização do objeto
     void Draw();                        // desenho do objeto
+
+    void xFront(float xf);
+    void xBack(float xB);
+    void xMiddle(float xM);
+    void xLower(float xL);
 };
+
+inline void Background::xFront(float xf) {
+    xF -= xf;
+}
+
+inline void Background::xBack(float xb) {
+    xB -= xb;
+}
+
+inline void Background::xMiddle(float xm) {
+    xM -= xm;
+}
+
+inline void Background::xLower(float xl) {
+    xL -= xl;
+}
 
 // ---------------------------------------------------------------------------------
 

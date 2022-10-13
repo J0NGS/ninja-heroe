@@ -53,6 +53,10 @@ private:
     uint        state;                  // estado do jogador
     int         level;                  // nível finalizado
 
+    bool moving;                        // booleano para controlar movimento
+    bool jumping;                       // booleano para controlar pulo
+    bool fall;                          // booleano para controlar queda
+    
 public:
     Player();                           // construtor
     ~Player();                          // destrutor
@@ -61,7 +65,9 @@ public:
     int Level();                        // último nível finalizado
     float Bottom();                     // coordenadas da base
     float Top();                        // coordenadas do topo
-
+    bool Moving();
+    bool Jmping();
+    bool Fall();
     void OnCollision(Object* obj);      // resolução da colisão
     void Update();                      // atualização do objeto
     void Draw();                        // desenho do objeto
@@ -69,6 +75,11 @@ public:
 
 // ---------------------------------------------------------------------------------
 // Função Membro Inline
+
+inline bool Player::Moving() { return moving; }
+inline bool Player::Jmping() { return jumping; }
+inline bool Player::Fall() { return moving; }
+
 
 inline int Player::Level()
 {
