@@ -26,7 +26,7 @@ class Level1 : public Game
 {
 private:
     Background* backg = nullptr;   // pano de fundo animado
-
+    static Worm* worm;
 public:
     static Scene* scene;           // cena do nível
 

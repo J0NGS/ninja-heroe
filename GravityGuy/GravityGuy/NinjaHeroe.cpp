@@ -24,6 +24,7 @@ Audio* NinjaHeroe::audio = nullptr;
 bool    NinjaHeroe::viewBBox = false;
 
 
+
 // ------------------------------------------------------------------------------
 
 void NinjaHeroe::Init()

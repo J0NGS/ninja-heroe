@@ -14,6 +14,7 @@
 #include "Level1.h"
 #include "Player.h"
 #include "Background.h"
+#include "Worm.h"
 
 #include <string>
 #include <fstream>
@@ -24,6 +25,7 @@ using std::string;
 // Inicializa membros estáticos da classe
 
 Scene* Level1::scene = nullptr;
+Worm* Level1::worm = nullptr;
 
 // ------------------------------------------------------------------------------
 
@@ -31,6 +33,8 @@ void Level1::Init()
 {
     // cria gerenciador de cena
     scene = new Scene();
+    worm = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
+
 
     // pano de fundo do jogo
     backg = new Background(Color{ 1,1,1,1 });
@@ -38,6 +42,7 @@ void Level1::Init()
 
     // adiciona jogador na cena
     scene->Add(NinjaHeroe::player, MOVING);
+    scene->Add(worm, MOVING);
 
     // ----------------------
     // plataformas

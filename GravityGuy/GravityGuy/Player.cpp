@@ -16,11 +16,14 @@
 
 Player::Player()
 {
-    //inicializa controles de 
+    //inicializa controles de teclas
     right = false;
     left = false;
     up = false;
     space = false;
+
+    //inicializa o tipo do objeto
+    type = PLAYER;
 
     //instanciando tilesets e animações
     tilesetRun = new TileSet("Resources/Personagem/Run.png", 200, 200, 8, 8);
@@ -36,7 +39,7 @@ Player::Player()
     animDeath = new Animation(tilesetDeath, 0.120f, false);
 
     tilesetAtck = new TileSet("Resources/Personagem/Attack.png", 200, 200, 12, 12);
-    animAtck = new Animation(tilesetAtck, 0.240f, false);
+    animAtck = new Animation(tilesetAtck, 0.150f, false);
 
     //sequencia de animações
     uint run[8] = { 1,2,3,4,5,6,7,8 };
@@ -176,11 +179,9 @@ void Player::Draw()
         animRun->Draw(x, y, z);
     if (state == IDLE)
         animIdle->Draw(x, y, z);
-    if (space == true)
+    if (space)
         animAtck->Draw(x, y, z);
-    //if (state == ATCK2) 
-      //  animAtck->Draw(x, y, z);
- 
+
 }
 
 // ---------------------------------------------------------------------------------

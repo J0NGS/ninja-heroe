@@ -18,12 +18,14 @@
 #include "Audio.h"
 #include "Resources.h"
 #include "Player.h"
+#include "Worm.h"
 
 
 // ------------------------------------------------------------------------------
 
 enum Sounds { MENU, MUSIC, TRANSITION };
-
+enum STATE { RUNING, IDLE, ATCK1, ATCK2, TAKEHIT, DEATH, JUMPING, FALLING };         // Estados do player
+                                                               // Tipo do objeto
 // ------------------------------------------------------------------------------
 
 class NinjaHeroe : public Game
@@ -33,8 +35,9 @@ private:
 
 public:
     static Audio* audio;           // sistema de áudio
-    static bool viewBBox;           // estado da bounding box
+    static bool viewBBox;          // estado da bounding box
     static Player* player;
+
 
     void Init();                    // inicializa jogo
     void Update();                  // atualiza lógica do jogo
