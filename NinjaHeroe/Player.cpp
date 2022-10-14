@@ -176,23 +176,23 @@ void Player::Draw()
     switch (state)
     {
     case JUMPING:
-        animJump->Draw(x, y, z);
+        animJump->Draw(x, y, z, 1.5f);
         break;
 
     case RUNING:
-        animRun->Draw(x, y, z);
+        animRun->Draw(x, y, z, 1.5f);
         break;
 
     case IDLE:
-        animIdle->Draw(x, y, z);
+        animIdle->Draw(x, y, z, 1.5f);
         break;
 
     case ATCK1 :
-        animAtck->Draw(x, y, z);
+        animAtck->Draw(x, y, z, 1.5f);
         break;
 
     case ATCK2:
-        animAtck->Draw(x, y, z);
+        animAtck->Draw(x, y, z, 1.5f);
         break;
        }
 

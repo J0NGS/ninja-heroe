@@ -112,15 +112,15 @@ void Worm::Update()
 void Worm::Draw()
 {
     if (state == IDLE)
-        animIdle->Draw(x, y, z);
+        animIdle->Draw(x, y, z, 1.5f);
     if (state == RUNING)
-        animRun->Draw(x, y, z);
+        animRun->Draw(x, y, z, 1.5f);
     if (state == DEATH)
-        animDeath->Draw(x, y, z);
+        animDeath->Draw(x, y, z, 1.5f);
     if (state == ATCK1){
         fireball->Draw();
-        animAtck->Draw(x, y, z);
+        animAtck->Draw(x, y, z, 1.5f);
     }
     if (state == TAKEHIT)
-        animTakeH->Draw(x, y, z);
+        animTakeH->Draw(x, y, z, 1.5f);
 }

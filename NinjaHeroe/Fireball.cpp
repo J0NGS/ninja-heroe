@@ -73,7 +73,7 @@ void Fireball::Update()
 void Fireball::Draw()
 {
     if(shoot)
-        anim->Draw(x, y, z);
+        anim->Draw(x, y, z, 1.5f);
 }
 
 // ---------------------------------------------------------------------------------

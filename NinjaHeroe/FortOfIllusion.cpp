@@ -37,14 +37,11 @@ void FortOfIllusion::Init()
     scene = new Scene();
 
     // pano de fundo do jogo
-    backg = new FortOfIllusionBG(Color{ 1,1,1,1 });
-
-
-
+    backg = new FortOfIllusionBG();
 
     worm = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
     //
-    scene->Add(backg, STATIC);
+    //scene->Add(backg, STATIC);
     //// adiciona jogador na cena
     scene->Add(NinjaHeroe::player, MOVING);
     scene->Add(worm, MOVING);

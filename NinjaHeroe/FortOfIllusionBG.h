@@ -17,30 +17,23 @@
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
 #include "Sprite.h"                     // background é composto por sprites
-
+#include <List>
 // ---------------------------------------------------------------------------------
 
 class FortOfIllusionBG : public Object
 {
 private:
-    Image* imgF;                       // imagem de fundo frontal
-    Image* imgM;                       // imagem de fundo MEIO
-    Image* imgB;                       // imagem de fundo traseira
-    Image* imgL;                       // imagem de fundo traseira
-
-    Sprite* frontbg;
-    Sprite* midlebg;
-    Sprite* lowerbg;
-    Sprite* backbg;
+    Image * mountainImg  = nullptr;        // imagem de fundo frontal
+    Sprite* mountains[10] = {};
     
-    Color color;                       // cor do plano de fundo
-
+    
 public:
-    FortOfIllusionBG(Color tint);             // construtor
-    ~FortOfIllusionBG();                      // destrutor
+    FortOfIllusionBG();                 // construtor
+    ~FortOfIllusionBG();                // destrutor
 
     void Update();                      // atualização do objeto
     void Draw();                        // desenho do objeto
+    void Finalize();
 };
 
 // ---------------------------------------------------------------------------------
