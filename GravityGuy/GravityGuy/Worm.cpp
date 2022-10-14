@@ -16,6 +16,7 @@
 
 Worm::Worm()
 {
+
     // ------------------------Tileset&Animation------------------------------------
     tilesetRun = new TileSet("Resources/Worm/Worm/Walk.png", 90, 90, 9, 9);
     animRun = new Animation(tilesetRun, 0.120f, true);
@@ -34,6 +35,8 @@ Worm::Worm()
     // ---------------------------------------------------------------------------------
     //incializando state
     state = IDLE;
+    //inicialização da fireball do inimigo]
+    fireball = nullptr;
 }
 // ---------------------------------------------------------------------------------
 
@@ -56,9 +59,14 @@ Worm::Worm(float x, float y)
     animIdle = new Animation(tilesetIdle, 0.120f, true);
     // ---------------------------------------------------------------------------------
     //incializando state
-    state = IDLE;
+    state = ATCK1;
     //Posição inicial
     MoveTo(x, y);
+
+    fireball = new Fireball();
+    fireball->MoveTo(X() + 28, Y() - 10);
+
+
 }
 // ---------------------------------------------------------------------------------
 
@@ -79,6 +87,8 @@ Worm::~Worm()
 // ---------------------------------------------------------------------------------
 
 
+
+
 void Worm::OnCollision(Object* obj)
 {
 
@@ -91,6 +101,11 @@ void Worm::Update()
 {
     if (state == IDLE)
         animIdle->NextFrame();
+    if (state == ATCK1) {
+        fireball->shoot = true;
+        fireball->Update();
+        animAtck->NextFrame();
+    }
 }
 
 // ---------------------------------------------------------------------------------
@@ -102,8 +117,10 @@ void Worm::Draw()
         animRun->Draw(x, y, z);
     if (state == DEATH)
         animDeath->Draw(x, y, z);
-    if (state == ATCK1)
+    if (state == ATCK1){
+        fireball->Draw();
         animAtck->Draw(x, y, z);
+    }
     if (state == TAKEHIT)
         animTakeH->Draw(x, y, z);
 }

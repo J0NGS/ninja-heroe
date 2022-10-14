@@ -19,6 +19,8 @@
 #include "Scene.h"
 #include "Player.h"
 #include "Background.h"
+#include "Worm.h"
+#include "Fireball.h"
 
 // ------------------------------------------------------------------------------
 
@@ -27,6 +29,7 @@ class Level1 : public Game
 private:
     Background* backg = nullptr;   // pano de fundo animado
     static Worm* worm;
+    static Fireball* fireball;
 public:
     static Scene* scene;           // cena do nível
 

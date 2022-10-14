@@ -18,6 +18,10 @@
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
 #include "Animation.h"                  // animação de sprites
+#include "Player.h"
+#include "Fireball.h"
+
+
 
 // ------------------------------------------------------------------------------
 
@@ -29,8 +33,6 @@ enum WORM {WORM};
 class Worm : public Object
 {
 private:
-    float pX, pY;
-
     TileSet* tilesetRun;                // folha de sprites do personagem
     TileSet* tilesetDeath;              // folha de sprites do personagem
     TileSet* tilesetAtck;               // folha de sprites do personagem
@@ -42,18 +44,26 @@ private:
     Animation* animAtck;                // animação do personagem
     Animation* animTakeH;               // animação do personagem
     Animation* animIdle;                // animação do personagem
-    
-    uint      state;                    // gravidade atuando sobre o 
+            
 public:
+    
     Worm();                             // construtor
     Worm(float x, float y);             // construtor
     ~Worm();                            // destrutor
+    
+    Fireball* fireball;                 //
+    uint      state;                    // Estado da minhoca
 
+    int State();
+    
     void OnCollision(Object* obj);      // resolução da colisão
     void Update();                      // atualização do objeto
     void Draw();                        // desenho do objeto
 };
 
 // ---------------------------------------------------------------------------------
-
+inline int Worm::State()
+{
+    return state;
+}
 #endif

@@ -173,14 +173,28 @@ void Player::Update()
 
 void Player::Draw()
 {
-    if (state == JUMPING)
+    switch (state)
+    {
+    case JUMPING:
         animJump->Draw(x, y, z);
-    if (state == RUNING)
+        break;
+
+    case RUNING:
         animRun->Draw(x, y, z);
-    if (state == IDLE)
+        break;
+
+    case IDLE:
         animIdle->Draw(x, y, z);
-    if (space)
+        break;
+
+    case ATCK1 :
         animAtck->Draw(x, y, z);
+        break;
+
+    case ATCK2:
+        animAtck->Draw(x, y, z);
+        break;
+       }
 
 }
 

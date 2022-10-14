@@ -20,6 +20,7 @@
 #include "Object.h"                     // interface de Object
 #include "Animation.h"                  // animação de sprites
 
+
 // ------------------------------------------------------------------------------
 enum Type {FIREBALL};
 // ------------------------------------------------------------------------------
@@ -29,10 +30,15 @@ class Fireball : public Object
 private:
     TileSet* tileset;                // folha de sprites do personagem
     Animation* anim;                   // animação do personagem
+    float speed;
 
 public:
     Fireball();                           // construtor
     ~Fireball();                          // destrutor
+
+    bool shoot;
+    void shootOn();
+    void shootOff();
 
     void OnCollision(Object* obj);     // resolução da colisão
     void Update();                      // atualização do objeto
@@ -42,11 +48,6 @@ public:
 // ---------------------------------------------------------------------------------
 // Função Membro Inline
 
-
-inline void Fireball::Draw()
-{
-    anim->Draw(x, y, z);
-}
 
 // ---------------------------------------------------------------------------------
 

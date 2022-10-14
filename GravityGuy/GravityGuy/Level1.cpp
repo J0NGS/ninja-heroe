@@ -14,7 +14,7 @@
 #include "Level1.h"
 #include "Player.h"
 #include "Background.h"
-#include "Worm.h"
+
 
 #include <string>
 #include <fstream>
@@ -26,6 +26,7 @@ using std::string;
 
 Scene* Level1::scene = nullptr;
 Worm* Level1::worm = nullptr;
+Fireball* Level1::fireball= nullptr;
 
 // ------------------------------------------------------------------------------
 
@@ -34,6 +35,7 @@ void Level1::Init()
     // cria gerenciador de cena
     scene = new Scene();
     worm = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
+    
 
 
     // pano de fundo do jogo
@@ -43,6 +45,7 @@ void Level1::Init()
     // adiciona jogador na cena
     scene->Add(NinjaHeroe::player, MOVING);
     scene->Add(worm, MOVING);
+    
 
     // ----------------------
     // plataformas
