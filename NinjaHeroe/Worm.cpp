@@ -16,7 +16,6 @@
 
 Worm::Worm()
 {
-
     // ------------------------Tileset&Animation------------------------------------
     tilesetRun = new TileSet("Resources/Worm/Worm/Walk.png", 90, 90, 9, 9);
     animRun = new Animation(tilesetRun, 0.120f, true);

@@ -25,6 +25,7 @@ class FortOfIllusionBG : public Object
 private:
     Image * mountainImg  = nullptr;        // imagem de fundo frontal
     Sprite* mountains[10] = {};
+    Sprite* fortOfIllusion = nullptr;
     
     
 public:

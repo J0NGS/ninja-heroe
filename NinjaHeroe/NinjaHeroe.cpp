@@ -11,7 +11,7 @@
 
 #include "Engine.h"
 #include "NinjaHeroe.h"
-#include "Home.h"
+#include "FortOfIllusion.h"
 
 
 // ------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ void NinjaHeroe::Init()
     // cria jogador
     player = new Player();
     // inicializa nível de abertura do jogo
-    level = new Home();
+    level = new FortOfIllusion();
     level->Init();
 }
 
