@@ -12,7 +12,7 @@
 #include "Engine.h"
 #include "NinjaHeroe.h"
 #include "Home.h"
-#include "Level1.h"
+#include "FortOfIllusion.h"
 
 // ------------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ void Home::Update()
     if (window->KeyPress(VK_RETURN))
     {
         NinjaHeroe::audio->Stop(MENU);
-        NinjaHeroe::NextLevel<Level1>();
+        NinjaHeroe::NextLevel<FortOfIllusion>();
     }
     else
     {

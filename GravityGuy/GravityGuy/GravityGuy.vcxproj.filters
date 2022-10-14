@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Engine">
-      <UniqueIdentifier>{a1967ba4-bc05-4026-babb-14e50fe5197d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{06db5a62-3633-4203-918f-2c8e3cf6ab87}</UniqueIdentifier>
     </Filter>
@@ -18,6 +15,27 @@
     <Filter Include="Game\Arquivos de Cabeçalho">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Game\Arquivos de Origem\FortOfIllusion">
+      <UniqueIdentifier>{0fe45543-c8c9-427f-ac1c-64b55deef037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Arquivos de Cabeçalho\FortOfIllusion">
+      <UniqueIdentifier>{51dcf1eb-267d-4f15-b9fb-68c6fabe05c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Arquivos de Origem\Characters">
+      <UniqueIdentifier>{97eab3a7-170a-499d-bf1c-8ebb74f12c2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Arquivos de Origem\Characters\Enemys">
+      <UniqueIdentifier>{1092f867-9be7-49b9-ace5-d23dd422a6e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Arquivos de Cabeçalho\Characters">
+      <UniqueIdentifier>{22087055-197f-4ef6-87e9-54421aa944e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Arquivos de Cabeçalho\Characters\Enemys">
+      <UniqueIdentifier>{3efc0d20-2335-4bc9-bb65-d00a07728262}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{a1967ba4-bc05-4026-babb-14e50fe5197d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Arquivos de Cabeçalho">
       <UniqueIdentifier>{3f1a362a-637a-4f8d-ab92-ea4d4d27104e}</UniqueIdentifier>
@@ -81,26 +99,26 @@
     <ClCompile Include="Window.cpp">
       <Filter>Engine\Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>Game\Arquivos de Origem</Filter>
-    </ClCompile>
     <ClCompile Include="NinjaHeroe.cpp">
-      <Filter>Game\Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
       <Filter>Game\Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Home.cpp">
       <Filter>Game\Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Level1.cpp">
-      <Filter>Game\Arquivos de Origem</Filter>
+    <ClCompile Include="FortOfIllusion.cpp">
+      <Filter>Game\Arquivos de Origem\FortOfIllusion</Filter>
     </ClCompile>
-    <ClCompile Include="Fireball.cpp">
-      <Filter>Game\Arquivos de Origem</Filter>
+    <ClCompile Include="FortOfIllusionBG.cpp">
+      <Filter>Game\Arquivos de Origem\FortOfIllusion</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game\Arquivos de Origem\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Worm.cpp">
-      <Filter>Game\Arquivos de Origem</Filter>
+      <Filter>Game\Arquivos de Origem\Characters\Enemys</Filter>
+    </ClCompile>
+    <ClCompile Include="Fireball.cpp">
+      <Filter>Game\Arquivos de Origem\Characters\Enemys</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,29 +176,29 @@
     <ClInclude Include="Animation.h">
       <Filter>Engine\Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>Game\Arquivos de Cabeçalho</Filter>
-    </ClInclude>
     <ClInclude Include="NinjaHeroe.h">
       <Filter>Game\Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Resources.h">
       <Filter>Game\Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Game\Arquivos de Cabeçalho</Filter>
-    </ClInclude>
     <ClInclude Include="Home.h">
       <Filter>Game\Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Level1.h">
-      <Filter>Game\Arquivos de Cabeçalho</Filter>
+    <ClInclude Include="FortOfIllusionBG.h">
+      <Filter>Game\Arquivos de Cabeçalho\FortOfIllusion</Filter>
     </ClInclude>
-    <ClInclude Include="Worm.h">
-      <Filter>Game\Arquivos de Cabeçalho</Filter>
+    <ClInclude Include="FortOfIllusion.h">
+      <Filter>Game\Arquivos de Cabeçalho\FortOfIllusion</Filter>
     </ClInclude>
     <ClInclude Include="Fireball.h">
-      <Filter>Game\Arquivos de Cabeçalho</Filter>
+      <Filter>Game\Arquivos de Cabeçalho\Characters\Enemys</Filter>
+    </ClInclude>
+    <ClInclude Include="Worm.h">
+      <Filter>Game\Arquivos de Cabeçalho\Characters\Enemys</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game\Arquivos de Cabeçalho\Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

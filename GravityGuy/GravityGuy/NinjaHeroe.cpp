@@ -11,7 +11,6 @@
 
 #include "Engine.h"
 #include "NinjaHeroe.h"
-#include "Background.h"
 #include "Home.h"
 
 
