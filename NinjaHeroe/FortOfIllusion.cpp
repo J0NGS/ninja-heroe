@@ -25,9 +25,9 @@ using std::string;
 // ------------------------------------------------------------------------------
 // Inicializa membros estáticos da classe
 
-Scene* FortOfIllusion::scene = nullptr;
-Worm* FortOfIllusion::worm = nullptr;
-Fireball* FortOfIllusion::fireball= nullptr;
+Scene* FortOfIllusion::scene        = nullptr;      //
+Worm* FortOfIllusion::worm          = nullptr;      //
+Fireball* FortOfIllusion::fireball  = nullptr;      //
 
 // ------------------------------------------------------------------------------
 
@@ -74,10 +74,18 @@ void FortOfIllusion::Init()
 
 void FortOfIllusion::Update()
 {
-    {
-        scene->Update();
-        scene->CollisionDetection();
+
+    if (window->KeyPress(VK_DOWN)) {
+        NinjaHeroe::player->MoveTo(NinjaHeroe::player->X(), NinjaHeroe::player->Y() + 1);
     }
+    if (window->KeyDown(VK_RIGHT)) {
+        NinjaHeroe::player->MoveTo(NinjaHeroe::player->X() + 50 * gameTime, NinjaHeroe::player->Y());
+    }
+
+    
+    scene->Update();
+    scene->CollisionDetection();
+    
 }
 
 // ------------------------------------------------------------------------------

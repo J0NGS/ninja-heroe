@@ -39,7 +39,7 @@ void Ground::Init() {
 }
 
 void Ground::OnCollision(Object* obj) {
-
+	((Player*) obj)->MoveTo(x, y);
 }
 
 void Ground::Update() {
