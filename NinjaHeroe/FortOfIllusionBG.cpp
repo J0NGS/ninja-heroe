@@ -14,7 +14,7 @@
 // ---------------------------------------------------------------------------------
 
 FortOfIllusionBG::FortOfIllusionBG() {
-    fortOfIllusion = new Sprite("Resources/FortOfIllusion/Previews/Fort-of-Illusion.png");
+    fortOfIllusion = new Sprite("Resources/FortOfIllusion/Previews/FortOfIllusion.png");
 /*
     mountainImg = new Image("Resources/FortOfIllusion/Layers/mountains.png");
     for (int i = 0; i < 7; i++) {
@@ -39,8 +39,8 @@ void FortOfIllusionBG::Update()
 
 void FortOfIllusionBG::Draw()
 {
-    fortOfIllusion->Draw(window->CenterX(), window->CenterY(), Layer::BACK, 1.6);
-    fortOfIllusion->Draw(window->Width(), window->CenterY(), Layer::BACK, 1.6);
+    
+    fortOfIllusion->Draw(320, window->CenterY(), Layer::BACK);
     for (int i = 0; i < 7; i++) {
         //mountains[i]->Draw(i * 384, window->CenterY(), Layer::BACK, 1.5);
         //mountains[i]->Draw((i * 384), window->CenterY() + 50, Layer::BACK, 1.5); -----> AJEITAR FUNDO

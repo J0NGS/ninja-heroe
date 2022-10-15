@@ -26,6 +26,8 @@ private:
     Image * mountainImg  = nullptr;        // imagem de fundo frontal
     Sprite* mountains[10] = {};
     Sprite* fortOfIllusion = nullptr;
+
+    bool moving;
     
     
 public:
