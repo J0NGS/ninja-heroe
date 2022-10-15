@@ -15,7 +15,7 @@
 #include "Player.h"
 #include "FortOfIllusionBG.h"
 #include "Object.h"
-
+#include "Brick.h"
 
 #include <string>
 #include <fstream>
@@ -41,12 +41,7 @@ void FortOfIllusion::Init()
     backg = new FortOfIllusionBG();
 
     worm = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
-    ground = new Ground(new Point(1.0f, window->CenterY() + 75), new Point(195.0f, window->CenterY() + 75));
-    ground2 = new Ground(new Point(195.0f, window->CenterY() + 75), new Point(195.0f, window->CenterY() + 50));
-
-
-    scene->Add(ground, MOVING);
-    scene->Add(ground2, MOVING);
+    
 
     //
     //scene->Add(backg, STATIC);
@@ -59,6 +54,9 @@ void FortOfIllusion::Init()
     // ----------------------
     // plataformas
     // ----------------------
+    Brick* brick = new Brick("Resources/FortOfIllusion/layers/tijolo1.png");
+    brick->MoveTo(48, 421);
+    scene->Add(brick, MOVING);
 
     
     // ----------------------
@@ -85,13 +83,12 @@ void FortOfIllusion::Update()
     
     scene->Update();
     scene->CollisionDetection();
-    
 }
 
 // ------------------------------------------------------------------------------
 
 void FortOfIllusion::Draw()
-{
+{   
     backg->Draw();
     scene->Draw();
 

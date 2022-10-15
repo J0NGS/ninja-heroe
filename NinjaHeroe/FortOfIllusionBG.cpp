@@ -14,7 +14,7 @@
 // ---------------------------------------------------------------------------------
 
 FortOfIllusionBG::FortOfIllusionBG() {
-    fortOfIllusion  = new Sprite("Resources/FortOfIllusion/Previews/FortOfIllusion.png");
+    fortOfIllusion  = new Sprite("Resources/FortOfIllusion/Previews/esqueleto.jpg");
     
     /*  
     mountainImg = new Image("Resources/FortOfIllusion/Layers/mountains.png");
@@ -40,7 +40,7 @@ void FortOfIllusionBG::Update()
 
 void FortOfIllusionBG::Draw()
 {
-    fortOfIllusion->Draw(1000, window->CenterY(), Layer::BACK);
+    fortOfIllusion->Draw(2500, window->CenterY(), Layer::BACK);
 }
 
 // -------------------------------------------------------------------------------

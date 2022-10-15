@@ -30,9 +30,6 @@ private:
     FortOfIllusionBG* backg = nullptr;   // pano de fundo animado
     static Worm* worm;
     static Fireball* fireball;
-    Ground* ground = nullptr;
-    Ground* ground2 = nullptr;
-
 public:
     static Scene* scene;           // cena do nível
 

@@ -18,13 +18,7 @@
 #include "Player.h"
 #include "Ground.h"
 
-
-
 // ------------------------------------------------------------------------------
-
-
-// ---------------------------------------------------------------------------------
-
 
 Ground::Ground(Point * x, Point * y) {
 	line = new Line(*x, *y);
@@ -43,7 +37,7 @@ void Ground::OnCollision(Object* obj) {
 }
 
 void Ground::Update() {
-
+	
 }
 void Ground::Draw() {
 }
