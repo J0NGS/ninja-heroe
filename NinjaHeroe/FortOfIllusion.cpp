@@ -14,6 +14,7 @@
 #include "FortOfIllusion.h"
 #include "Player.h"
 #include "FortOfIllusionBG.h"
+#include "Object.h"
 
 
 #include <string>
@@ -40,11 +41,18 @@ void FortOfIllusion::Init()
     backg = new FortOfIllusionBG();
 
     worm = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
+    ground = new Ground(new Point(1.0f, window->CenterY() + 75), new Point(195.0f, window->CenterY() + 75));
+    ground2 = new Ground(new Point(195.0f, window->CenterY() + 75), new Point(195.0f, window->CenterY() + 50));
+
+
+    scene->Add(ground, MOVING);
+    scene->Add(ground2, MOVING);
+
     //
     //scene->Add(backg, STATIC);
     //// adiciona jogador na cena
     scene->Add(NinjaHeroe::player, MOVING);
-    NinjaHeroe::player->MoveTo(40, window->CenterY() + 90);
+    NinjaHeroe::player->MoveTo(30, window->CenterY() + 45);
     scene->Add(worm, MOVING);
     //
 

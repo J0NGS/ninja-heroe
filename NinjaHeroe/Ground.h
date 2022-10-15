@@ -9,32 +9,28 @@
 //
 **********************************************************************************/
 
-#ifndef _FORT_OF_ILLUSION_BG_H_
-#define _FORT_OF_ILLUSION_BG_H_
+#ifndef _GROUND_H_
+#define _GROUND_H_
 
 // ---------------------------------------------------------------------------------
 
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
 #include "Sprite.h"                     // background é composto por sprites
-#include "Ground.h"                     // background é composto por sprites
 #include <List>
 // ---------------------------------------------------------------------------------
 
-class FortOfIllusionBG : public Object
+class Ground : public Object
 {
 private:
-    Image * mountainImg     = nullptr;        // imagem de fundo frontal
-    Sprite* mountains[10]   = {};
-    Sprite* fortOfIllusion  = nullptr;
-
-    bool moving;
-    
-    
+    Geometry* line;
 public:
-    FortOfIllusionBG();                 // construtor
-    ~FortOfIllusionBG();                // destrutor
+    Ground(Point* x, Point* y);                 // construtor
+    ~Ground();                // destrutor
 
+    void OnCollision(Object* obj);
+
+    void Init();
     void Update();                      // atualização do objeto
     void Draw();                        // desenho do objeto
     void Finalize();
