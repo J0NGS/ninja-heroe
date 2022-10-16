@@ -54,7 +54,7 @@ void FortOfIllusion::Init()
     // ----------------------
     // plataformas
     // ----------------------
-    Brick* brick = new Brick("Resources/FortOfIllusion/layers/tijolo1.png");
+    Brick* brick = new Brick("Resources/FortOfIllusion/layers/Bloco1.png");
     brick->MoveTo(48, 421);
     scene->Add(brick, MOVING);
 
