@@ -120,6 +120,9 @@
     <ClCompile Include="Ground.cpp">
       <Filter>Game\Arquivos de Origem\Levels\FortOfIllusion</Filter>
     </ClCompile>
+    <ClCompile Include="FireWarrior.cpp">
+      <Filter>Game\Arquivos de Origem\Characters\Enemys</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NinjaHeroe.h">
@@ -199,6 +202,12 @@
     </ClInclude>
     <ClInclude Include="Ground.h">
       <Filter>Game\Arquivos de Cabeçalho\Levels\FortOfIllusion</Filter>
+    </ClInclude>
+    <ClInclude Include="Platforms.h">
+      <Filter>Game\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="FireWarrior.h">
+      <Filter>Game\Arquivos de Cabeçalho\Characters\Enemys</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

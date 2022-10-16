@@ -50,6 +50,8 @@ private:
     bool left;
     bool space;
 
+    uint        damage;                 // dano do jogador
+    uint        life;                   // vida do jogador
     uint        state;                  // estado do jogador
     int         level;                  // nível finalizado
 

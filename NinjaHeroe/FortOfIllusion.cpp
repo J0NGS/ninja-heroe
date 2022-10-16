@@ -27,7 +27,8 @@ using std::string;
 
 Scene* FortOfIllusion::scene        = nullptr;      //
 Worm* FortOfIllusion::worm          = nullptr;      //
-Fireball* FortOfIllusion::fireball  = nullptr;      //
+Fireball* FortOfIllusion::fireball = nullptr;      //
+FireWarrior* FortOfIllusion::Firewarrior  = nullptr;      //
 
 // ------------------------------------------------------------------------------
 
@@ -41,6 +42,7 @@ void FortOfIllusion::Init()
     backg = new FortOfIllusionBG();
 
     worm = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
+    Firewarrior = new FireWarrior();
     ground = new Ground(new Point(1.0f, window->CenterY() + 75), new Point(195.0f, window->CenterY() + 75));
     ground2 = new Ground(new Point(195.0f, window->CenterY() + 75), new Point(195.0f, window->CenterY() + 50));
 
@@ -54,6 +56,7 @@ void FortOfIllusion::Init()
     scene->Add(NinjaHeroe::player, MOVING);
     NinjaHeroe::player->MoveTo(30, window->CenterY() + 45);
     scene->Add(worm, MOVING);
+    scene->Add(Firewarrior, MOVING);
     //
 
     // ----------------------
@@ -76,10 +79,11 @@ void FortOfIllusion::Update()
 {
 
     if (window->KeyPress(VK_DOWN)) {
-        NinjaHeroe::player->MoveTo(NinjaHeroe::player->X(), NinjaHeroe::player->Y() + 1);
+        //NinjaHeroe::player->MoveTo(NinjaHeroe::player->X(), NinjaHeroe::player->Y() + 1);         //errado
+
     }
     if (window->KeyDown(VK_RIGHT)) {
-        NinjaHeroe::player->MoveTo(NinjaHeroe::player->X() + 50 * gameTime, NinjaHeroe::player->Y());
+        //NinjaHeroe::player->MoveTo(NinjaHeroe::player->X() + 50 * gameTime, NinjaHeroe::player->Y());       //errado
     }
 
     

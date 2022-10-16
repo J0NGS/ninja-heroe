@@ -21,7 +21,7 @@ Worm::Worm()
     animRun = new Animation(tilesetRun, 0.120f, true);
 
     tilesetAtck = new TileSet("Resources/Worm/Worm/Attack.png", 90, 90, 16, 16);
-    animAtck = new Animation(tilesetAtck, 0.120f, true);
+    animAtck = new Animation(tilesetAtck, 0.120f, false);
 
     tilesetTakeH = new TileSet("Resources/Worm/Worm/GetHit.png", 90, 90, 3, 3);
     animTakeH = new Animation(tilesetTakeH, 0.120f, true);
@@ -46,7 +46,7 @@ Worm::Worm(float x, float y)
     animRun = new Animation(tilesetRun, 0.120f, true);
 
     tilesetAtck = new TileSet("Resources/Worm/Worm/Attack.png", 90, 90, 16, 16);
-    animAtck = new Animation(tilesetAtck, 0.120f, true);
+    animAtck = new Animation(tilesetAtck, 0.120f, false);
 
     tilesetTakeH = new TileSet("Resources/Worm/Worm/GetHit.png", 90, 90, 3, 3);
     animTakeH = new Animation(tilesetTakeH, 0.120f, true);
@@ -58,12 +58,12 @@ Worm::Worm(float x, float y)
     animIdle = new Animation(tilesetIdle, 0.120f, true);
     // ---------------------------------------------------------------------------------
     //incializando state
-    state = ATCK1;
+    state = IDLE;
     //Posição inicial
     MoveTo(x, y);
 
     fireball = new Fireball();
-    fireball->MoveTo(X() + 28, Y() - 10);
+    fireball->MoveTo(X() + 55, Y() - 10);
 
 
 }
@@ -101,8 +101,33 @@ void Worm::Update()
     if (state == IDLE)
         animIdle->NextFrame();
     if (state == ATCK1) {
-        fireball->shoot = true;
+        if(animAtck->Frame() == 12){
+        fireball->shootOn();
+        animAtck->NextFrame();
+        }
+        else {
+            animAtck->NextFrame();
+        }
+        if (animAtck->Inactive())
+            state = IDLE;
+    }
+    if (fireball->shoot) {
+        fireball->shootOn();
         fireball->Update();
+    }
+
+
+    if (space && window->KeyUp(VK_SPACE)) {
+        space = false;
+        state = IDLE;
+        animAtck->Restart();
+    }
+    else if (window->KeyDown(VK_SPACE)) {
+        space = true;
+
+        if (state == IDLE)
+            state = ATCK1;
+        animAtck->Select(state);
         animAtck->NextFrame();
     }
 }
@@ -110,16 +135,24 @@ void Worm::Update()
 // ---------------------------------------------------------------------------------
 void Worm::Draw()
 {
-    if (state == IDLE)
+    if (state == IDLE) {
+        fireball->Draw();
         animIdle->Draw(x, y, z, 1.5f);
-    if (state == RUNING)
+    }
+    if (state == RUNING){
+        fireball->Draw();
         animRun->Draw(x, y, z, 1.5f);
-    if (state == DEATH)
+    }
+    if (state == DEATH){
+        fireball->Draw();
         animDeath->Draw(x, y, z, 1.5f);
+    }
     if (state == ATCK1){
         fireball->Draw();
         animAtck->Draw(x, y, z, 1.5f);
     }
-    if (state == TAKEHIT)
+    if (state == TAKEHIT){
+        fireball->Draw();
         animTakeH->Draw(x, y, z, 1.5f);
+    }
 }
