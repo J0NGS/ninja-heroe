@@ -166,6 +166,7 @@
     <ClCompile Include="Home.cpp" />
     <ClCompile Include="FortOfIllusion.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Life.cpp" />
     <ClCompile Include="NinjaHeroe.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -191,8 +192,8 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="Life.h" />
     <ClInclude Include="Object.h" />
-    <ClInclude Include="Platforms.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sound.h" />

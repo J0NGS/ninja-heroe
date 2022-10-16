@@ -54,7 +54,7 @@ FireWarrior::FireWarrior()
 
     
     // inicializa estado do player
-    state = ATCK1;
+    state = IDLE;
     // posição inicial
     MoveTo(window->CenterX() + 90, window->CenterY() - (window->CenterY() / 2), Layer::FRONT);
 }
