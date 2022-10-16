@@ -21,6 +21,7 @@
 #include "FortOfIllusionBG.h"
 #include "Worm.h"
 #include "Fireball.h"
+#include "FireWarrior.h"
 
 // ------------------------------------------------------------------------------
 
@@ -29,6 +30,7 @@ class FortOfIllusion : public Game
 private:
     FortOfIllusionBG* backg = nullptr;   // pano de fundo animado
     static Worm* worm;
+    static FireWarrior* Firewarrior;
     static Fireball* fireball;
     Ground* ground = nullptr;
     Ground* ground2 = nullptr;
