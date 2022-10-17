@@ -1,11 +1,11 @@
 /**********************************************************************************
-// Player (Código Fonte)
+// Player (CÃ³digo Fonte)
 //
-// Criação:     20 Abr 2012
-// Atualização: 27 Set 2021
+// CriaÃ§Ã£o:     20 Abr 2012
+// AtualizaÃ§Ã£o: 27 Set 2021
 // Compilador:  Visual C++ 2019
 //
-// Descrição:   Define uma classe para o jogador
+// DescriÃ§Ã£o:   Define uma classe para o jogador
 //
 **********************************************************************************/
 
@@ -36,7 +36,7 @@ Player::Player()
     speed = 30;
 
 
-    // posição inicial
+    // posiÃ§Ã£o inicial
     MoveTo(window->CenterX(), window->CenterY(), Layer::FRONT);
 
     // ------------------------Tileset&Animation------------------------------------
@@ -75,7 +75,7 @@ Player::Player()
 
  
     
-    //adicionando sequencias nas animações
+    //adicionando sequencias nas animaÃ§Ãµes
     animIdle->Add(IDLE, idle, 8);
     animJump->Add(JUMPING, jump, 2);
     animRun->Add(RUNING, run, 8);
@@ -149,7 +149,7 @@ void Player::OnCollision(Object* obj)
 void Player::Update()
 {   
 
-    // comando para animação quando aperta para a direita
+    // comando para animaÃ§Ã£o quando aperta para a direita
     if (right && window->KeyUp(VK_RIGHT)) {
         right = false;
         state = IDLE;
@@ -161,7 +161,7 @@ void Player::Update()
         animRun->NextFrame();
     }
 
-    // comando para animação quando aperta para a esquerda
+    // comando para animaÃ§Ã£o quando aperta para a esquerda
     if (left && window->KeyUp(VK_LEFT)) {
         left = false;
         state = IDLE;
@@ -174,24 +174,13 @@ void Player::Update()
         animRun->NextFrame();
     }
     //------------------------------------------------------
-    // comando para animação quando aperta para cima
-    stringstream ss;
-
-    if (jumping) {
-
-        if (jumpTimer->Elapsed(3.0f)) {
-            Translate(60 * gameTime, 60 * gameTime);
-        }
-        else {
-            Translate(60 * gameTime, -60 * gameTime);
-        }
-
-    }
-
-    if (up && window->KeyUp(VK_UP)) { 
+    // comando para animaÃ§Ã£o quando aperta para cima
+    if (up && window->KeyUp(VK_UP)) {
+        Translate(60 * gameTime, 60 * gameTime); 
         state = IDLE;
     }
     else if (window->KeyDown(VK_UP)) {
+        Translate(60 * gameTime, -60 * gameTime);
         
         state = JUMPING;
         up = true;
@@ -199,7 +188,7 @@ void Player::Update()
         animJump->NextFrame();
     }
     //------------------------------------------------------
-    // comando para animação quando aperta espaço(attack)
+    // comando para animaÃ§Ã£o quando aperta espaÃ§o(attack)
     if (space && window->KeyUp(VK_SPACE)) {
         state = IDLE;
         space = false;
@@ -220,14 +209,14 @@ void Player::Update()
         animAtck->NextFrame();
     }
     //------------------------------------------------------
-    // enquanto está parado roda a animação
+    // enquanto estÃ¡ parado roda a animaÃ§Ã£o
     if (state == IDLE) {
         animIdle->Select(state);
         animIdle->NextFrame();
     }
     
     //------------------------------------------------------
-    // Animação quando toma um hit
+    // AnimaÃ§Ã£o quando toma um hit
     if (state == TAKEHIT) {
         animTake->Select(state);
         animTake->NextFrame();
@@ -235,7 +224,7 @@ void Player::Update()
 
     
     //------------------------------------------------------
-    //animações da barra de vida
+    //animaÃ§Ãµes da barra de vida
     life->Update();
 }
 

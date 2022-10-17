@@ -42,11 +42,12 @@ FortOfIllusion::~FortOfIllusion(){}
 void FortOfIllusion::Init()
 {
 
-    // cria gerenciador de cena 
-    
+    // cria gerenciador de cena
+    scene = new Scene();
+    // pano de fundo do jogo
+    backg = new FortOfIllusionBG();
+    scene->Add(backg, MOVING);
 
-    //Brick * brick2 = new Brick("Resources/FortOfIllusion/layers/Bloco1.png");
-    
 
     // pano de fundo do jogo
     
@@ -61,7 +62,6 @@ void FortOfIllusion::Init()
     //scene->Add(backg, STATIC);
     //// adiciona jogador na cena
     NinjaHeroe::player->MoveTo(130, window->CenterY() + 45);
-    scene->Add(NinjaHeroe::player, MOVING);
 
     //scene->Add(NinjaHeroe::player->life, STATIC);
 
@@ -71,11 +71,10 @@ void FortOfIllusion::Init()
     // ----------------------
     // plataformas
     // ----------------------
-
     
-    brick1->MoveTo(769 / 2,562); 
+    brick1 = new Brick("Resources/FortOfIllusion/layers/Bloco1.png");
+    brick1->MoveTo(384, 562);
     scene->Add(brick1, MOVING);
-
     
     // ----------------------
 
@@ -104,6 +103,19 @@ void FortOfIllusion::Update()
         
     }
     // é pq mexe o fundo e o brick fica parado, o brick tem que acompanhar o fundo no caso
+    if (window->KeyPress(VK_DOWN)) {
+        //NinjaHeroe::player->MoveTo(NinjaHeroe::player->X(), NinjaHeroe::player->Y() + 1);         //errado
+
+    }
+    //comando para animação quando aperta para a direita
+
+    
+    if (window->KeyDown(VK_LEFT) && backg->posX < 2500) {
+        backg->posX += 75 * gameTime;
+        brick1->Translate(75 * gameTime, 0);
+        
+    }
+    // é pq mexe o fundo e o brick fica parado, o brick tem que acompanhar o fundo no caso
     if (window->KeyPress(VK_UP)) {
         NinjaHeroe::player->jumping = true;
         NinjaHeroe::player->jumpTimer->Start();
@@ -115,7 +127,6 @@ void FortOfIllusion::Update()
     
     if (worm->fireball->X() > window->Width()) {
         worm->fireball->shootOff();
-
     }
 
     if (worm->fireball->shoot == false) {
