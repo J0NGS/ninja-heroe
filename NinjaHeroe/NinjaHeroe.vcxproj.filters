@@ -132,6 +132,12 @@
     <ClCompile Include="Brick.cpp">
       <Filter>Game\Arquivos de Origem\Levels\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="FireWarrior.cpp">
+      <Filter>Game\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Life.cpp">
+      <Filter>Game\Arquivos de Origem\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NinjaHeroe.h">
