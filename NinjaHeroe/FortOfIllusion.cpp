@@ -37,9 +37,9 @@ void FortOfIllusion::Init()
 
     // cria gerenciador de cena
     scene = new Scene();
-
     // pano de fundo do jogo
     backg = new FortOfIllusionBG();
+    scene->Add(backg, MOVING);
 
     worm = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
 
@@ -48,7 +48,7 @@ void FortOfIllusion::Init()
     //// adiciona jogador na cena
     scene->Add(NinjaHeroe::player, MOVING);
     NinjaHeroe::player->MoveTo(130, window->CenterY() + 45);
-    scene->Add(NinjaHeroe::player->life, STATIC);
+    //scene->Add(NinjaHeroe::player->life, STATIC);
 
     scene->Add(worm, MOVING);
     worm->MoveTo(10, window->CenterY() + 45);
@@ -59,10 +59,10 @@ void FortOfIllusion::Init()
     // ----------------------
     // plataformas
     // ----------------------
-    Brick* brick = new Brick("Resources/FortOfIllusion/layers/Bloco1.png");
-    brick->MoveTo(48, 421);
-    scene->Add(brick, MOVING);
-
+    
+    brick1 = new Brick("Resources/FortOfIllusion/layers/Bloco1.png");
+    brick1->MoveTo(384, 562);
+    scene->Add(brick1, MOVING);
     
     // ----------------------
 
@@ -78,17 +78,30 @@ void FortOfIllusion::Init()
 void FortOfIllusion::Update()
 {
 
+
+    if (window->KeyDown(VK_RIGHT)) {
+        backg->posX -= 75 * gameTime;
+        brick1->Translate(-75 * gameTime, 0);
+    }
+
+    
+    if (window->KeyDown(VK_LEFT) && backg->posX < 2500) {
+        backg->posX += 75 * gameTime;
+        brick1->Translate(75 * gameTime, 0);
+        
+    }
+    // é pq mexe o fundo e o brick fica parado, o brick tem que acompanhar o fundo no caso
     if (window->KeyPress(VK_DOWN)) {
         //NinjaHeroe::player->MoveTo(NinjaHeroe::player->X(), NinjaHeroe::player->Y() + 1);         //errado
 
     }
-    if (window->KeyDown(VK_RIGHT)) {
-        //NinjaHeroe::player->MoveTo(NinjaHeroe::player->X() + 50 * gameTime, NinjaHeroe::player->Y());       //errado
-    }
+    //comando para animação quando aperta para a direita
+    
     
     if (worm->fireball->X() > window->Width()) {
         
         worm->fireball->shootOff();
+        scene->Remove(worm->fireball, MOVING);
         delete worm->fireball;
         worm->fireball = new Fireball();
     }
@@ -101,7 +114,6 @@ void FortOfIllusion::Update()
 
 void FortOfIllusion::Draw()
 {   
-    backg->Draw();
     scene->Draw();
 
     if (NinjaHeroe::viewBBox)

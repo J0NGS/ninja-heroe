@@ -10,10 +10,14 @@
 **********************************************************************************/
 
 #include "FortOfIllusionBG.h"
+#include "NinjaHeroe.h"
 
 // ---------------------------------------------------------------------------------
 
 FortOfIllusionBG::FortOfIllusionBG() {
+    posX = 2500;
+    posY = window->CenterY();
+    MoveTo(posX, posY, Layer::BACK);
     fortOfIllusion  = new Sprite("Resources/FortOfIllusion/Previews/esqueleto.jpg");
     
     /*  
@@ -33,14 +37,14 @@ FortOfIllusionBG::~FortOfIllusionBG()
 
 void FortOfIllusionBG::Update()
 {
-
+    
 }
 
 // -------------------------------------------------------------------------------
 
 void FortOfIllusionBG::Draw()
 {
-    fortOfIllusion->Draw(2500, window->CenterY(), Layer::BACK);
+    fortOfIllusion->Draw(posX, posY, Layer::BACK);
 }
 
 // -------------------------------------------------------------------------------

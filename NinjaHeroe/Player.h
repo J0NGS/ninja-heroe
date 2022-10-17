@@ -57,6 +57,10 @@ private:
     
 
 public:
+    float posY;
+
+    bool moving = false;
+
     Player();                           // construtor
     ~Player();                          // destrutor
 
