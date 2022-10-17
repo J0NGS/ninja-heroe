@@ -1,11 +1,11 @@
 /**********************************************************************************
-// Level1 (Arquivo de CabeÁalho)
+// Level1 (Arquivo de Cabe√ßalho)
 //
-// CriaÁ„o:     14 Fev 2013
-// AtualizaÁ„o: 27 Set 2021
+// Cria√ß√£o:     14 Fev 2013
+// Atualiza√ß√£o: 27 Set 2021
 // Compilador:  Visual C++ 2019
 //
-// DescriÁ„o:   NÌvel 1 do jogo
+// Descri√ß√£o:   N√≠vel 1 do jogo
 //
 **********************************************************************************/
 
@@ -13,8 +13,9 @@
 #define _FORT_OF_ILLUSION_H_
 
 // ------------------------------------------------------------------------------
-// Inclusıes
+// Inclus√µes
 
+#include "Brick.h"
 #include "Game.h"
 #include "Scene.h"
 #include "Player.h"
@@ -30,18 +31,24 @@
 class FortOfIllusion : public Game
 {
 private:
+
     FortOfIllusionBG* backg = nullptr;   // pano de fundo animado
+    
     static Worm* worm;
     static FireWarrior* Firewarrior;
     static Fireball* fireball;
     Brick* brick1 = nullptr;
-public:
-    static Scene* scene;           // cena do nÌvel
 
-    void Init();                    // inicializaÁ„o do nÌvel
-    void Update();                  // atualiza lÛgica do jogo
+public:
+    static Scene* scene;           // cena do n√≠vel
+
+    FortOfIllusion();
+    ~FortOfIllusion();
+    
+    void Init();                    // inicializa√ß√£o do n√≠vel
+    void Update();                  // atualiza l√≥gica do jogo
     void Draw();                    // desenha jogo
-    void Finalize();                // finalizaÁ„o do nÌvel
+    void Finalize();                // finaliza√ß√£o do n√≠vel
 };
 
 // -----------------------------------------------------------------------------

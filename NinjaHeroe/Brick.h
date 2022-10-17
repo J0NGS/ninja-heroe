@@ -12,7 +12,7 @@
 #ifndef _BRICK_H_
 #define _BRICK_H_
 
-// ---------------------------------------------------------------------------------
+// ------------------------------------------------------------TNC-TNC-TNC-TNC-TNC-----------------
 
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object

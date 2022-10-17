@@ -15,7 +15,6 @@
 #include "Player.h"
 #include "FortOfIllusionBG.h"
 #include "Object.h"
-#include "Brick.h"
 
 #include <string>
 #include <fstream>
@@ -32,6 +31,14 @@ FireWarrior* FortOfIllusion::Firewarrior  = nullptr;      //
 
 // ------------------------------------------------------------------------------
 
+FortOfIllusion::FortOfIllusion(){
+    scene   = new Scene();
+    backg   = new FortOfIllusionBG();
+    worm    = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
+    brick1  = new Brick("Resources/FortOfIllusion/layers/Bloco1.png");
+}
+FortOfIllusion::~FortOfIllusion(){}
+
 void FortOfIllusion::Init()
 {
 
@@ -41,18 +48,23 @@ void FortOfIllusion::Init()
     backg = new FortOfIllusionBG();
     scene->Add(backg, MOVING);
 
-    worm = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
 
+    // pano de fundo do jogo
+    
+    scene->Add(backg, MOVING);
+
+    
+    worm->MoveTo(10, window->CenterY() + 45);
+    scene->Add(worm, MOVING);
+    scene->Add(worm->fireball, MOVING);
+    
     //
     //scene->Add(backg, STATIC);
     //// adiciona jogador na cena
-    scene->Add(NinjaHeroe::player, MOVING);
     NinjaHeroe::player->MoveTo(130, window->CenterY() + 45);
+
     //scene->Add(NinjaHeroe::player->life, STATIC);
 
-    scene->Add(worm, MOVING);
-    worm->MoveTo(10, window->CenterY() + 45);
-    scene->Add(worm->fireball, MOVING);
     //scene->Add(Firewarrior, MOVING);
     //
 
@@ -96,14 +108,32 @@ void FortOfIllusion::Update()
 
     }
     //comando para animação quando aperta para a direita
+
+    
+    if (window->KeyDown(VK_LEFT) && backg->posX < 2500) {
+        backg->posX += 75 * gameTime;
+        brick1->Translate(75 * gameTime, 0);
+        
+    }
+    // é pq mexe o fundo e o brick fica parado, o brick tem que acompanhar o fundo no caso
+    if (window->KeyPress(VK_UP)) {
+        NinjaHeroe::player->jumping = true;
+        NinjaHeroe::player->jumpTimer->Start();
+        //NinjaHeroe::player->MoveTo(NinjaHeroe::player->X(), NinjaHeroe::player->Y() + 1);         //errado
+
+    }
+    //comando para animação quando aperta para a direita
     
     
     if (worm->fireball->X() > window->Width()) {
-        
         worm->fireball->shootOff();
+    }
+
+    if (worm->fireball->shoot == false) {
         scene->Remove(worm->fireball, MOVING);
         delete worm->fireball;
         worm->fireball = new Fireball();
+        scene->Add(worm->fireball, MOVING);
     }
     
     scene->Update();
