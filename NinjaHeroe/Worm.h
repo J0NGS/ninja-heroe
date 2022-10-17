@@ -18,7 +18,7 @@
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
 #include "Animation.h"                  // animação de sprites
-#include "Player.h"
+//#include "Player.h"
 #include "Fireball.h"
 
 
@@ -51,6 +51,7 @@ public:
     Worm(float x, float y);             // construtor
     ~Worm();                            // destrutor
     
+    bool space;
     Fireball* fireball;                 //
     uint      state;                    // Estado da minhoca
 

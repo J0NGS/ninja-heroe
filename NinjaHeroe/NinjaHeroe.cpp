@@ -69,7 +69,7 @@ void NinjaHeroe::Finalize()
     level->Finalize();
 
     delete player;
-    delete audio;
+    //delete audio;
     delete level;
 }
 
