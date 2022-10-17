@@ -1,11 +1,11 @@
 /**********************************************************************************
-// Player (Arquivo de Cabeçalho)
+// Player (Arquivo de CabeÃ§alho)
 //
-// Criação:     20 Abr 2012
-// Atualização: 27 Set 2021
+// CriaÃ§Ã£o:     20 Abr 2012
+// AtualizaÃ§Ã£o: 27 Set 2021
 // Compilador:  Visual C++ 2019
 //
-// Descrição:   Define uma classe para o jogador
+// DescriÃ§Ã£o:   Define uma classe para o jogador
 //
 **********************************************************************************/
 
@@ -13,11 +13,11 @@
 #define _NINJAHEROE_PLAYER_H_
 
 // ---------------------------------------------------------------------------------
-// Inclusões
+// InclusÃµes
 
-#include "Types.h"                      // tipos específicos da engine
+#include "Types.h"                      // tipos especÃ­ficos da engine
 #include "Object.h"                     // interface de Object
-#include "Animation.h"                  // animação de sprites
+#include "Animation.h"                  // animaÃ§Ã£o de sprites
 #include "Life.h"                       // classe de vida
 
 // ------------------------------------------------------------------------------
@@ -37,13 +37,13 @@ private:
     TileSet* tilesetFall;               // folha de sprites do personagem caindo
     TileSet* tilesetTake;               // folha de sprites do personagem tomando um hit
     //-----------------------------animation---------------------------------------------//
-    Animation* animRun;                 // animação do personagem correndo
-    Animation* animJump;                // animação do personagem pulando
-    Animation* animIdle;                // animação do personagem parado
-    Animation* animAtck;                // animação do personagem atacando
-    Animation* animDeath;               // animação do personagem morrendo
-    Animation* animFall;                // animação do personagem caindo
-    Animation* animTake;                // animação do personagem tomando um hit
+    Animation* animRun;                 // animaÃ§Ã£o do personagem correndo
+    Animation* animJump;                // animaÃ§Ã£o do personagem pulando
+    Animation* animIdle;                // animaÃ§Ã£o do personagem parado
+    Animation* animAtck;                // animaÃ§Ã£o do personagem atacando
+    Animation* animDeath;               // animaÃ§Ã£o do personagem morrendo
+    Animation* animFall;                // animaÃ§Ã£o do personagem caindo
+    Animation* animTake;                // animaÃ§Ã£o do personagem tomando um hit
     //---------------------------controls-----------------------------------------------//
     bool right;
     bool up;
@@ -52,11 +52,12 @@ private:
 
     uint        damage;                 // dano causado pelo jogador
     uint        state;                  // estado do jogador
-    int         level;                  // nível finalizado
+    int         level;                  // nÃ­vel finalizado
     uint        speed;
     
 
 public:
+    bool moving = false;
     Timer* jumpTimer;
     float posY, posX;
 
@@ -67,17 +68,17 @@ public:
 
     Life*       life;                   // vida do jogador
     void Reset();                       // volta ao estado inicial
-    int Level();                        // último nível finalizado
+    int Level();                        // Ãºltimo nÃ­vel finalizado
     float Bottom();                     // coordenadas da base
     float Top();                        // coordenadas do topo
 
-    void OnCollision(Object* obj);      // resolução da colisão
-    void Update();                      // atualização do objeto
+    void OnCollision(Object* obj);      // resoluÃ§Ã£o da colisÃ£o
+    void Update();                      // atualizaÃ§Ã£o do objeto
     void Draw();                        // desenho do objeto
 };
 
 // ---------------------------------------------------------------------------------
-// Função Membro Inline
+// FunÃ§Ã£o Membro Inline
 
 inline int Player::Level()
 {

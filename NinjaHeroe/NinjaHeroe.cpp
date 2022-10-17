@@ -12,6 +12,7 @@
 #include "Engine.h"
 #include "NinjaHeroe.h"
 #include "FortOfIllusion.h"
+#include "Home.h"
 
 
 // ------------------------------------------------------------------------------
@@ -19,7 +20,7 @@
 // inicializa membros estáticos da classe
 Game* NinjaHeroe::level = nullptr;
 Player* NinjaHeroe::player = nullptr;
-Audio* NinjaHeroe::audio = nullptr;
+//Audio* NinjaHeroe::audio = nullptr;
 bool    NinjaHeroe::viewBBox = false;
 
 // ------------------------------------------------------------------------------
@@ -27,10 +28,10 @@ bool    NinjaHeroe::viewBBox = false;
 void NinjaHeroe::Init()
 {
     // cria sistema de áudio
-    audio = new Audio();
-    audio->Add(MENU, "Resources/Menu.wav");
+    //audio = new Audio();
+    /*audio->Add(MENU, "Resources/Menu.wav");
     audio->Add(MUSIC, "Resources/Music.wav");
-    audio->Add(TRANSITION, "Resources/Transition.wav");
+    audio->Add(TRANSITION, "Resources/Transition.wav");*/
 
     // bounding box não visível
     viewBBox = false;
@@ -38,7 +39,7 @@ void NinjaHeroe::Init()
     // cria jogador
     player = new Player();
     // inicializa nível de abertura do jogo
-    level = new FortOfIllusion();
+    level = new Home();
     level->Init();
 }
 

@@ -1,11 +1,11 @@
 /**********************************************************************************
-// Ninja Heroe (Arquivo de Cabeçalho)
+// Ninja Heroe (Arquivo de Cabeï¿½alho)
 //
-// Criação:     09 Out 2022
-// Atualização: 09 Out 2022
+// Criaï¿½ï¿½o:     09 Out 2022
+// Atualizaï¿½ï¿½o: 09 Out 2022
 // Compilador:  Visual C++ 2022
 //
-// Descrição:   Jogo estilo plataforma usando a engine do curso
+// Descriï¿½ï¿½o:   Jogo estilo plataforma usando a engine do curso
 //
 **********************************************************************************/
 
@@ -24,28 +24,28 @@
 // ------------------------------------------------------------------------------
 
 enum Sounds { MENU, MUSIC, TRANSITION };
-enum STATE { RUNING, IDLE, ATCK1, ATCK2, TAKEHIT, DEATH, JUMPING, FALLING };         // Estados do player
+enum STATE { RUNING, RUNINGLEFT, IDLE, ATCK1, ATCK2, TAKEHIT, DEATH, JUMPING, FALLING, ATCK1LEFT, ATCK2LEFT};         // Estados do player
 enum TYPE {FIREBALL, WORM, PLAYER, BRICK, FIREWARRIOR};                               // Tipo do objeto
 // ------------------------------------------------------------------------------
 
 class NinjaHeroe : public Game
 {
 private:
-    static Game* level;            // nível atual do jogo
+    static Game* level;            // nï¿½vel atual do jogo
 
 public:
-    static Audio* audio;           // sistema de áudio
+    //static Audio* audio;           // sistema de ï¿½udio
     static bool viewBBox;          // estado da bounding box
     static Player* player;
 
 
     void Init();                    // inicializa jogo
-    void Update();                  // atualiza lógica do jogo
+    void Update();                  // atualiza lï¿½gica do jogo
     void Draw();                    // desenha jogo
     void Finalize();                // finaliza jogo
 
     template<class T>
-    static void NextLevel()         // muda para próximo nível do jogo
+    static void NextLevel()         // muda para prï¿½ximo nï¿½vel do jogo
     {
         if (level)
         {
