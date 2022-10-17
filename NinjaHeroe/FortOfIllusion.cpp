@@ -1,11 +1,11 @@
 /**********************************************************************************
-// Level1 (Código Fonte)
+// Level1 (Cï¿½digo Fonte)
 //
-// Criação:     14 Fev 2013
-// Atualização: 27 Set 2021
+// Criaï¿½ï¿½o:     14 Fev 2013
+// Atualizaï¿½ï¿½o: 27 Set 2021
 // Compilador:  Visual C++ 2019
 //
-// Descrição:   Nível 1 do jogo
+// Descriï¿½ï¿½o:   Nï¿½vel 1 do jogo
 //
 **********************************************************************************/
 
@@ -15,7 +15,7 @@
 #include "Player.h"
 #include "FortOfIllusionBG.h"
 #include "Object.h"
-
+#include "Brick.h"
 
 #include <string>
 #include <fstream>
@@ -23,7 +23,7 @@ using std::ifstream;
 using std::string;
 
 // ------------------------------------------------------------------------------
-// Inicializa membros estáticos da classe
+// Inicializa membros estï¿½ticos da classe
 
 Scene* FortOfIllusion::scene        = nullptr;      //
 Worm* FortOfIllusion::worm          = nullptr;      //
@@ -42,14 +42,7 @@ void FortOfIllusion::Init()
     backg = new FortOfIllusionBG();
 
     worm = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
-    Firewarrior = new FireWarrior();
-    ground = new Ground(new Point(1.0f, window->CenterY() + 75), new Point(195.0f, window->CenterY() + 75));
-    ground2 = new Ground(new Point(195.0f, window->CenterY() + 75), new Point(195.0f, window->CenterY() + 50));
 
-
-    scene->Add(ground, MOVING);
-    scene->Add(ground2, MOVING);
-    
     //
     //scene->Add(backg, STATIC);
     //// adiciona jogador na cena
@@ -66,11 +59,14 @@ void FortOfIllusion::Init()
     // ----------------------
     // plataformas
     // ----------------------
+    Brick* brick = new Brick("Resources/FortOfIllusion/layers/Bloco1.png");
+    brick->MoveTo(48, 421);
+    scene->Add(brick, MOVING);
 
     
     // ----------------------
 
-    // inicia com música
+    // inicia com mï¿½sica
     /*NinjaHeroe::audio->Frequency(MUSIC, 0.94f);
     NinjaHeroe::audio->Frequency(TRANSITION, 1.0f);
     NinjaHeroe::audio->Play(MUSIC);*/
@@ -99,13 +95,12 @@ void FortOfIllusion::Update()
     
     scene->Update();
     scene->CollisionDetection();
-    
 }
 
 // ------------------------------------------------------------------------------
 
 void FortOfIllusion::Draw()
-{
+{   
     backg->Draw();
     scene->Draw();
 
