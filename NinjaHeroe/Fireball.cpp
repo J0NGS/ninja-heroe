@@ -22,13 +22,12 @@ Fireball::Fireball()
     anim = new Animation(tileset, 0.120f, true);
 
     // cria a bound box
-    BBox(new Circle(6));
     //inicializa o estado da bola
     shoot = false;
     //inicializando tipo do objeto
     type = FIREBALL;
     //inicializando velocidade
-    speed = 10;
+    speed = 60;
 }
 
 // ---------------------------------------------------------------------------------
@@ -63,10 +62,18 @@ void Fireball::OnCollision(Object* obj)
 
 void Fireball::Update()
 {
+    
     if (shoot) {
+        BBox(new Circle(tileset->Width()/2));
         Translate(speed * gameTime, 0);
         anim->NextFrame();
     }
+    // ---------------------------------------------------------------------------------
+    if (x < 0)                              // se o tiro sair pela esquerda o estado muda
+        shoot = false;
+    if (x > window->Width())                // se o tiro sair pela direita o estado muda
+        shoot = false;
+    // ---------------------------------------------------------------------------------
 }
 
 

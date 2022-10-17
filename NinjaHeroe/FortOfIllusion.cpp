@@ -1,11 +1,11 @@
 /**********************************************************************************
-// Level1 (Código Fonte)
+// Level1 (Cï¿½digo Fonte)
 //
-// Criação:     14 Fev 2013
-// Atualização: 27 Set 2021
+// Criaï¿½ï¿½o:     14 Fev 2013
+// Atualizaï¿½ï¿½o: 27 Set 2021
 // Compilador:  Visual C++ 2019
 //
-// Descrição:   Nível 1 do jogo
+// Descriï¿½ï¿½o:   Nï¿½vel 1 do jogo
 //
 **********************************************************************************/
 
@@ -23,11 +23,12 @@ using std::ifstream;
 using std::string;
 
 // ------------------------------------------------------------------------------
-// Inicializa membros estáticos da classe
+// Inicializa membros estï¿½ticos da classe
 
 Scene* FortOfIllusion::scene        = nullptr;      //
 Worm* FortOfIllusion::worm          = nullptr;      //
-Fireball* FortOfIllusion::fireball  = nullptr;      //
+Fireball* FortOfIllusion::fireball = nullptr;      //
+FireWarrior* FortOfIllusion::Firewarrior  = nullptr;      //
 
 // ------------------------------------------------------------------------------
 
@@ -49,6 +50,7 @@ void FortOfIllusion::Init()
     scene->Add(NinjaHeroe::player, MOVING);
     NinjaHeroe::player->MoveTo(30, window->CenterY() + 45);
     scene->Add(worm, MOVING);
+    scene->Add(Firewarrior, MOVING);
     //
 
     // ----------------------
@@ -61,7 +63,7 @@ void FortOfIllusion::Init()
     
     // ----------------------
 
-    // inicia com música
+    // inicia com mï¿½sica
     /*NinjaHeroe::audio->Frequency(MUSIC, 0.94f);
     NinjaHeroe::audio->Frequency(TRANSITION, 1.0f);
     NinjaHeroe::audio->Play(MUSIC);*/
@@ -74,10 +76,11 @@ void FortOfIllusion::Update()
 {
 
     if (window->KeyPress(VK_DOWN)) {
-        NinjaHeroe::player->MoveTo(NinjaHeroe::player->X(), NinjaHeroe::player->Y() + 1);
+        //NinjaHeroe::player->MoveTo(NinjaHeroe::player->X(), NinjaHeroe::player->Y() + 1);         //errado
+
     }
     if (window->KeyDown(VK_RIGHT)) {
-        NinjaHeroe::player->MoveTo(NinjaHeroe::player->X() + 50 * gameTime, NinjaHeroe::player->Y());
+        //NinjaHeroe::player->MoveTo(NinjaHeroe::player->X() + 50 * gameTime, NinjaHeroe::player->Y());       //errado
     }
 
     

@@ -16,16 +16,23 @@
 
 Player::Player()
 {
-    //inicializa controles de teclas
+    // ---------------------------------Controls------------------------------------
     right = false;
     left = false;
     up = false;
     space = false;
-
-    //inicializa o tipo do objeto
+    // -------------------------------Atributes-------------------------------------
+    //tipo
     type = PLAYER;
+    
+    // inicializa estado do player
+    state = IDLE;
+    level = 0;
+    
+    // posição inicial
+    MoveTo(window->CenterX(), window->CenterY() + (window->CenterY() / 2), Layer::FRONT);
 
-    //instanciando tilesets e animações
+    // ------------------------Tileset&Animation------------------------------------
     tilesetRun = new TileSet("Resources/Personagem/Run.png", 200, 200, 8, 8);
     animRun = new Animation(tilesetRun, 0.120f, true);
 
@@ -41,7 +48,7 @@ Player::Player()
     tilesetAtck = new TileSet("Resources/Personagem/Attack.png", 200, 200, 12, 12);
     animAtck = new Animation(tilesetAtck, 0.150f, false);
 
-    //sequencia de animações
+    // ------------------------SequenAnimation-------------------------------------
     uint run[8] = { 1,2,3,4,5,6,7,8 };
     uint jump[2] = { 1,2 };
     uint idle[8] = { 1,2,3,4,5,6,7,8 };
@@ -59,19 +66,14 @@ Player::Player()
     animAtck->Add(ATCK1, atck1, 6);
     animAtck->Add(ATCK2, atck2, 6);
     
-    // cria bounding box
+    // ------------------------------BoundBox------------------------------------
     BBox(new Rect(
         -1.0f * tilesetRun->TileWidth() / 7.0f,
         -1.0f * tilesetRun->TileHeight() / 8.0f,
         tilesetRun->TileWidth() / 7.0f,
         tilesetRun->TileHeight() / 8.0f));
 
-    // inicializa estado do player
-    state = IDLE;
-    level = 0;
-    
-    // posição inicial
-    MoveTo(window->CenterX(),window->CenterY() + (window->CenterY()/2), Layer::FRONT);
+
 }
 
 // ---------------------------------------------------------------------------------
