@@ -57,7 +57,6 @@ void Fireball::shootOff()
 
 void Fireball::OnCollision(Object* obj)
 {
-    
 }
 
 

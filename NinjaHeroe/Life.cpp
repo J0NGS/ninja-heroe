@@ -16,7 +16,7 @@
 
 Life::Life(uint l)
 {
-    life = 200;
+    life = 350;
 
     tileset = new TileSet("Resources/Personagem/Life/Life.png", 64, 16, 9 , 9);
     anim = new Animation(tileset, 0.120f, false);
@@ -41,7 +41,7 @@ Life::Life(uint l)
     anim->Add(7, heart8, 1);
     anim->Add(8, heart9, 1);
 
-
+    LifeCtrl = 0;
     MoveTo(window->CenterX() - window->CenterX() + 55 ,  40 + Y());
 }
 
@@ -56,7 +56,7 @@ Life::~Life()
 
 // ---------------------------------------------------------------------------------
 
-void Life::Damage(int dmg)
+void Life::Damage(uint dmg)
 {
     life = life - dmg;
 }
@@ -72,10 +72,12 @@ void Life::OnCollision(Object* obj)
 
 void Life::Update()
 {
-        
-    if (life = 200)
-        anim->Select(0);
-
+    if (life = 400) {
+        LifeCtrl = 1;
+    } else if (life = 350){
+        LifeCtrl = 1;
+    }
+    anim->Select(LifeCtrl);
 }
 
 // ---------------------------------------------------------------------------------

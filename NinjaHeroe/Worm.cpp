@@ -46,7 +46,7 @@ Worm::Worm(float x, float y)
     animRun = new Animation(tilesetRun, 0.120f, true);
 
     tilesetAtck = new TileSet("Resources/Worm/Worm/Attack.png", 90, 90, 16, 16);
-    animAtck = new Animation(tilesetAtck, 0.120f, true);
+    animAtck = new Animation(tilesetAtck, 0.120f, false);
 
     tilesetTakeH = new TileSet("Resources/Worm/Worm/GetHit.png", 90, 90, 3, 3);
     animTakeH = new Animation(tilesetTakeH, 0.120f, true);

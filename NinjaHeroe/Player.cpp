@@ -29,7 +29,9 @@ Player::Player()
     state = IDLE;
     level = 0;
     life = new Life(400);
-    
+    speed = 30;
+
+
     // posição inicial
     MoveTo(window->CenterX(), window->CenterY() + (window->CenterY() / 2), Layer::FRONT);
 
@@ -105,6 +107,7 @@ Player::~Player()
     delete tilesetAtck;
     delete tilesetTake;
     delete tilesetFall;
+    delete life;
 }
 
 // ---------------------------------------------------------------------------------
@@ -122,6 +125,10 @@ void Player::Reset()
 
 void Player::OnCollision(Object* obj)
 {
+    if (obj->Type() == FIREBALL) {
+        Translate(speed * gameTime, 0);
+        life->Damage(100);
+    }
 }
 
 // ---------------------------------------------------------------------------------

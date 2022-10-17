@@ -30,14 +30,14 @@ private:
     Animation* anim;                 // animação do personagem correndo
     //---------------------------controls-----------------------------------------------//
     
-    uint        damage;                  // dano do jogador
     uint        life;
 
 public:
     Life(uint l);                    // construtor
     ~Life();                             // destrutor
 
-    void Damage(int dmg);                // volta ao estado inicial
+    uint    LifeCtrl;  
+    void Damage(uint dmg);                // volta ao estado inicial
     int LifeValue();                     // último nível finalizado
     
     void OnCollision(Object* obj);       // resolução da colisão

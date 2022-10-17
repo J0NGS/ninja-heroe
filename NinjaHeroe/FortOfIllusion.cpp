@@ -54,9 +54,10 @@ void FortOfIllusion::Init()
     //scene->Add(backg, STATIC);
     //// adiciona jogador na cena
     scene->Add(NinjaHeroe::player, MOVING);
-    NinjaHeroe::player->MoveTo(30, window->CenterY() + 45);
-    
+    NinjaHeroe::player->MoveTo(130, window->CenterY() + 45);
+
     scene->Add(worm, MOVING);
+    worm->MoveTo(10, window->CenterY() + 45);
     scene->Add(worm->fireball, MOVING);
     scene->Add(Firewarrior, MOVING);
     //

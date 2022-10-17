@@ -53,15 +53,15 @@ private:
 
     uint        damage;                 // dano causado pelo jogador
     uint        state;                  // estado do jogador
-    Life*       life;                   // estado do jogador
     int         level;                  // nível finalizado
-
+    uint        speed;
     
 
 public:
     Player();                           // construtor
     ~Player();                          // destrutor
 
+    Life*       life;                   // vida do jogador
     void Reset();                       // volta ao estado inicial
     int Level();                        // último nível finalizado
     float Bottom();                     // coordenadas da base
