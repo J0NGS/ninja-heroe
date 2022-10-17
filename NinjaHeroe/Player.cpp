@@ -129,6 +129,9 @@ void Player::OnCollision(Object* obj)
         Translate(speed * gameTime, 0);
         life->Damage(100);
     }
+    if (obj->Type() == BRICK) {
+        up = false;
+    }
 }
 
 // ---------------------------------------------------------------------------------
@@ -149,10 +152,11 @@ void Player::Update()
     //------------------------------------------------------
     // comando para animação quando aperta para cima
     if (up && window->KeyUp(VK_UP)) {
-        up = false;
+        Translate(60 * gameTime, 60 * gameTime); 
         state = IDLE;
     }
     else if (window->KeyDown(VK_UP)) {
+        Translate(60 * gameTime, -60 * gameTime);
         state = JUMPING;
         up = true;
         animJump->Select(state);

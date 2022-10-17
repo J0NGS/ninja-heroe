@@ -23,6 +23,7 @@
 #include "Fireball.h"
 #include "FireWarrior.h"
 #include "Life.h"
+#include "Brick.h"
 
 // ------------------------------------------------------------------------------
 
@@ -33,6 +34,7 @@ private:
     static Worm* worm;
     static FireWarrior* Firewarrior;
     static Fireball* fireball;
+    Brick* brick1 = nullptr;
 public:
     static Scene* scene;           // cena do nível
 
