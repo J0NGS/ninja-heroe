@@ -15,6 +15,7 @@
 // ------------------------------------------------------------------------------
 // Inclusões
 
+#include "Brick.h"
 #include "Game.h"
 #include "Scene.h"
 #include "Player.h"
@@ -23,21 +24,28 @@
 #include "Fireball.h"
 #include "FireWarrior.h"
 #include "Life.h"
-#include "Brick.h"
 
 // ------------------------------------------------------------------------------
 
 class FortOfIllusion : public Game
 {
 private:
+
     FortOfIllusionBG* backg = nullptr;   // pano de fundo animado
+    
     static Worm* worm;
     static FireWarrior* Firewarrior;
     static Fireball* fireball;
+    
     Brick* brick1 = nullptr;
+
+
 public:
     static Scene* scene;           // cena do nível
 
+    FortOfIllusion();
+    ~FortOfIllusion();
+    
     void Init();                    // inicialização do nível
     void Update();                  // atualiza lógica do jogo
     void Draw();                    // desenha jogo

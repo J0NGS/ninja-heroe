@@ -57,9 +57,10 @@ private:
     
 
 public:
-    float posY;
+    Timer* jumpTimer;
+    float posY, posX;
 
-    bool moving = false;
+    bool jumping = false;
 
     Player();                           // construtor
     ~Player();                          // destrutor

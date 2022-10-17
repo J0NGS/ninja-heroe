@@ -34,7 +34,7 @@ private:
     static Game* level;            // nível atual do jogo
 
 public:
-    static Audio* audio;           // sistema de áudio
+    //static Audio* audio;           // sistema de áudio
     static bool viewBBox;          // estado da bounding box
     static Player* player;
 
