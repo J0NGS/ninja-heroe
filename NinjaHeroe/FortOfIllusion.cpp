@@ -55,6 +55,7 @@ void FortOfIllusion::Init()
     //// adiciona jogador na cena
     scene->Add(NinjaHeroe::player, MOVING);
     NinjaHeroe::player->MoveTo(130, window->CenterY() + 45);
+    scene->Add(NinjaHeroe::player->life, STATIC);
 
     scene->Add(worm, MOVING);
     worm->MoveTo(10, window->CenterY() + 45);
