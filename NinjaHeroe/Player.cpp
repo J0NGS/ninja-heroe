@@ -11,11 +11,15 @@
 
 #include "Player.h"
 #include "NinjaHeroe.h"
+#include <sstream>
+using namespace std;
 
 // ---------------------------------------------------------------------------------
 
 Player::Player()
 {
+
+    jumpTimer = new Timer();
     // ---------------------------------Controls------------------------------------
     right = false;
     left = false;
@@ -33,7 +37,7 @@ Player::Player()
 
 
     // posição inicial
-    MoveTo(window->CenterX(), window->CenterY() + (window->CenterY() / 2), Layer::FRONT);
+    MoveTo(window->CenterX(), window->CenterY(), Layer::FRONT);
 
     // ------------------------Tileset&Animation------------------------------------
     tilesetRun = new TileSet("Resources/Personagem/Run.png", 200, 200, 16, 16);
@@ -135,6 +139,9 @@ void Player::OnCollision(Object* obj)
         state = TAKEHIT;    
         life->Damage(100);
     }
+    if (obj->Type() == BRICK) {
+        up = false;
+    }
 }
 
 // ---------------------------------------------------------------------------------
@@ -168,11 +175,24 @@ void Player::Update()
     }
     //------------------------------------------------------
     // comando para animação quando aperta para cima
-    if (up && window->KeyUp(VK_UP)) {
-        up = false;
+    stringstream ss;
+
+    if (jumping) {
+
+        if (jumpTimer->Elapsed(3.0f)) {
+            Translate(60 * gameTime, 60 * gameTime);
+        }
+        else {
+            Translate(60 * gameTime, -60 * gameTime);
+        }
+
+    }
+
+    if (up && window->KeyUp(VK_UP)) { 
         state = IDLE;
     }
     else if (window->KeyDown(VK_UP)) {
+        
         state = JUMPING;
         up = true;
         animJump->Select(state);

@@ -21,7 +21,7 @@ void Home::Init()
     backg = new Sprite("Resources/Home/Background.jpg");
     tileset = new TileSet("Resources/PressEnter.png", 72, 48, 1, 5);
     anim = new Animation(tileset, 0.180f, true);
-    NinjaHeroe::audio->Play(MENU, true);
+    //NinjaHeroe::audio->Play(MENU, true);
 }
 
 // ------------------------------------------------------------------------------
@@ -35,8 +35,8 @@ void Home::Update()
     // se a tecla ENTER for pressionada
     if (window->KeyPress(VK_RETURN))
     {
-        NinjaHeroe::audio->Stop(MENU);
-        NinjaHeroe::NextLevel<FortOfIllusion>();
+       // NinjaHeroe::audio->Stop(MENU);
+       NinjaHeroe::NextLevel<FortOfIllusion>();
     }
     else
     {
