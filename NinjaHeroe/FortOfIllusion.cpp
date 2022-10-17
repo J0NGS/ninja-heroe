@@ -53,7 +53,7 @@ void FortOfIllusion::Init()
     scene->Add(worm, MOVING);
     worm->MoveTo(10, window->CenterY() + 45);
     scene->Add(worm->fireball, MOVING);
-    scene->Add(Firewarrior, MOVING);
+    //scene->Add(Firewarrior, MOVING);
     //
 
     // ----------------------

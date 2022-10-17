@@ -17,6 +17,7 @@
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
 #include "Sprite.h"                     // background é composto por sprites
+#include "NinjaHeroe.h"                     // background é composto por sprites
 #include <List>
 // ---------------------------------------------------------------------------------
 

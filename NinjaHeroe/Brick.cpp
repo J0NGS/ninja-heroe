@@ -12,6 +12,7 @@ Brick::Brick(string filename) {
 	sprite	= new Sprite(filename);
 	geom = new Rect(-(sprite->Width() / 2), -(sprite->Height()/2), sprite->Width() / 2 , sprite->Height() / 2); // 96 largura * 32 
 	BBox(geom);
+	type = BRICK;
 }         
 
 Brick::~Brick() {
