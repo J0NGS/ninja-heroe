@@ -43,6 +43,12 @@
     <Filter Include="Game\Arquivos de Cabeçalho\Levels\FortOfIllusion">
       <UniqueIdentifier>{51dcf1eb-267d-4f15-b9fb-68c6fabe05c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Arquivos de Cabeçalho\Levels\Utils">
+      <UniqueIdentifier>{874492d8-8750-44a5-aac8-a242e7466bf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Arquivos de Origem\Levels\Utils">
+      <UniqueIdentifier>{34fac123-6dea-4ef9-9aa9-471d9b61f3bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NinjaHeroe.cpp">
@@ -120,8 +126,14 @@
     <ClCompile Include="Ground.cpp">
       <Filter>Game\Arquivos de Origem\Levels\FortOfIllusion</Filter>
     </ClCompile>
+    <ClCompile Include="Brick.h">
+      <Filter>Game\Arquivos de Cabeçalho\Levels\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>Game\Arquivos de Origem\Levels\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="FireWarrior.cpp">
-      <Filter>Game\Arquivos de Origem\Characters\Enemys</Filter>
+      <Filter>Game\Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Life.cpp">
       <Filter>Game\Arquivos de Origem\Characters</Filter>

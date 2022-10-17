@@ -32,9 +32,6 @@ private:
     static Worm* worm;
     static FireWarrior* Firewarrior;
     static Fireball* fireball;
-    Ground* ground = nullptr;
-    Ground* ground2 = nullptr;
-
 public:
     static Scene* scene;           // cena do nível
 

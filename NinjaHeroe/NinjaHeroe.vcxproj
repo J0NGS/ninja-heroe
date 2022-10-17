@@ -154,6 +154,8 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="Brick.cpp" />
+    <ClCompile Include="Brick.h" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FireWarrior.cpp" />
     <ClCompile Include="Font.cpp" />
