@@ -48,20 +48,20 @@ void FortOfIllusion::Init()
     //// adiciona jogador na cena
     scene->Add(NinjaHeroe::player, MOVING);
     NinjaHeroe::player->MoveTo(130, window->CenterY() + 45);
-    scene->Add(NinjaHeroe::player->life, STATIC);
+    //scene->Add(NinjaHeroe::player->life, STATIC);
 
     scene->Add(worm, MOVING);
     worm->MoveTo(10, window->CenterY() + 45);
     scene->Add(worm->fireball, MOVING);
-    scene->Add(Firewarrior, MOVING);
+    //scene->Add(Firewarrior, MOVING);
     //
 
     // ----------------------
     // plataformas
     // ----------------------
-    Brick* brick = new Brick("Resources/FortOfIllusion/layers/Bloco1.png");
-    brick->MoveTo(48, 421);
-    scene->Add(brick, MOVING);
+    //Brick* brick = new Brick("Resources/FortOfIllusion/layers/Bloco1.png");
+    //brick->MoveTo(48, 421);
+    //scene->Add(brick, MOVING);
 
     
     // ----------------------
@@ -87,10 +87,14 @@ void FortOfIllusion::Update()
     }
     
     if (worm->fireball->X() > window->Width()) {
-        
         worm->fireball->shootOff();
+    }
+
+    if (worm->fireball->shoot == false) {
+        scene->Remove(worm->fireball, MOVING);
         delete worm->fireball;
         worm->fireball = new Fireball();
+        scene->Add(worm->fireball, MOVING);
     }
     
     scene->Update();

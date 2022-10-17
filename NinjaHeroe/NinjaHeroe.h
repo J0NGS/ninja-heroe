@@ -24,8 +24,8 @@
 // ------------------------------------------------------------------------------
 
 enum Sounds { MENU, MUSIC, TRANSITION };
-enum STATE { RUNING, IDLE, ATCK1, ATCK2, TAKEHIT, DEATH, JUMPING, FALLING };         // Estados do player
-                                                               // Tipo do objeto
+enum STATE { RUNING, RUNINGLEFT, IDLE, ATCK1, ATCK2, TAKEHIT, DEATH, JUMPING, FALLING, ATCK1LEFT, ATCK2LEFT};         // Estados do player
+enum TYPE {FIREBALL, WORM, PLAYER, BRICK, FIREWARRIOR};                               // Tipo do objeto
 // ------------------------------------------------------------------------------
 
 class NinjaHeroe : public Game
