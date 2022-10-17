@@ -28,6 +28,7 @@ Fireball::Fireball()
     type = FIREBALL;
     //inicializando velocidade
     speed = 60;
+    BBox(new Circle(10));
 }
 
 // ---------------------------------------------------------------------------------
@@ -64,16 +65,9 @@ void Fireball::Update()
 {
     
     if (shoot) {
-        BBox(new Circle(tileset->Width()/2));
         Translate(speed * gameTime, 0);
         anim->NextFrame();
     }
-    // ---------------------------------------------------------------------------------
-    if (x < 0)                              // se o tiro sair pela esquerda o estado muda
-        shoot = false;
-    if (x > window->Width())                // se o tiro sair pela direita o estado muda
-        shoot = false;
-    // ---------------------------------------------------------------------------------
 }
 
 

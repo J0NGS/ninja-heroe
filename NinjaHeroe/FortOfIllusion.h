@@ -22,6 +22,7 @@
 #include "Worm.h"
 #include "Fireball.h"
 #include "FireWarrior.h"
+#include "Life.h"
 
 // ------------------------------------------------------------------------------
 

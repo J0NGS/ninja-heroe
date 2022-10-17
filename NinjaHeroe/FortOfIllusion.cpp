@@ -49,13 +49,15 @@ void FortOfIllusion::Init()
 
     scene->Add(ground, MOVING);
     scene->Add(ground2, MOVING);
-
+    
     //
     //scene->Add(backg, STATIC);
     //// adiciona jogador na cena
     scene->Add(NinjaHeroe::player, MOVING);
     NinjaHeroe::player->MoveTo(30, window->CenterY() + 45);
+    
     scene->Add(worm, MOVING);
+    scene->Add(worm->fireball, MOVING);
     scene->Add(Firewarrior, MOVING);
     //
 
@@ -85,7 +87,13 @@ void FortOfIllusion::Update()
     if (window->KeyDown(VK_RIGHT)) {
         //NinjaHeroe::player->MoveTo(NinjaHeroe::player->X() + 50 * gameTime, NinjaHeroe::player->Y());       //errado
     }
-
+    
+    if (worm->fireball->X() > window->Width()) {
+        
+        worm->fireball->shootOff();
+        delete worm->fireball;
+        worm->fireball = new Fireball();
+    }
     
     scene->Update();
     scene->CollisionDetection();

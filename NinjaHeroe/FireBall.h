@@ -31,7 +31,6 @@ private:
     TileSet* tileset;                // folha de sprites do personagem
     Animation* anim;                   // animação do personagem
     float speed;
-
 public:
     Fireball();                           // construtor
     ~Fireball();                          // destrutor

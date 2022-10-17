@@ -28,6 +28,7 @@ Player::Player()
     // inicializa estado do player
     state = IDLE;
     level = 0;
+    life = new Life(400);
     
     // posição inicial
     MoveTo(window->CenterX(), window->CenterY() + (window->CenterY() / 2), Layer::FRONT);
@@ -37,7 +38,7 @@ Player::Player()
     animRun = new Animation(tilesetRun, 0.120f, true);
 
     tilesetJump = new TileSet("Resources/Personagem/Jump.png", 200, 200, 2, 2);
-    animJump = new Animation(tilesetJump, 0.240f, true);
+    animJump = new Animation(tilesetJump, 0.240f, false);
 
     tilesetIdle = new TileSet("Resources/Personagem/Idle.png", 200, 200, 8, 8);
     animIdle = new Animation(tilesetIdle, 0.120f, true);
@@ -47,16 +48,25 @@ Player::Player()
 
     tilesetAtck = new TileSet("Resources/Personagem/Attack.png", 200, 200, 12, 12);
     animAtck = new Animation(tilesetAtck, 0.150f, false);
+    
+    tilesetTake = new TileSet("Resources/Personagem/TakeHit.png", 200, 200, 4, 4);
+    animTake = new Animation(tilesetTake, 0.150f, false);
+
+    tilesetFall = new TileSet("Resources/Personagem/Fall.png", 200, 200, 2, 2);
+    animFall = new Animation(tilesetFall, 0.120f, false);
+   
 
     // ------------------------SequenAnimation-------------------------------------
-    uint run[8] = { 1,2,3,4,5,6,7,8 };
-    uint jump[2] = { 1,2 };
-    uint idle[8] = { 1,2,3,4,5,6,7,8 };
-    uint death[6] = { 1,2,3,4,5,6};
-    uint atck1[12] = { 1,2,3,4,5,6};
-    uint atck2[6] = {7,8,9,10,11,12};
-    uint take[8] = { 1,2,3,4,5,6,7,8 };
-    uint fall[8] = { 1,2,3,4,5,6,7,8 };
+    uint run[8] = { 0,1,2,3,4,5,6,7};
+    uint jump[2] = { 0,1 };
+    uint idle[8] = { 0,1,2,3,4,5,6,7};
+    uint death[6] = { 0,1,2,3,4,5};
+    uint atck1[6] = { 0,1,2,3,4,5};
+    uint atck2[6] = {6,7,8,9,10,11};
+    uint take[8] = { 0,1,2,3,4,5,6,7};
+    uint fall[8] = { 0,1,2,3,4,5,6,7};
+
+ 
     
     //adicionando sequencias nas animações
     animRun->Add(IDLE, idle, 8);
@@ -64,7 +74,8 @@ Player::Player()
     animIdle->Add(RUNING, run, 8);
     animDeath->Add(DEATH, death, 6);
     animAtck->Add(ATCK1, atck1, 6);
-    animAtck->Add(ATCK2, atck2, 6);
+    animAtck->Add(ATCK2, atck2, 1);
+    
     
     // ------------------------------BoundBox------------------------------------
     BBox(new Rect(
@@ -117,7 +128,7 @@ void Player::OnCollision(Object* obj)
 
 void Player::Update()
 {
-    //comando para animação quando aperta para a direita
+    // comando para animação quando aperta para a direita
     if (right && window->KeyUp(VK_RIGHT)) {
         right = false;
         state = IDLE;
@@ -129,7 +140,7 @@ void Player::Update()
         animRun->NextFrame();
     }
     //------------------------------------------------------
-    //comando para animação quando aperta para cima
+    // comando para animação quando aperta para cima
     if (up && window->KeyUp(VK_UP)) {
         up = false;
         state = IDLE;
@@ -141,7 +152,7 @@ void Player::Update()
         animJump->NextFrame();
     }
     //------------------------------------------------------
-    //comando para animação quando aperta espaço(attack)
+    // comando para animação quando aperta espaço(attack)
     if (space && window->KeyUp(VK_SPACE)) {
         space = false;
         state = IDLE;
@@ -162,11 +173,23 @@ void Player::Update()
     }
 
     //------------------------------------------------------
-    //enquanto está parado roda a animação
+    // enquanto está parado roda a animação
     if (state == IDLE) {
         animIdle->Select(state);
         animIdle->NextFrame();
     }
+    
+    //------------------------------------------------------
+    // Animação quando toma um hit
+    if (state == TAKEHIT) {
+        animTake->Select(state);
+        animTake->NextFrame();
+    }
+
+    
+    //------------------------------------------------------
+    //animações da barra de vida
+    life->Update();
 }
 
 // ---------------------------------------------------------------------------------
@@ -194,8 +217,16 @@ void Player::Draw()
     case ATCK2:
         animAtck->Draw(x, y, z, 1.5f);
         break;
-       }
+    case TAKEHIT:
+        animTake->Draw(x, y, z, 1.5f);
+        break;
 
+    }
+
+
+
+
+    life->Draw();
 }
 
 // ---------------------------------------------------------------------------------

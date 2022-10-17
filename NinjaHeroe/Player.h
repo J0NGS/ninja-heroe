@@ -37,7 +37,6 @@ private:
     TileSet* tilesetDeath;              // folha de sprites do personagem morrendo
     TileSet* tilesetFall;               // folha de sprites do personagem caindo
     TileSet* tilesetTake;               // folha de sprites do personagem tomando um hit
-    TileSet* tilesetLife;               // folha de sprites do personagem tomando um hit
     //-----------------------------animation---------------------------------------------//
     Animation* animRun;                 // animação do personagem correndo
     Animation* animJump;                // animação do personagem pulando
@@ -46,16 +45,18 @@ private:
     Animation* animDeath;               // animação do personagem morrendo
     Animation* animFall;                // animação do personagem caindo
     Animation* animTake;                // animação do personagem tomando um hit
-    Animation* animLife;                // animação do personagem tomando um hit
     //---------------------------controls-----------------------------------------------//
     bool right;
     bool up;
     bool left;
     bool space;
 
-    Life*        life;                  // vida do jogador
+    uint        damage;                 // dano causado pelo jogador
     uint        state;                  // estado do jogador
+    Life*       life;                   // estado do jogador
     int         level;                  // nível finalizado
+
+    
 
 public:
     Player();                           // construtor

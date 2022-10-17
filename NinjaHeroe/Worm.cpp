@@ -46,7 +46,7 @@ Worm::Worm(float x, float y)
     animRun = new Animation(tilesetRun, 0.120f, true);
 
     tilesetAtck = new TileSet("Resources/Worm/Worm/Attack.png", 90, 90, 16, 16);
-    animAtck = new Animation(tilesetAtck, 0.120f, false);
+    animAtck = new Animation(tilesetAtck, 0.120f, true);
 
     tilesetTakeH = new TileSet("Resources/Worm/Worm/GetHit.png", 90, 90, 3, 3);
     animTakeH = new Animation(tilesetTakeH, 0.120f, true);
@@ -84,6 +84,7 @@ Worm::~Worm()
     delete tilesetTakeH;
     delete tilesetDeath;
     delete tilesetIdle;
+
 }
 
 // ---------------------------------------------------------------------------------
@@ -106,7 +107,7 @@ void Worm::Update()
     
     if (state == ATCK1) {
         if(animAtck->Frame() == 12){
-        fireball->MoveTo(X() + 55, Y() - 10);
+        fireball->MoveTo(X() + 55, Y() - 10, Layer::FRONT);
         fireball->shootOn();
         animAtck->NextFrame();
         }
@@ -122,6 +123,8 @@ void Worm::Update()
         fireball->shootOn();
         fireball->Update();
     }
+
+   
 
 }
 
