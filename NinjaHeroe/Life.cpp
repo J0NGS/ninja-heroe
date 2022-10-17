@@ -14,20 +14,35 @@
 
 // ---------------------------------------------------------------------------------
 
-Life::Life(float x, float y)
+Life::Life(uint l)
 {
-    tileset = new TileSet("Resourcecs/Life/Life.png", 12, 10, 2 , 2);
+    life = 350;
+
+    tileset = new TileSet("Resources/Personagem/Life/Life.png", 64, 16, 9 , 9);
     anim = new Animation(tileset, 0.120f, false);
     
-    uint full[1] = { 1 };
-    uint half[1] = { 2 };
-
-    anim->Add(1, full, 1);
-    anim->Add(2, half, 2);
-
-    life = 100;
-
-    MoveTo(x, y);
+    uint heart1[9] = { 0,1,2,3,4,5,6,7,8 };
+    /*uint heart2[1] = {1};
+    uint heart3[1] = { 2 };
+    uint heart4[1] = { 3 };
+    uint heart5[1] = { 4 };
+    uint heart6[1] = { 5 };
+    uint heart7[1] = { 6 };
+    uint heart8[1] = { 7 };
+    uint heart9[1] = { 8 };
+    */
+    anim->Add(1, heart1, 9);
+    /*anim->Add(0, heart1, 1);
+    anim->Add(2, heart3, 1);
+    anim->Add(3, heart4, 1);
+    anim->Add(4, heart5, 1);
+    anim->Add(5, heart6, 1);
+    anim->Add(6, heart7, 1);
+    anim->Add(7, heart8, 1);
+    anim->Add(8, heart9, 1);
+    */
+    LifeCtrl = 0;
+    MoveTo(window->CenterX() - window->CenterX() + 55 ,  40 + Y());
 }
 
 
@@ -41,9 +56,9 @@ Life::~Life()
 
 // ---------------------------------------------------------------------------------
 
-void Life::Damage(int dmg)
+void Life::Damage(uint dmg)
 {
-    life = life - dmg;
+    this->life= life - dmg;
 }
 
 
@@ -57,14 +72,13 @@ void Life::OnCollision(Object* obj)
 
 void Life::Update()
 {
-    if (life > 50) {
-        anim->Select(1);
-        anim->NextFrame();
+    if (life = 400) {
+        LifeCtrl = 1;
+    } else if (life = 350){
+
     }
-    if (life <= 50) {
-        anim->Select(2);
-        anim->NextFrame();
-    }
+    anim->Select(LifeCtrl);
+    anim->NextFrame();
 }
 
 // ---------------------------------------------------------------------------------

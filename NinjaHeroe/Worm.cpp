@@ -84,6 +84,7 @@ Worm::~Worm()
     delete tilesetTakeH;
     delete tilesetDeath;
     delete tilesetIdle;
+
 }
 
 // ---------------------------------------------------------------------------------
@@ -106,7 +107,7 @@ void Worm::Update()
     
     if (state == ATCK1) {
         if(animAtck->Frame() == 12){
-        fireball->MoveTo(X() + 55, Y() - 10);
+        fireball->MoveTo(X() + 55, Y() - 10, Layer::FRONT);
         fireball->shootOn();
         animAtck->NextFrame();
         }
@@ -122,6 +123,8 @@ void Worm::Update()
         fireball->shootOn();
         fireball->Update();
     }
+
+   
 
 }
 

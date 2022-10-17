@@ -30,19 +30,19 @@ private:
     Animation* anim;                 // animação do personagem correndo
     //---------------------------controls-----------------------------------------------//
     
-                                        // dano do jogador
-    uint        life;                   // vida do jogador
+    uint        life;
 
 public:
-    Life(float x, float y);                             // construtor
-    ~Life();                            // destrutor
+    Life(uint l);                    // construtor
+    ~Life();                             // destrutor
 
-    void Damage(int dmg);                       // volta ao estado inicial
+    uint    LifeCtrl;  
+    void Damage(uint dmg);                // volta ao estado inicial
     int LifeValue();                     // último nível finalizado
     
-    void OnCollision(Object* obj);      // resolução da colisão
-    void Update();                      // atualização do objeto
-    void Draw();                        // desenho do objeto
+    void OnCollision(Object* obj);       // resolução da colisão
+    void Update();                       // atualização do objeto
+    void Draw();                         // desenho do objeto
 };
 
 // ---------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ inline int Life::LifeValue()
 }
 
 inline void Life::Draw() {
-    anim->Draw(x, y, z);
+    anim->Draw(x, y, z, 1.15);
 }
 // ---------------------------------------------------------------------------------
 
