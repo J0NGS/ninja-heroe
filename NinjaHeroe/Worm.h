@@ -47,6 +47,7 @@ private:
             
 public:
     
+    float life = 300.0f;
     Worm();                             // construtor
     Worm(float x, float y);             // construtor
     ~Worm();                            // destrutor

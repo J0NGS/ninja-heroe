@@ -11,6 +11,7 @@
 
 #include "Player.h"
 #include "NinjaHeroe.h"                 // background � composto por sprites
+#include "Worm.h"
 #include <sstream>
 using namespace std;
 
@@ -97,10 +98,10 @@ Player::Player()
         20));*/
 
     BBox(new Rect(
-        -1.0f * tilesetRun->TileWidth() / 7.0f,
-        -1.0f * tilesetRun->TileHeight() / 20.0f,
-        tilesetRun->TileWidth() / 7.0f,
-        tilesetRun->TileHeight() / 8.0f));
+        -1.0f * tilesetRun->TileWidth() / 12.0f,
+        -1.0f * tilesetRun->TileHeight() / 40.0f,
+        tilesetRun->TileWidth() / 30.0f,
+        tilesetRun->TileHeight() / 10.0f));
 
 }
 
@@ -141,9 +142,14 @@ void Player::Reset()
 
 void Player::OnCollision(Object* obj)
 {
+
     if (obj->Type() == FIREBALL) {
         Translate(speed * gameTime, 0);
-        state = TAKEHIT;    
+        state = TAKEHIT;
+        l -= 100;
+        /*l = life->life - 50*/
+        life = new Life(l);
+        
     }
     if (obj->Type() == BRICK) {
         jumping = false;
@@ -160,14 +166,18 @@ void Player::OnCollision(Object* obj)
 // ---------------------------------------------------------------------------------
 
 void Player::Update() 
-{
+{   
+    stringstream ss;
+    ss << "Life - " << life->life << endl;
+    OutputDebugStringA(ss.str().c_str());
+    life = new Life(l);
     Translate(0, speed * gameTime);
     // comando para animação quando aperta para a direita
     if (right && window->KeyUp(VK_RIGHT)) {
         right = false;
         state = IDLE;
-        l -= 50;
-        life = new Life(l);
+        //l -= 50;
+        
     }
     else if (window->KeyDown(VK_RIGHT)) {
         state = RUNING;
@@ -190,13 +200,12 @@ void Player::Update()
     }
     //------------------------------------------------------
     // comando para anima��o quando aperta para cima
-    stringstream ss;
 
     
     if (jumping) {
         
-        if (jumpTimer->Elapsed(1.0f)) {
-            Translate(60 * gameTime, 60 * gameTime);
+        if (jumpTimer->Elapsed(0.5f)) {
+            Translate(100 * gameTime, 200 * gameTime);
             state = FALLING;
             animFall->Select(state);
             animFall->NextFrame();
@@ -204,7 +213,7 @@ void Player::Update()
 
         }
         else {
-            Translate(60 * gameTime, -60 * gameTime);
+            Translate(100 * gameTime, -200 * gameTime);
         }
     }
 
@@ -232,11 +241,7 @@ void Player::Update()
         state = IDLE;
         space = false;
         animAtck->Restart();
-        BBox(new Rect(
-            -1.0f * tilesetRun->TileWidth() / 7.0f,
-            -1.0f * tilesetRun->TileHeight() / 8.0f,
-            tilesetRun->TileWidth() / 7.0f,
-            tilesetRun->TileHeight() / 8.0f));
+        
     }
     else if (window->KeyDown(VK_SPACE)) {
         space = true;
@@ -259,6 +264,11 @@ void Player::Update()
     //------------------------------------------------------
     // enquanto está parado roda a animação
     if (state == IDLE) {
+        BBox(new Rect(
+            -1.0f * tilesetRun->TileWidth() / 12.0f,
+            -1.0f * tilesetRun->TileHeight() / 40.0f,
+            tilesetRun->TileWidth() / 30.0f,
+            tilesetRun->TileHeight() / 10.0f));
         animIdle->Select(state);
         animIdle->NextFrame();
     }
@@ -266,8 +276,13 @@ void Player::Update()
     //------------------------------------------------------
     // Animação quando toma um hit
     if (state == TAKEHIT) {
+        
         animTake->Select(state);
         animTake->NextFrame();
+        if (animTake->Inactive())
+
+            animTake->Restart();
+            state = IDLE;
     }
 
 
@@ -306,6 +321,7 @@ void Player::Draw()
         animAtck->Draw(x, y, z, 1.2f);
         break;
     case TAKEHIT:
+
         animTake->Draw(x, y, z, 1.2f);
         break;
     default:
@@ -314,7 +330,7 @@ void Player::Draw()
         break;
     }
 
-    life->Draw();
+    //life->Draw();
 }
 
 // ---------------------------------------------------------------------------------

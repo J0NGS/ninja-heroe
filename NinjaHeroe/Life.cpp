@@ -72,6 +72,7 @@ void Life::OnCollision(Object* obj)
 
 void Life::Update()
 {
+
     if (life == 400) {
         anim->Frame(0);
     } 

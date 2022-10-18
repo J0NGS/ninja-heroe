@@ -18,6 +18,7 @@
 
 #include <string>
 #include <fstream>
+#include <sstream>
 using std::ifstream;
 using std::string;
 
@@ -25,7 +26,9 @@ using std::string;
 // Inicializa membros est�ticos da classe
 
 Scene* FortOfIllusion::scene        = nullptr;      //
-Worm* FortOfIllusion::worm          = nullptr;      //
+Worm* FortOfIllusion::worm          = nullptr;
+Worm* FortOfIllusion::worm2 = nullptr;
+Worm* FortOfIllusion::worm3 = nullptr;//
 Fireball* FortOfIllusion::fireball = nullptr;      //
 FireWarrior* FortOfIllusion::Firewarrior  = nullptr;      //
 
@@ -34,8 +37,16 @@ FireWarrior* FortOfIllusion::Firewarrior  = nullptr;      //
 FortOfIllusion::FortOfIllusion(){
     scene       = new Scene();
     backg       = new FortOfIllusionBG();
-    worm        = new Worm(350, 390);
-    brickSpeed = 400;
+    worm        = new Worm(1300, 390);
+    worm->life = 300;
+    
+    worm2       = new Worm(1600, 390); 
+    worm2->life = 300;
+    
+    worm3       = new Worm(1900, 390);
+    worm3->life = 300;
+  
+    brickSpeed = 200;
     brickVoid = new Brick("Resources/FortOfIllusion/layers/BrickVoid1.png");
     brickVoid->type = BRICKVOID;
     
@@ -64,11 +75,17 @@ void FortOfIllusion::Init()
     scene->Add(worm, MOVING);
     scene->Add(worm->fireball, MOVING);
     
+    scene->Add(worm2, MOVING);
+    scene->Add(worm2->fireball, MOVING);
+
+    scene->Add(worm3, MOVING);
+    scene->Add(worm3->fireball, MOVING);
+
     //
     //// adiciona jogador na cena
     NinjaHeroe::player->MoveTo(60, window->CenterY() + 20);
     scene->Add(NinjaHeroe::player, MOVING);
-    //scene->Add(NinjaHeroe::player->lif, STATIC);
+    scene->Add(NinjaHeroe::player->life, STATIC);
 
 
     // ----------------------
@@ -112,6 +129,16 @@ void FortOfIllusion::Init()
 // ------------------------------------------------------------------------------
 void FortOfIllusion::Update()
 {
+    if (worm->life < 0 ) {
+        scene->Remove(worm, MOVING);
+    }
+    if (worm2->life < 0) {
+        scene->Remove(worm2, MOVING);
+    }
+    if (worm3->life < 0) {
+        scene->Remove(worm3, MOVING);
+    }
+
 
 
     if (!NinjaHeroe::player->jumping && window->KeyDown(VK_RIGHT)) {
@@ -127,7 +154,13 @@ void FortOfIllusion::Update()
         brick7->Translate(-brickSpeed * gameTime, 0);
         //----------------inimigos-------------------------
         worm->Translate(-brickSpeed * gameTime, 0);
+        worm->fireball->Translate(-brickSpeed * gameTime, 0);
 
+        worm2->Translate(-brickSpeed * gameTime, 0);
+        worm2->fireball->Translate(-brickSpeed * gameTime, 0);
+
+        worm3->Translate(-brickSpeed * gameTime, 0);
+        worm3->fireball->Translate(-brickSpeed * gameTime, 0);
     }
 
     
@@ -145,6 +178,14 @@ void FortOfIllusion::Update()
         brick7->Translate(brickSpeed * gameTime, 0);
         //----------------inimigos-------------------------
         worm->Translate(brickSpeed * gameTime, 0);
+        worm->fireball->Translate(brickSpeed * gameTime, 0);
+
+        worm2->Translate(brickSpeed * gameTime, 0);
+        worm2->fireball->Translate(brickSpeed * gameTime, 0);
+
+        worm3->Translate(brickSpeed * gameTime, 0);
+        worm3->fireball->Translate(brickSpeed * gameTime, 0);
+
     }
     // é pq mexe o fundo e o brick fica parado, o brick tem que acompanhar o fundo no caso
     if (window->KeyPress(VK_DOWN)) {
@@ -167,7 +208,14 @@ void FortOfIllusion::Update()
         brick6->Translate(brickSpeed * gameTime, 0);
         brick7->Translate(brickSpeed * gameTime, 0);
         //----------------inimigos-------------------------
-        worm->Translate(-brickSpeed * gameTime, 0);
+        worm->Translate(brickSpeed * gameTime, 0);
+        worm->fireball->Translate(brickSpeed * gameTime, 0);
+
+        worm2->Translate(brickSpeed * gameTime, 0);
+        worm2->fireball->Translate(brickSpeed * gameTime, 0);
+
+        worm3->Translate(brickSpeed * gameTime, 0);
+        worm3->fireball->Translate(brickSpeed * gameTime, 0);
     }
     // é pq mexe o fundo e o brick fica parado, o brick tem que acompanhar o fundo no caso
     if (window->KeyPress(VK_UP)) {

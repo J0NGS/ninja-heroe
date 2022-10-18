@@ -11,36 +11,17 @@
 
 #include "Worm.h"
 #include "NinjaHeroe.h"
+#include <sstream>
+using namespace std;
 
 // ---------------------------------------------------------------------------------
 
-Worm::Worm()
-{
-    // ------------------------Tileset&Animation------------------------------------
-    tilesetRun = new TileSet("Resources/Worm/Worm/Walk.png", 90, 90, 9, 9);
-    animRun = new Animation(tilesetRun, 0.120f, true);
-
-    tilesetAtck = new TileSet("Resources/Worm/Worm/Attack.png", 90, 90, 16, 16);
-    animAtck = new Animation(tilesetAtck, 0.120f, false);
-
-    tilesetTakeH = new TileSet("Resources/Worm/Worm/GetHit.png", 90, 90, 3, 3);
-    animTakeH = new Animation(tilesetTakeH, 0.120f, true);
-
-    tilesetDeath = new TileSet("Resources/Worm/Worm/Death.png", 90, 90, 8, 8);
-    animDeath = new Animation(tilesetDeath, 0.120f, true);
-
-    tilesetIdle = new TileSet("Resources/Worm/Worm/Idle.png", 90, 90, 9, 9);
-    animIdle = new Animation(tilesetIdle, 0.100f, true);
-    // ---------------------------------------------------------------------------------
-    //incializando state
-    state = ATCK1;
-    //inicialização da fireball do inimigo]
-    fireball = nullptr;
-}
 // ---------------------------------------------------------------------------------
 
 Worm::Worm(float x, float y)
 {
+    type = WORM;
+
     // ------------------------Tileset&Animation------------------------------------
     tilesetRun = new TileSet("Resources/Worm/Worm/Walk.png", 90, 90, 9, 9);
     animRun = new Animation(tilesetRun, 0.120f, true);
@@ -100,9 +81,13 @@ Worm::~Worm()
 
 void Worm::OnCollision(Object* obj)
 {
+    stringstream ss;
     if (obj->Type() == PLAYER) {
-        if (((Player*)obj)->state == ATCK1 || ((Player*)obj)->state == ATCK2)
-            state = TAKEHIT;
+        state = TAKEHIT;
+        life -= 110;
+        
+        
+
     }
 }
 
@@ -125,8 +110,10 @@ void Worm::Update()
         }
     }
     
-    if (animAtck->Inactive())
-        state = IDLE;
+    if (animAtck->Inactive()){
+        state = ATCK1;
+        animAtck->Restart();
+    }
     
     if (fireball->shoot){                                  // se a fireball estiver no estado de tiro, atualiza o frame da fireball
         fireball->shootOn();

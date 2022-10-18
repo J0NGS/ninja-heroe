@@ -35,6 +35,8 @@ private:
     FortOfIllusionBG* backg = nullptr;   // pano de fundo animado
     float brickSpeed;
     static Worm* worm;
+    static Worm* worm2;
+    static Worm* worm3;
     static FireWarrior* Firewarrior;
     static Fireball* fireball;
     
