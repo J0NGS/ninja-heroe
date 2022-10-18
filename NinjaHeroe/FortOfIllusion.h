@@ -33,13 +33,22 @@ class FortOfIllusion : public Game
 private:
 
     FortOfIllusionBG* backg = nullptr;   // pano de fundo animado
-    
+    float brickSpeed;
     static Worm* worm;
     static FireWarrior* Firewarrior;
     static Fireball* fireball;
+    
+    Brick* brickVoid = nullptr;
+    Brick* brickVoid2 = nullptr;
+
     Brick* brick1 = nullptr;
     Brick* brick2 = nullptr;
     Brick* brick3 = nullptr;
+    Brick* brick4 = nullptr;
+    Brick* brick5 = nullptr;
+    Brick* brick6 = nullptr;
+    Brick* brick7 = nullptr;
+
 
 public:
     static Scene* scene;           // cena do nível

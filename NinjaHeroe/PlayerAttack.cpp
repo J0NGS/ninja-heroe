@@ -1,4 +1,5 @@
 #include "PlayerAttack.h"
+#include "NinjaHeroe.h"                 // background é composto por sprites
 
 PlayerAttack::PlayerAttack() {
 	geom = new Circle(10); // 96 largura * 32 

@@ -48,9 +48,9 @@ protected:
     // valor da rotação do objeto
     const float & rotation = rotationAngle; 
 
-    uint type;                  // tipo do objeto
 
 public:
+    uint type;                  // tipo do objeto
     Object();                   // construtor
     virtual ~Object();          // destrutor virtual
 

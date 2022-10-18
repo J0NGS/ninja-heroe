@@ -16,7 +16,6 @@
 // Inclusões
 
 #include "PlayerAttack.h"
-#include "NinjaHeroe.h"
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
 #include "Animation.h"                  // animação de sprites
@@ -51,16 +50,16 @@ private:
     bool up;
     bool left;
     bool space;
-
+    
     uint        damage;                 // dano causado pelo jogador
-    uint        state;                  // estado do jogador
     int         level;                  // nível finalizado
-    uint        speed;
     PlayerAttack * attack1;
     //PlayerAttack * attack2;;
     
 
 public:
+    uint        speed;
+    uint        state;                  // estado do jogador
     float velY;
     bool moving = false;
     Timer* jumpTimer;
