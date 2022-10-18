@@ -70,7 +70,7 @@ void FortOfIllusion::Init()
     //// adiciona jogador na cena
     NinjaHeroe::player->MoveTo(60, window->CenterY() + 20);
     scene->Add(NinjaHeroe::player, MOVING);
-    scene->Add(NinjaHeroe::player->lif, STATIC);
+    //scene->Add(NinjaHeroe::player->lif, STATIC);
 
 
     // ----------------------
@@ -96,13 +96,13 @@ void FortOfIllusion::Init()
     brick4->MoveTo(844, 352);
     scene->Add(brick4, MOVING);
 
-    brick5->MoveTo(844, 352);
+    brick5->MoveTo(2000 + 473, 352);
     scene->Add(brick5, MOVING);
 
-    brick6->MoveTo(844, 352);
+    brick6->MoveTo(2100 + 465, 352);
     scene->Add(brick6, MOVING);
 
-    brick7->MoveTo(844, 352);
+    brick7->MoveTo(2200 + 457, 352);
     scene->Add(brick7, MOVING);
     // ----------------------
 }
