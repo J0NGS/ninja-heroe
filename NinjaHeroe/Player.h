@@ -70,7 +70,8 @@ public:
     Player();                           // construtor
     ~Player();                          // destrutor
 
-    uint life;                   // vida do jogador
+    Life * life;                   // vida do jogador
+    uint l;
     void Reset();                       // volta ao estado inicial
     int Level();                        // último nível finalizado
     float Bottom();                     // coordenadas da base

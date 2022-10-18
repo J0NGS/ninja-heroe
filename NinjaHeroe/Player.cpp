@@ -32,7 +32,9 @@ Player::Player()
     // inicializa estado do player
     state = IDLE;
     level = 0;
-    life = 400;
+    l = 400;
+    life = new Life(400);
+    
     speed = 0;
 
     // posição inicial 
@@ -163,8 +165,9 @@ void Player::Update()
 {
    
     if (window->KeyPress(VK_DOWN)) {
-        OutputDebugStringA("DANO");
-        life -= 50;
+        
+        l -= 50;
+        life = new Life(l);
     }
 
     Translate(0, speed * gameTime);
@@ -317,7 +320,7 @@ void Player::Draw()
         break;
     }
 
-    //life->Draw();
+    life->Draw();
 }
 
 // ---------------------------------------------------------------------------------
