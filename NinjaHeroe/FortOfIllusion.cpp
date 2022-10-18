@@ -34,7 +34,7 @@ FireWarrior* FortOfIllusion::Firewarrior  = nullptr;      //
 FortOfIllusion::FortOfIllusion(){
     scene       = new Scene();
     backg       = new FortOfIllusionBG();
-    worm        = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
+    worm        = new Worm(350, 390);
     brickSpeed = 400;
     brickVoid = new Brick("Resources/FortOfIllusion/layers/BrickVoid1.png");
     brickVoid->type = BRICKVOID;
@@ -61,8 +61,6 @@ void FortOfIllusion::Init()
     scene->Add(backg, MOVING);
 
     // pano de fundo do jogo
-
-    worm->MoveTo(200, window->CenterY() + 80);
     scene->Add(worm, MOVING);
     scene->Add(worm->fireball, MOVING);
     
@@ -105,6 +103,11 @@ void FortOfIllusion::Init()
     brick7->MoveTo(2200 + 457, 352);
     scene->Add(brick7, MOVING);
     // ----------------------
+
+    // ----------------------
+    // inimigos
+    // ----------------------
+    // worms
 }
 // ------------------------------------------------------------------------------
 void FortOfIllusion::Update()
@@ -115,7 +118,6 @@ void FortOfIllusion::Update()
         backg->posX -= brickSpeed * gameTime;
         brickVoid->Translate(-brickSpeed * gameTime, 0);
         brickVoid2->Translate(-brickSpeed * gameTime, 0);
-
         brick1->Translate(-brickSpeed * gameTime, 0);
         brick2->Translate(-brickSpeed * gameTime, 0);
         brick3->Translate(-brickSpeed * gameTime, 0);
@@ -123,6 +125,8 @@ void FortOfIllusion::Update()
         brick5->Translate(-brickSpeed * gameTime, 0);
         brick6->Translate(-brickSpeed * gameTime, 0);
         brick7->Translate(-brickSpeed * gameTime, 0);
+        //----------------inimigos-------------------------
+        worm->Translate(-brickSpeed * gameTime, 0);
 
     }
 
@@ -139,7 +143,8 @@ void FortOfIllusion::Update()
         brick5->Translate(brickSpeed * gameTime, 0);
         brick6->Translate(brickSpeed * gameTime, 0);
         brick7->Translate(brickSpeed * gameTime, 0);
-
+        //----------------inimigos-------------------------
+        worm->Translate(brickSpeed * gameTime, 0);
     }
     // é pq mexe o fundo e o brick fica parado, o brick tem que acompanhar o fundo no caso
     if (window->KeyPress(VK_DOWN)) {
@@ -161,6 +166,8 @@ void FortOfIllusion::Update()
         brick5->Translate(brickSpeed * gameTime, 0);
         brick6->Translate(brickSpeed * gameTime, 0);
         brick7->Translate(brickSpeed * gameTime, 0);
+        //----------------inimigos-------------------------
+        worm->Translate(-brickSpeed * gameTime, 0);
     }
     // é pq mexe o fundo e o brick fica parado, o brick tem que acompanhar o fundo no caso
     if (window->KeyPress(VK_UP)) {
@@ -173,6 +180,9 @@ void FortOfIllusion::Update()
     
     
     if (worm->fireball->X() > window->Width()) {
+        worm->fireball->shootOff();
+    }
+    if (worm->fireball->X() < 0) {
         worm->fireball->shootOff();
     }
 
