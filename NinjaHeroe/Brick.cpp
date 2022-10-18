@@ -15,12 +15,7 @@ Brick::~Brick() {
 }				
 
 void Brick::OnCollision(Object* obj) {
-	if (obj->Type() == PLAYER) {
-		OutputDebugStringA("BRICKVOID");
-		OutputDebugStringA("\n");
-		NinjaHeroe::player->speed = 750;
-		NinjaHeroe::player->state = FALLING;
-	}
+	
 }
 
 void Brick::Init() {

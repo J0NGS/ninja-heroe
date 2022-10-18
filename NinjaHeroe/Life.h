@@ -30,9 +30,9 @@ private:
     Animation* anim;                 // animação do personagem correndo
     //---------------------------controls-----------------------------------------------//
     
-    uint        life;
 
 public:
+    uint        life;
     Life(uint l);                    // construtor
     ~Life();                             // destrutor
 

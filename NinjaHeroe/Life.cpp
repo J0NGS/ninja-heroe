@@ -16,7 +16,7 @@
 
 Life::Life(uint l)
 {
-    life = 350;
+    life = l;
 
     tileset = new TileSet("Resources/Personagem/Life/Life.png", 64, 16, 9 , 9);
     anim = new Animation(tileset, 0.120f, false);
@@ -58,7 +58,9 @@ Life::~Life()
 
 void Life::Damage(uint dmg)
 {
-    this->life= life - dmg;
+    life -= dmg;
+    OutputDebugString("dano");
+    OutputDebugString("\n");
 }
 
 
@@ -72,13 +74,15 @@ void Life::OnCollision(Object* obj)
 
 void Life::Update()
 {
-    if (life = 400) {
-        LifeCtrl = 1;
-    } else if (life = 350){
-
+    if (life == 400) {
+        anim->Frame(0);
     }
-    anim->Select(LifeCtrl);
-    anim->NextFrame();
+    if (life >= 350 && life < 400){
+        anim->Frame(1);
+    }
+    if (life >= 300 && life < 350) {
+        anim->Frame(2);
+    }
 }
 
 // ---------------------------------------------------------------------------------

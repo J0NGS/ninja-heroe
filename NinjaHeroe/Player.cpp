@@ -32,7 +32,7 @@ Player::Player()
     // inicializa estado do player
     state = IDLE;
     level = 0;
-    life = new Life(400);
+    life = 400;
     speed = 0;
 
     // posi��o inicial 
@@ -121,7 +121,6 @@ Player::~Player()
     delete tilesetAtck;
     delete tilesetTake;
     delete tilesetFall;
-    delete life;
     //delete attack1;
 
 }
@@ -144,7 +143,7 @@ void Player::OnCollision(Object* obj)
     if (obj->Type() == FIREBALL) {
         Translate(speed * gameTime, 0);
         state = TAKEHIT;    
-        life->Damage(100);
+        //lif->Damage(100);
     }
     if (obj->Type() == BRICK) {
         jumping = false;
@@ -163,6 +162,11 @@ void Player::OnCollision(Object* obj)
 void Player::Update() 
 {
    
+    if (window->KeyPress(VK_DOWN)) {
+        OutputDebugStringA("DANO");
+        life -= 50;
+    }
+
     Translate(0, speed * gameTime);
     // comando para animação quando aperta para a direita
     if (right && window->KeyUp(VK_RIGHT)) {
@@ -273,7 +277,6 @@ void Player::Update()
 
     //------------------------------------------------------
     //animações da barra de vida
-    life->Update();
 }
 
 // ---------------------------------------------------------------------------------
@@ -314,7 +317,7 @@ void Player::Draw()
         break;
     }
 
-    life->Draw();
+    //life->Draw();
 }
 
 // ---------------------------------------------------------------------------------
