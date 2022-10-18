@@ -39,7 +39,7 @@ void NinjaHeroe::Init()
     // cria jogador
     player = new Player();
     // inicializa nível de abertura do jogo
-    level = new FortOfIllusion();
+    level = new Home();
     level->Init();
 }
 
