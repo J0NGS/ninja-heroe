@@ -32,9 +32,14 @@ Player::Player()
     // inicializa estado do player
     state = IDLE;
     level = 0;
+<<<<<<< Updated upstream
     l = 400;
     life = new Life(400);
     
+=======
+    l = 350;
+    life = new Life(l);
+>>>>>>> Stashed changes
     speed = 0;
 
     // posição inicial 
@@ -145,7 +150,10 @@ void Player::OnCollision(Object* obj)
     if (obj->Type() == FIREBALL) {
         Translate(speed * gameTime, 0);
         state = TAKEHIT;    
+<<<<<<< Updated upstream
         //lif->Damage(100);
+=======
+>>>>>>> Stashed changes
     }
     if (obj->Type() == BRICK) {
         jumping = false;
@@ -175,6 +183,8 @@ void Player::Update()
     if (right && window->KeyUp(VK_RIGHT)) {
         right = false;
         state = IDLE;
+        l -= 50;
+        life = new Life(l);
     }
     else if (window->KeyDown(VK_RIGHT)) {
         state = RUNING;
