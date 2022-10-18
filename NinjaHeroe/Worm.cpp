@@ -58,7 +58,7 @@ Worm::Worm(float x, float y)
     animIdle = new Animation(tilesetIdle, 0.120f, true);
     // ---------------------------------------------------------------------------------
     //incializando state
-    state = ATCK1;
+    state = IDLE;
     //Posição inicial
     MoveTo(x, y);
     //bola de fogo

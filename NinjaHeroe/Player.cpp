@@ -32,14 +32,8 @@ Player::Player()
     // inicializa estado do player
     state = IDLE;
     level = 0;
-<<<<<<< Updated upstream
     l = 400;
-    life = new Life(400);
-    
-=======
-    l = 350;
     life = new Life(l);
->>>>>>> Stashed changes
     speed = 0;
 
     // posi��o inicial 
@@ -150,10 +144,6 @@ void Player::OnCollision(Object* obj)
     if (obj->Type() == FIREBALL) {
         Translate(speed * gameTime, 0);
         state = TAKEHIT;    
-<<<<<<< Updated upstream
-        //lif->Damage(100);
-=======
->>>>>>> Stashed changes
     }
     if (obj->Type() == BRICK) {
         jumping = false;
@@ -171,13 +161,6 @@ void Player::OnCollision(Object* obj)
 
 void Player::Update() 
 {
-   
-    if (window->KeyPress(VK_DOWN)) {
-        
-        l -= 50;
-        life = new Life(l);
-    }
-
     Translate(0, speed * gameTime);
     // comando para animação quando aperta para a direita
     if (right && window->KeyUp(VK_RIGHT)) {
@@ -290,6 +273,7 @@ void Player::Update()
 
     //------------------------------------------------------
     //animações da barra de vida
+    life->Update();
 }
 
 // ---------------------------------------------------------------------------------

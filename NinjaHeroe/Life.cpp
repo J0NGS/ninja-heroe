@@ -41,7 +41,6 @@ Life::Life(uint l)
     anim->Add(7, heart8, 1);
     anim->Add(8, heart9, 1);
     */
-    LifeCtrl = 0;
     MoveTo(window->CenterX() - window->CenterX() + 55 ,  40 + Y());
 }
 
@@ -59,8 +58,7 @@ Life::~Life()
 void Life::Damage(uint dmg)
 {
     life -= dmg;
-    OutputDebugString("dano");
-    OutputDebugString("\n");
+
 }
 
 
@@ -76,11 +74,8 @@ void Life::Update()
 {
     if (life == 400) {
         anim->Frame(0);
-<<<<<<< Updated upstream
-    } if (life >= 350 && life < 400) {
-=======
-    } if (life >= 350 && life < 400){
->>>>>>> Stashed changes
+    } 
+    if (life >= 350 && life < 400){
         anim->Frame(1);
     }
     if (life >= 300 && life < 350) {
@@ -95,7 +90,6 @@ void Life::Update()
     }
     if (life >= 100 && life < 150) {
         anim->Frame(6);
-<<<<<<< Updated upstream
     }
     if (life >= 50 && life < 100) {
         anim->Frame(7);
@@ -108,19 +102,7 @@ void Life::Update()
         anim->Restart();
     }
 
-=======
-    }
-    if (life >= 50 && life < 100) {
-        anim->Frame(7);
-    }
-    if (life > 0 && life < 50){
-        anim->Frame(8);
-    }
-    if (life == 0) {
-        anim->Frame(9);
-        anim->Restart();
-    }
->>>>>>> Stashed changes
+
 }
 
 // ---------------------------------------------------------------------------------
