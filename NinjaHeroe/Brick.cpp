@@ -1,4 +1,3 @@
-
 #include "Brick.h"
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
@@ -16,6 +15,7 @@ Brick::~Brick() {
 }				
 
 void Brick::OnCollision(Object* obj) {
+	
 }
 
 void Brick::Init() {
@@ -25,7 +25,7 @@ void Brick::Update() {
 }
 
 void Brick::Draw() {
-	sprite->Draw(x, y, z);
+	sprite->Draw(x, y, Layer::BACK);
 }
 
 void Brick::Finalize() {

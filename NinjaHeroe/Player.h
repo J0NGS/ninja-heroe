@@ -9,12 +9,13 @@
 //
 **********************************************************************************/
 
-#ifndef _NINJAHEROE_PLAYER_H_
-#define _NINJAHEROE_PLAYER_H_
+#ifndef _PLAYER_H_
+#define _PLAYER_H_
 
 // ---------------------------------------------------------------------------------
 // Inclusões
 
+#include "PlayerAttack.h"
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
 #include "Animation.h"                  // animação de sprites
@@ -49,14 +50,18 @@ private:
     bool up;
     bool left;
     bool space;
-
+    
     uint        damage;                 // dano causado pelo jogador
-    uint        state;                  // estado do jogador
     int         level;                  // nível finalizado
-    uint        speed;
+    PlayerAttack * attack1;
+    //PlayerAttack * attack2;;
     
 
 public:
+    uint        l;
+    uint        speed;
+    uint        state;                  // estado do jogador
+    float velY;
     bool moving = false;
     Timer* jumpTimer;
     float posY, posX;
@@ -66,7 +71,7 @@ public:
     Player();                           // construtor
     ~Player();                          // destrutor
 
-    Life*       life;                   // vida do jogador
+    Life * life;                   // vida do jogador
     void Reset();                       // volta ao estado inicial
     int Level();                        // último nível finalizado
     float Bottom();                     // coordenadas da base

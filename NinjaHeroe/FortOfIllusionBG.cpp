@@ -19,12 +19,7 @@ FortOfIllusionBG::FortOfIllusionBG() {
     posY = window->CenterY();
     MoveTo(posX, posY, Layer::BACK);
     fortOfIllusion  = new Sprite("Resources/FortOfIllusion/Previews/esqueleto.jpg");
-    
-    /*  
-    mountainImg = new Image("Resources/FortOfIllusion/Layers/mountains.png");
-    for (int i = 0; i < 7; i++) {
-        mountains[i] = new Sprite(mountainImg);
-    }*/
+   
 }
 // ---------------------------------------------------------------------------------
 

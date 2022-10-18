@@ -21,13 +21,16 @@ Fireball::Fireball()
     tileset = new TileSet("Resources/Worm/FireBall/Move.png", 46, 46, 6, 6);
     anim = new Animation(tileset, 0.120f, true);
 
+    uint move[6] = { 5,4,3,2,1,0 };
+
+    anim->Add(1, move, 6);
     // cria a bound box
     //inicializa o estado da bola
     shoot = false;
     //inicializando tipo do objeto
     type = FIREBALL;
     //inicializando velocidade
-    speed = 60;
+    speed = -60;
     BBox(new Circle(10));
 }
 
@@ -65,6 +68,7 @@ void Fireball::Update()
     
     if (shoot) {
         Translate(speed * gameTime, 0);
+        anim->Select(1);
         anim->NextFrame();
     }
 }

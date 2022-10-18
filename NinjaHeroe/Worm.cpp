@@ -56,6 +56,12 @@ Worm::Worm(float x, float y)
 
     tilesetIdle = new TileSet("Resources/Worm/Worm/Idle.png", 90, 90, 9, 9);
     animIdle = new Animation(tilesetIdle, 0.120f, true);
+
+    uint atck[16] = { 15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0 };
+    uint hit[3] = { 2,1,0};
+    animAtck->Add(ATCK1, atck, 16);
+    animTakeH->Add(TAKEHIT, hit, 3);
+
     // ---------------------------------------------------------------------------------
     //incializando state
     state = ATCK1;
@@ -94,8 +100,10 @@ Worm::~Worm()
 
 void Worm::OnCollision(Object* obj)
 {
-
-
+    if (obj->Type() == PLAYER) {
+        if (((Player*)obj)->state == ATCK1 || ((Player*)obj)->state == ATCK2)
+            state = TAKEHIT;
+    }
 }
 
 // ---------------------------------------------------------------------------------
@@ -106,8 +114,9 @@ void Worm::Update()
         animIdle->NextFrame();
     
     if (state == ATCK1) {
-        if(animAtck->Frame() == 12){
-        fireball->MoveTo(X() + 55, Y() - 10, Layer::FRONT);
+        animAtck->Select(state);
+        if(animAtck->Frame() == 5){
+        fireball->MoveTo(X() - 55, Y() - 10, Layer::FRONT);
         fireball->shootOn();
         animAtck->NextFrame();
         }
@@ -131,24 +140,24 @@ void Worm::Update()
 // ---------------------------------------------------------------------------------
 void Worm::Draw()
 {
-    if (state == IDLE) {
-        fireball->Draw();
-        animIdle->Draw(x, y, z);
+    switch (state)
+    {
+
+
+    case RUNING:
+        animRun->Draw(x, y, z, 1.2f);
+        break;
+
+    case ATCK1:
+        animAtck->Draw(x, y, z, 1.2f);
+        break;
+    case TAKEHIT:
+        animTakeH->Draw(x, y, z, 1.2f);
+        break;
+    default:
+        state = IDLE;
+        animIdle->Draw(x, y, z, 1.2f);
+        break;
     }
-    if (state == RUNING){
-        fireball->Draw();
-        animRun->Draw(x, y, z);
-    }
-    if (state == DEATH){
-        fireball->Draw();
-        animDeath->Draw(x, y, z);
-    }
-    if (state == ATCK1){
-        fireball->Draw();
-        animAtck->Draw(x, y, z);
-    }
-    if (state == TAKEHIT){
-        fireball->Draw();
-        animTakeH->Draw(x, y, z);
-    }
+    fireball->Draw();
 }

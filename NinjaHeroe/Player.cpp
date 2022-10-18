@@ -10,7 +10,7 @@
 **********************************************************************************/
 
 #include "Player.h"
-#include "NinjaHeroe.h"
+#include "NinjaHeroe.h"                 // background é composto por sprites
 #include <sstream>
 using namespace std;
 
@@ -18,7 +18,7 @@ using namespace std;
 
 Player::Player()
 {
-
+    //velY = 50 * gameTime;
     jumpTimer = new Timer();
     // ---------------------------------Controls------------------------------------
     right = false;
@@ -32,13 +32,13 @@ Player::Player()
     // inicializa estado do player
     state = IDLE;
     level = 0;
-    life = new Life(400);
-    speed = 30;
-
+    l = 400;
+    life = new Life(l);
+    speed = 0;
 
     // posição inicial 
 
-    MoveTo(window->CenterX(), window->CenterY(), Layer::FRONT);
+   // MoveTo(window->CenterX(), window->CenterY() - 500, Layer::FRONT);
 
     // ------------------------Tileset&Animation------------------------------------
     tilesetRun = new TileSet("Resources/Personagem/Run.png", 200, 200, 16, 16);
@@ -90,12 +90,17 @@ Player::Player()
     
     
     // ------------------------------BoundBox------------------------------------
+    /*BBox(new Line(
+        -15,
+        20,
+        15,
+        20));*/
+
     BBox(new Rect(
         -1.0f * tilesetRun->TileWidth() / 7.0f,
-        -1.0f * tilesetRun->TileHeight() / 8.0f,
+        -1.0f * tilesetRun->TileHeight() / 20.0f,
         tilesetRun->TileWidth() / 7.0f,
         tilesetRun->TileHeight() / 8.0f));
-
 
 }
 
@@ -117,7 +122,8 @@ Player::~Player()
     delete tilesetAtck;
     delete tilesetTake;
     delete tilesetFall;
-    delete life;
+    //delete attack1;
+
 }
 
 // ---------------------------------------------------------------------------------
@@ -125,7 +131,7 @@ Player::~Player()
 void Player::Reset()
 {
     // volta ao estado inicial
-    MoveTo(window->CenterX(), window->CenterY() + (window->CenterY() / 2), Layer::FRONT);
+    //MoveTo(window->CenterX(), window->CenterY() + (window->CenterY() / 2), Layer::FRONT);
     state = IDLE;
     level = 0;
 }
@@ -138,28 +144,36 @@ void Player::OnCollision(Object* obj)
     if (obj->Type() == FIREBALL) {
         Translate(speed * gameTime, 0);
         state = TAKEHIT;    
-        life->Damage(100);
     }
     if (obj->Type() == BRICK) {
         jumping = false;
-        up = false;
+        speed = 0;
+        
     }
+    if (obj->Type() == BRICKVOID) {
+        speed = 750;
+        state = FALLING;
+    }
+
 }
 
 // ---------------------------------------------------------------------------------
 
 void Player::Update() 
 {
+    Translate(0, speed * gameTime);
     // comando para animaÃ§Ã£o quando aperta para a direita
     if (right && window->KeyUp(VK_RIGHT)) {
         right = false;
         state = IDLE;
+        l -= 50;
+        life = new Life(l);
     }
     else if (window->KeyDown(VK_RIGHT)) {
         state = RUNING;
         right = true;
         animRun->Select(state);
-        animRun->NextFrame();
+        animRun->NextFrame(); 
     }
 
     // comando para animaÃ§Ã£o quando aperta para a esquerda
@@ -178,19 +192,24 @@ void Player::Update()
     // comando para animação quando aperta para cima
     stringstream ss;
 
+    
     if (jumping) {
-
+        
         if (jumpTimer->Elapsed(1.0f)) {
             Translate(60 * gameTime, 60 * gameTime);
+            state = FALLING;
+            animFall->Select(state);
+            animFall->NextFrame();
+
+
         }
         else {
             Translate(60 * gameTime, -60 * gameTime);
         }
-
     }
 
     if (up && window->KeyUp(VK_UP)) {
-        state = IDLE;
+        up = false;
     }
     else if (window->KeyDown(VK_UP)) {
         // comando para animaÃ§Ã£o quando aperta para cima
@@ -213,17 +232,26 @@ void Player::Update()
         state = IDLE;
         space = false;
         animAtck->Restart();
+        BBox(new Rect(
+            -1.0f * tilesetRun->TileWidth() / 7.0f,
+            -1.0f * tilesetRun->TileHeight() / 8.0f,
+            tilesetRun->TileWidth() / 7.0f,
+            tilesetRun->TileHeight() / 8.0f));
     }
     else if (window->KeyDown(VK_SPACE)) {
         space = true;
-        if (state == IDLE)
+        if (state == IDLE) {
             state = ATCK1;
+            BBox(new Rect(*new Point(0, 30), *new Point(112, -60) ));
+        }
 
         if (state == ATCK1 && animAtck->Inactive()) {
+            delete attack1;
             state = ATCK2;
             animAtck->Restart();
             if (animAtck->Inactive())
                 state = IDLE;
+                //delete attack1
         }
         animAtck->Select(state);
         animAtck->NextFrame();
@@ -252,6 +280,8 @@ void Player::Update()
 
 void Player::Draw()
 {
+    stringstream ss;
+
     switch (state)
     {
     case JUMPING:
@@ -269,7 +299,9 @@ void Player::Draw()
     case ATCK1 :
         animAtck->Draw(x, y, z, 1.2f);
         break;
-
+    case FALLING:
+        animFall->Draw(x, y, z, 1.2f);
+        break;
     case ATCK2:
         animAtck->Draw(x, y, z, 1.2f);
         break;
