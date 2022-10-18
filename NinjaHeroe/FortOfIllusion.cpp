@@ -36,6 +36,9 @@ FortOfIllusion::FortOfIllusion(){
     backg   = new FortOfIllusionBG();
     worm    = new Worm(NinjaHeroe::player->X() + 90, NinjaHeroe::player->Y());
     brick1  = new Brick("Resources/FortOfIllusion/layers/Bloco1.png");
+    brick2  = new Brick("Resources/FortOfIllusion/layers/Bloco2.png");
+    // tijolo
+    brick3 = new Brick("Resources/FortOfIllusion/layers/tijolo2.png");
 }
 FortOfIllusion::~FortOfIllusion(){}
 
@@ -48,7 +51,7 @@ void FortOfIllusion::Init()
 
     // pano de fundo do jogo
 
-    worm->MoveTo(10, window->CenterY() + 45);
+    worm->MoveTo(200, window->CenterY() + 80);
     scene->Add(worm, MOVING);
     scene->Add(worm->fireball, MOVING);
     
@@ -56,7 +59,7 @@ void FortOfIllusion::Init()
     //scene->Add(backg, STATIC);
     //// adiciona jogador na cena
     scene->Add(NinjaHeroe::player, MOVING);
-    NinjaHeroe::player->MoveTo(130, window->CenterY() + 45);
+    NinjaHeroe::player->MoveTo(60, window->CenterY() + 20);
 
 
     //scene->Add(Firewarrior, MOVING);
@@ -69,6 +72,13 @@ void FortOfIllusion::Init()
     brick1->MoveTo(384, 562);
     scene->Add(brick1, MOVING);
     
+    brick2->MoveTo(1662, 562);
+    scene->Add(brick2, MOVING);
+
+    brick3->MoveTo(844, 352);
+    scene->Add(brick3, MOVING);
+    
+
     // ----------------------
 
     // inicia com m�sica
@@ -84,16 +94,20 @@ void FortOfIllusion::Update()
 {
 
 
-    if (window->KeyDown(VK_RIGHT)) {
+    if (!NinjaHeroe::player->jumping && window->KeyDown(VK_RIGHT)) {
         backg->posX -= 75 * gameTime;
         brick1->Translate(-75 * gameTime, 0);
+        brick2->Translate(-75 * gameTime, 0);
+        brick3->Translate(-75 * gameTime, 0);
+
     }
 
     
-    if (window->KeyDown(VK_LEFT) && backg->posX < 2500) {
+    if (!NinjaHeroe::player->jumping && window->KeyDown(VK_LEFT) && backg->posX < 2500) {
         backg->posX += 75 * gameTime;
         brick1->Translate(75 * gameTime, 0);
-        
+        brick2->Translate(75 * gameTime, 0);
+        brick3->Translate(75 * gameTime, 0);
     }
     // é pq mexe o fundo e o brick fica parado, o brick tem que acompanhar o fundo no caso
     if (window->KeyPress(VK_DOWN)) {
@@ -103,10 +117,11 @@ void FortOfIllusion::Update()
     //comando para animação quando aperta para a direita
 
     
-    if (window->KeyDown(VK_LEFT) && backg->posX < 2500) {
+    if (!NinjaHeroe::player->jumping && window->KeyDown(VK_LEFT) && backg->posX < 2500) {
         backg->posX += 75 * gameTime;
         brick1->Translate(75 * gameTime, 0);
-        
+        brick2->Translate(75 * gameTime, 0);
+        brick3->Translate(75 * gameTime, 0);
     }
     // é pq mexe o fundo e o brick fica parado, o brick tem que acompanhar o fundo no caso
     if (window->KeyPress(VK_UP)) {

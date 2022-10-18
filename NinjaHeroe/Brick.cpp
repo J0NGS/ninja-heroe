@@ -25,7 +25,7 @@ void Brick::Update() {
 }
 
 void Brick::Draw() {
-	sprite->Draw(x, y, z);
+	sprite->Draw(x, y, Layer::BACK);
 }
 
 void Brick::Finalize() {

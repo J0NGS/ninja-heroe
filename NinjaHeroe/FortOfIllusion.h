@@ -38,6 +38,8 @@ private:
     static FireWarrior* Firewarrior;
     static Fireball* fireball;
     Brick* brick1 = nullptr;
+    Brick* brick2 = nullptr;
+    Brick* brick3 = nullptr;
 
 public:
     static Scene* scene;           // cena do nível

@@ -14,18 +14,17 @@
 
 // ---------------------------------------------------------------------------------
 
+#include "Player.h"
 #include "Game.h"
 #include "Audio.h"
 #include "Resources.h"
-#include "Player.h"
-#include "Worm.h"
 
 
 // ------------------------------------------------------------------------------
 
 enum Sounds { MENU, MUSIC, TRANSITION };
 enum STATE { RUNING, RUNINGLEFT, IDLE, ATCK1, ATCK2, TAKEHIT, DEATH, JUMPING, FALLING, ATCK1LEFT, ATCK2LEFT};         // Estados do player
-enum TYPE {FIREBALL, WORM, PLAYER, BRICK, FIREWARRIOR};                               // Tipo do objeto
+enum TYPE {FIREBALL, WORM, PLAYER, BRICK, FIREWARRIOR, PLAYERATTACK };                               // Tipo do objeto
 // ------------------------------------------------------------------------------
 
 class NinjaHeroe : public Game
@@ -34,9 +33,9 @@ private:
     static Game* level;            // n�vel atual do jogo
 
 public:
+    static Player* player;
     //static Audio* audio;           // sistema de �udio
     static bool viewBBox;          // estado da bounding box
-    static Player* player;
 
 
     void Init();                    // inicializa jogo

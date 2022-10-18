@@ -10,7 +10,6 @@
 **********************************************************************************/
 
 #include "Player.h"
-#include "NinjaHeroe.h"
 #include <sstream>
 using namespace std;
 
@@ -18,7 +17,7 @@ using namespace std;
 
 Player::Player()
 {
-
+    //velY = 50 * gameTime;
     jumpTimer = new Timer();
     // ---------------------------------Controls------------------------------------
     right = false;
@@ -38,7 +37,7 @@ Player::Player()
 
     // posi��o inicial 
 
-    MoveTo(window->CenterX(), window->CenterY(), Layer::FRONT);
+   // MoveTo(window->CenterX(), window->CenterY() - 500, Layer::FRONT);
 
     // ------------------------Tileset&Animation------------------------------------
     tilesetRun = new TileSet("Resources/Personagem/Run.png", 200, 200, 16, 16);
@@ -90,12 +89,17 @@ Player::Player()
     
     
     // ------------------------------BoundBox------------------------------------
+    /*BBox(new Line(
+        -15,
+        20,
+        15,
+        20));*/
+
     BBox(new Rect(
         -1.0f * tilesetRun->TileWidth() / 7.0f,
         -1.0f * tilesetRun->TileHeight() / 8.0f,
         tilesetRun->TileWidth() / 7.0f,
         tilesetRun->TileHeight() / 8.0f));
-
 
 }
 
@@ -118,6 +122,8 @@ Player::~Player()
     delete tilesetTake;
     delete tilesetFall;
     delete life;
+    //delete attack1;
+
 }
 
 // ---------------------------------------------------------------------------------
@@ -125,7 +131,7 @@ Player::~Player()
 void Player::Reset()
 {
     // volta ao estado inicial
-    MoveTo(window->CenterX(), window->CenterY() + (window->CenterY() / 2), Layer::FRONT);
+    //MoveTo(window->CenterX(), window->CenterY() + (window->CenterY() / 2), Layer::FRONT);
     state = IDLE;
     level = 0;
 }
@@ -142,6 +148,7 @@ void Player::OnCollision(Object* obj)
     }
     if (obj->Type() == BRICK) {
         jumping = false;
+        //velY = 0;
         up = false;
     }
 }
@@ -150,6 +157,8 @@ void Player::OnCollision(Object* obj)
 
 void Player::Update() 
 {
+   
+    //Translate(0, velY);
     // comando para animação quando aperta para a direita
     if (right && window->KeyUp(VK_RIGHT)) {
         right = false;
@@ -159,7 +168,7 @@ void Player::Update()
         state = RUNING;
         right = true;
         animRun->Select(state);
-        animRun->NextFrame();
+        animRun->NextFrame(); 
     }
 
     // comando para animação quando aperta para a esquerda
@@ -216,13 +225,17 @@ void Player::Update()
     }
     else if (window->KeyDown(VK_SPACE)) {
         space = true;
-        if (state == IDLE)
+        if (state == IDLE) {
             state = ATCK1;
+            attack1 = new PlayerAttack();
+        }
 
         if (state == ATCK1 && animAtck->Inactive()) {
+            delete attack1;
             state = ATCK2;
             animAtck->Restart();
             if (animAtck->Inactive())
+                //delete attack1;
                 state = IDLE;
         }
         animAtck->Select(state);
