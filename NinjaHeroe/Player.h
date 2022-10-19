@@ -51,13 +51,16 @@ private:
     bool left;
     bool space;
     
+    Circle        * circle;
+    Rect        * rect;
+    Mixed       * mixed;
     uint        damage;                 // dano causado pelo jogador
     int         level;                  // nível finalizado
-    PlayerAttack * attack1;
     //PlayerAttack * attack2;;
     
 
 public:
+    //layerAttack * attack;
     uint        speed;
     uint        state;                  // estado do jogador
     float velY;

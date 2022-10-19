@@ -35,6 +35,8 @@ Player::Player()
     level = 0;
     life = new Life(400);
     speed = 0;
+    
+
 
     // posi��o inicial 
 
@@ -90,17 +92,29 @@ Player::Player()
     
     
     // ------------------------------BoundBox------------------------------------
+    //Bbox mista para ataque
+    mixed = new Mixed();
+
+    circle = new Circle(40);
+    rect = new Rect(-1.0f * tilesetRun->TileWidth() / 7.0f,
+        -1.0f * tilesetRun->TileHeight() / 6.0f,
+        tilesetRun->TileWidth() / 7.0f,
+        tilesetRun->TileHeight() / 8.0f);
+
+    circle->MoveTo(X() + 65, Y() - 20);
+    rect->MoveTo(X(), Y());
+
+    mixed->Insert(rect);
+    
+    BBox(mixed);
     /*BBox(new Line(
         -15,
         20,
         15,
         20));*/
 
-    BBox(new Rect(
-        -1.0f * tilesetRun->TileWidth() / 12.0f,
-        -1.0f * tilesetRun->TileHeight() / 40.0f,
-        tilesetRun->TileWidth() / 30.0f,
-        tilesetRun->TileHeight() / 10.0f));
+
+
 
 }
 
@@ -123,7 +137,9 @@ Player::~Player()
     delete tilesetTake;
     delete tilesetFall;
     //delete attack1;
-
+    delete rect;
+    delete circle;
+    delete mixed;
 }
 
 // ---------------------------------------------------------------------------------
@@ -243,37 +259,30 @@ void Player::Update()
     //------------------------------------------------------
     // comando para animação quando aperta espaço(attack)
     if (space && window->KeyUp(VK_SPACE)) {
-        state = IDLE;
         space = false;
         animAtck->Restart();
-        
     }
     else if (window->KeyDown(VK_SPACE)) {
         space = true;
+        
         if (state == IDLE) {
-            state = ATCK1;
-            BBox(new Rect(*new Point(0, 30), *new Point(112, -60) ));
+        state = ATCK1;
+        //bbox do ataque
         }
 
         if (state == ATCK1 && animAtck->Inactive()) {
-            delete attack1;
             state = ATCK2;
             animAtck->Restart();
-            if (animAtck->Inactive())
-                state = IDLE;
-                //delete attack1
         }
+        circle->MoveTo(X() + 65, Y() - 20);
+        mixed->Insert(circle);
         animAtck->Select(state);
         animAtck->NextFrame();
+
     }
     //------------------------------------------------------
     // enquanto está parado roda a animação
     if (state == IDLE) {
-        BBox(new Rect(
-            -1.0f * tilesetRun->TileWidth() / 12.0f,
-            -1.0f * tilesetRun->TileHeight() / 40.0f,
-            tilesetRun->TileWidth() / 30.0f,
-            tilesetRun->TileHeight() / 10.0f));
         animIdle->Select(state);
         animIdle->NextFrame();
     }
