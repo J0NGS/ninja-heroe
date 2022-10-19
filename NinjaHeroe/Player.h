@@ -58,7 +58,6 @@ private:
     
 
 public:
-    uint        l;
     uint        speed;
     uint        state;                  // estado do jogador
     float velY;

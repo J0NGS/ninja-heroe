@@ -120,9 +120,6 @@
     <ClCompile Include="Window.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="FireWarrior.cpp">
-      <Filter>Game\Arquivos de Origem</Filter>
-    </ClCompile>
     <ClCompile Include="Life.cpp">
       <Filter>Game\Arquivos de Origem\Characters</Filter>
     </ClCompile>
@@ -133,6 +130,9 @@
       <Filter>Game\Arquivos de Origem\Levels\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
+      <Filter>Game\Arquivos de Origem\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="FireWarrior.cpp">
       <Filter>Game\Arquivos de Origem\Characters</Filter>
     </ClCompile>
   </ItemGroup>

@@ -27,6 +27,7 @@ Fireball::Fireball()
     // cria a bound box
     //inicializa o estado da bola
     shoot = false;
+    damage = 50;
     //inicializando tipo do objeto
     type = FIREBALL;
     //inicializando velocidade
@@ -60,6 +61,9 @@ void Fireball::shootOff()
 
 void Fireball::OnCollision(Object* obj)
 {
+    if (obj->Type() == PLAYER) {
+        shootOff();
+    }
 }
 
 

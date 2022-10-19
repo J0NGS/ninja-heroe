@@ -33,8 +33,7 @@ Player::Player()
     // inicializa estado do player
     state = IDLE;
     level = 0;
-    l = 400;
-    life = new Life(l);
+    life = new Life(400);
     speed = 0;
 
     // posição inicial 
@@ -146,10 +145,8 @@ void Player::OnCollision(Object* obj)
     if (obj->Type() == FIREBALL) {
         Translate(speed * gameTime, 0);
         state = TAKEHIT;
-        l -= 100;
+        life->Damage(((Fireball*)obj)->damage);
         /*l = life->life - 50*/
-        life = new Life(l);
-        
     }
     if (obj->Type() == BRICK) {
         jumping = false;
@@ -170,14 +167,20 @@ void Player::Update()
     stringstream ss;
     ss << "Life - " << life->life << endl;
     OutputDebugStringA(ss.str().c_str());
-    life = new Life(l);
+
+
+    if (life->LifeValue() <= 0){
+        state = DEATH;
+        animDeath->Select(state);
+        animDeath->NextFrame();
+    }
+
     Translate(0, speed * gameTime);
     // comando para animaÃ§Ã£o quando aperta para a direita
     if (right && window->KeyUp(VK_RIGHT)) {
         right = false;
         state = IDLE;
         //l -= 50;
-        
     }
     else if (window->KeyDown(VK_RIGHT)) {
         state = RUNING;
@@ -299,6 +302,10 @@ void Player::Draw()
 
     switch (state)
     {
+    case DEATH:
+        animDeath->Draw(x, y, z, 1.2f);
+        break;
+
     case JUMPING:
         animJump->Draw(x, y, z, 1.2f);
         break;

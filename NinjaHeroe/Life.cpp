@@ -22,25 +22,7 @@ Life::Life(uint l)
     anim = new Animation(tileset, 0.120f, false);
     
     uint heart1[9] = { 0,1,2,3,4,5,6,7,8 };
-    /*uint heart2[1] = {1};
-    uint heart3[1] = { 2 };
-    uint heart4[1] = { 3 };
-    uint heart5[1] = { 4 };
-    uint heart6[1] = { 5 };
-    uint heart7[1] = { 6 };
-    uint heart8[1] = { 7 };
-    uint heart9[1] = { 8 };
-    */
     anim->Add(1, heart1, 9);
-    /*anim->Add(0, heart1, 1);
-    anim->Add(2, heart3, 1);
-    anim->Add(3, heart4, 1);
-    anim->Add(4, heart5, 1);
-    anim->Add(5, heart6, 1);
-    anim->Add(6, heart7, 1);
-    anim->Add(7, heart8, 1);
-    anim->Add(8, heart9, 1);
-    */
     MoveTo(window->CenterX() - window->CenterX() + 55 ,  40 + Y());
 }
 
@@ -58,7 +40,6 @@ Life::~Life()
 void Life::Damage(uint dmg)
 {
     life -= dmg;
-
 }
 
 
@@ -101,6 +82,7 @@ void Life::Update()
     if (life == 0) {
         anim->Frame(9);
         anim->Restart();
+        life = 0;
     }
 
 

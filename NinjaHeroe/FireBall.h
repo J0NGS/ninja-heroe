@@ -34,6 +34,7 @@ public:
     Fireball();                           // construtor
     ~Fireball();                          // destrutor
 
+    uint damage;
     bool shoot;
     void shootOn();
     void shootOff();
