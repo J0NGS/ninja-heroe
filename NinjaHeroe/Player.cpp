@@ -244,11 +244,11 @@ void Player::Update()
     else if (window->KeyDown(VK_UP)) {
         // comando para animação quando aperta para cima
         if (up && window->KeyUp(VK_UP)) {
-            Translate(60 * gameTime, 60 * gameTime);
+            //Translate(60 * gameTime, 60 * gameTime);
             state = IDLE;
         }
         else if (window->KeyDown(VK_UP)) {
-            Translate(60 * gameTime, -60 * gameTime);
+            //Translate(60 * gameTime, -60 * gameTime);
 
             state = JUMPING;
             up = true;
@@ -258,24 +258,43 @@ void Player::Update()
     }
     //------------------------------------------------------
     // comando para animação quando aperta espaço(attack)
+    
+    
+    
+    
+
     if (space && window->KeyUp(VK_SPACE)) {
         space = false;
+        state = IDLE;
         animAtck->Restart();
+        
     }
     else if (window->KeyDown(VK_SPACE)) {
         space = true;
-        
+
         if (state == IDLE) {
-        state = ATCK1;
-        //bbox do ataque
+            
+            state = ATCK1;
         }
 
+        if (state == ATCK1 && animAtck->Frame() == 1 && mixed->shapes.size() < 2) {
+            circle->MoveTo(X() + 65, Y() - 20);
+            mixed->Insert(circle);
+        }
+
+       
         if (state == ATCK1 && animAtck->Inactive()) {
             state = ATCK2;
             animAtck->Restart();
         }
-        circle->MoveTo(X() + 65, Y() - 20);
-        mixed->Insert(circle);
+        if (state == ATCK2 && animAtck->Inactive()) {
+            if (mixed->shapes.size() == 2) {
+                mixed->Remove(circle);
+            }
+            state = IDLE;
+        }
+
+
         animAtck->Select(state);
         animAtck->NextFrame();
 
@@ -283,6 +302,7 @@ void Player::Update()
     //------------------------------------------------------
     // enquanto está parado roda a animação
     if (state == IDLE) {
+        
         animIdle->Select(state);
         animIdle->NextFrame();
     }
