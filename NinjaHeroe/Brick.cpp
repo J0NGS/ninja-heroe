@@ -4,11 +4,11 @@
 #include "Animation.h"                  // animação de sprites
 #include "Player.h"
 
-Brick::Brick(string filename) {
+Brick::Brick(string filename, uint t) {
 	sprite	= new Sprite(filename);
 	geom = new Rect(-(sprite->Width() / 2), -(sprite->Height()/2), sprite->Width() / 2 , sprite->Height() / 2); // 96 largura * 32 
 	BBox(geom);
-	type = BRICK;
+	type = t;
 }         
 
 Brick::~Brick() {

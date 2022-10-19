@@ -20,11 +20,8 @@ FireWarrior::FireWarrior()
     type = FIREWARRIOR;
 
     //instanciando tilesets e animações
-    tilesetRun = new TileSet("Resources/FireWarrior/Run/Run.png", 115, 80, 8, 8);
+    tilesetRun = new TileSet("Resources/FireWarrior/Run/Run.png", 115, 80, 16, 16);
     animRun = new Animation(tilesetRun, 0.240, true);
-
-    tilesetJump = new TileSet("Resources/Personagem/Jump.png", 200, 200, 2, 2);
-    animJump = new Animation(tilesetJump, 0.240f, true);
 
     tilesetIdle = new TileSet("Resources/FireWarrior/Idle/Idle.png", 115, 80, 8, 8);
     animIdle = new Animation(tilesetIdle, 0.120f, true);
@@ -36,7 +33,8 @@ FireWarrior::FireWarrior()
     animAtck = new Animation(tilesetAtck, 0.150f, false);
     
     //sequencia de animações
-    uint run[8] = { 1,2,3,4,5,6,7,8 };
+    uint run[8] = { 0,1,2,3,4,5,6,7};
+    uint runLeft[8] = { 15,14,13,12,11,10,9,8};
     uint jump[3] = { 1,2,3};
     uint idle[8] = { 1,2,3,4,5,6,7,8};
     uint death[11] = {1,2,3,4,5,6,7,8,9,10,11};
@@ -48,6 +46,7 @@ FireWarrior::FireWarrior()
     animIdle->Add(IDLE, idle, 8);
     animJump->Add(JUMPING, jump, 3);
     animRun->Add(RUNING, run, 8);
+    animRun->Add(RUNINGLEFT, runLeft, 8);
     animDeath->Add(DEATH, death, 11);
     animAtck->Add(ATCK1, atck1, 4);
     animAtck->Add(ATCK2, atck2, 5);
@@ -139,6 +138,10 @@ void FireWarrior::Draw()
         break;
 
     case RUNING:
+        animRun->Draw(x, y, z, 1.5f);
+        break;
+
+    case RUNINGLEFT:
         animRun->Draw(x, y, z, 1.5f);
         break;
 

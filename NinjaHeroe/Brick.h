@@ -27,7 +27,7 @@ private:
     Sprite   * sprite = nullptr;
     Geometry * geom   = nullptr;
 public:
-    Brick(string filename);                 // construtor
+    Brick(string filename, uint t);                 // construtor
     ~Brick();                // destrutor
 
     void OnCollision(Object* obj);

@@ -149,9 +149,11 @@ void Player::OnCollision(Object* obj)
         /*l = life->life - 50*/
     }
     if (obj->Type() == BRICK) {
+        if (state == FALLING) {
+            state == IDLE;
+        }
         jumping = false;
         speed = 0;
-        
     }
     if (obj->Type() == BRICKVOID) {
         speed = 750;
@@ -302,6 +304,10 @@ void Player::Draw()
 
     switch (state)
     {
+    case IDLE:
+        animIdle->Draw(x, y, z, 1.2f);
+        break;
+
     case DEATH:
         animDeath->Draw(x, y, z, 1.2f);
         break;
@@ -328,7 +334,6 @@ void Player::Draw()
         animAtck->Draw(x, y, z, 1.2f);
         break;
     case TAKEHIT:
-
         animTake->Draw(x, y, z, 1.2f);
         break;
     default:

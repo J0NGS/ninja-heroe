@@ -41,6 +41,7 @@ protected:
     const float & x = posX;     // coordenada x do objeto
     const float & y = posY;     // coordenada y do objeto
     const float & z = posZ;     // coordenada z do objeto
+    uint type;                  // tipo do objeto
     
     // valor da escala do objeto
     const float & scale = scaleFactor;      
@@ -50,7 +51,6 @@ protected:
 
 
 public:
-    uint type;                  // tipo do objeto
     Object();                   // construtor
     virtual ~Object();          // destrutor virtual
 

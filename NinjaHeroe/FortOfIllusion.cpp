@@ -38,29 +38,29 @@ FortOfIllusion::FortOfIllusion(){
     scene       = new Scene();
     backg       = new FortOfIllusionBG();
     worm        = new Worm(1300, 390);
-    worm->life = 300;
+   
     
     worm2       = new Worm(1600, 390); 
-    worm2->life = 300;
+   
     
     worm3       = new Worm(1900, 390);
-    worm3->life = 300;
+   
   
     brickSpeed = 200;
-    brickVoid = new Brick("Resources/FortOfIllusion/layers/BrickVoid1.png");
-    brickVoid->type = BRICKVOID;
+    brickVoid = new Brick("Resources/FortOfIllusion/layers/BrickVoid1.png", BRICKVOID);
     
-    brickVoid2 = new Brick("Resources/FortOfIllusion/layers/BrickVoid2.png");
-    brickVoid2->type = B;
+    
+    brickVoid2 = new Brick("Resources/FortOfIllusion/layers/BrickVoid2.png", BRICKVOID);
+    
 
-    brick1      = new Brick("Resources/FortOfIllusion/layers/Bloco1.png");
-    brick2      = new Brick("Resources/FortOfIllusion/layers/Bloco2.png");
-    brick3      = new Brick("Resources/FortOfIllusion/layers/Bloco3.png");
+    brick1      = new Brick("Resources/FortOfIllusion/layers/Bloco1.png",BRICK);
+    brick2      = new Brick("Resources/FortOfIllusion/layers/Bloco2.png", BRICK);
+    brick3      = new Brick("Resources/FortOfIllusion/layers/Bloco3.png", BRICK);
     // tijolo
-    brick4      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png");
-    brick5      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png");
-    brick6      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png");
-    brick7      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png");
+    brick4      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", BRICK);
+    brick5      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", BRICK);
+    brick6      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", BRICK);
+    brick7      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", BRICK);
 }
 FortOfIllusion::~FortOfIllusion(){}
 
