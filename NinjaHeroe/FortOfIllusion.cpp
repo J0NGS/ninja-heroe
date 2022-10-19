@@ -129,6 +129,13 @@ void FortOfIllusion::Init()
 // ------------------------------------------------------------------------------
 void FortOfIllusion::Update()
 {
+    if (NinjaHeroe::player->attacking) {
+        NinjaHeroe::player->attack1->MoveTo(NinjaHeroe::player->X() + 65, NinjaHeroe::player->Y() - 20);
+        scene->Add(NinjaHeroe::player->attack1, MOVING);
+    }
+    else {
+        scene->Remove(NinjaHeroe::player->attack1, MOVING);
+    }
     if (worm->life < 0 ) {
         scene->Remove(worm, MOVING);
     }
@@ -139,6 +146,11 @@ void FortOfIllusion::Update()
         scene->Remove(worm3, MOVING);
     }
 
+    // GAME OVER
+    /*if (NinjaHeroe::player->life->life <= 0 || NinjaHeroe::player->Y() > window->Height()) {
+        delete scene;
+        NinjaHeroe::NextLevel<Home>();
+    }*/
 
 
     if (!NinjaHeroe::player->jumping && window->KeyDown(VK_RIGHT)) {
@@ -218,11 +230,14 @@ void FortOfIllusion::Update()
         worm3->fireball->Translate(brickSpeed * gameTime, 0);
     }
     // é pq mexe o fundo e o brick fica parado, o brick tem que acompanhar o fundo no caso
-    if (window->KeyPress(VK_UP)) {
+    if (window->KeyDown(VK_UP)) {
         NinjaHeroe::player->jumping = true;
         NinjaHeroe::player->jumpTimer->Start();
         //NinjaHeroe::player->MoveTo(NinjaHeroe::player->X(), NinjaHeroe::player->Y() + 1);         //errado
 
+    }
+    else if (NinjaHeroe::player->jumping && window->KeyDown(VK_UP)) {
+        NinjaHeroe::player->jumping = false;
     }
     //comando para animação quando aperta para a direita
     

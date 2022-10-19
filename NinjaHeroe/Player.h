@@ -53,11 +53,11 @@ private:
     
     uint        damage;                 // dano causado pelo jogador
     int         level;                  // nível finalizado
-    PlayerAttack * attack1;
-    //PlayerAttack * attack2;;
-    
 
 public:
+    bool attacking = false;
+    PlayerAttack * attack1;
+    //PlayerAttack * attack2;;
     uint        speed;
     uint        state;                  // estado do jogador
     float velY;

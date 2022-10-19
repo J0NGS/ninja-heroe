@@ -19,13 +19,12 @@ using namespace std;
 
 Player::Player()
 {
-    //velY = 50 * gameTime;
     jumpTimer = new Timer();
     // ---------------------------------Controls------------------------------------
-    right = false;
-    left = false;
-    up = false;
-    space = false;
+    right   = false;
+    left    = false;
+    up      = false;
+    space   = false;
     // -------------------------------Atributes-------------------------------------
     //tipo
     type = PLAYER;
@@ -89,6 +88,10 @@ Player::Player()
     animTake->Add(TAKEHIT, take, 4);
     
     
+    // ----------------
+    attack1 = new PlayerAttack();
+    //attack2 = new PlayerAttack();
+
     // ------------------------------BoundBox------------------------------------
     /*BBox(new Line(
         -15,
@@ -149,9 +152,8 @@ void Player::OnCollision(Object* obj)
         /*l = life->life - 50*/
     }
     if (obj->Type() == BRICK) {
-        jumping = false;
-        speed = 0;
-        
+        jumping = false;        
+        state = IDLE;
     }
     if (obj->Type() == BRICKVOID) {
         speed = 750;
@@ -207,8 +209,8 @@ void Player::Update()
     
     if (jumping) {
         
-        if (jumpTimer->Elapsed(0.5f)) {
-            Translate(100 * gameTime, 200 * gameTime);
+        if (jumpTimer->Elapsed(0.3f)) {
+            Translate(150 * gameTime,250 * gameTime);
             state = FALLING;
             animFall->Select(state);
             animFall->NextFrame();
@@ -216,31 +218,30 @@ void Player::Update()
 
         }
         else {
-            Translate(100 * gameTime, -200 * gameTime);
+            Translate(150 * gameTime, -250 * gameTime);
         }
     }
 
+    
     if (up && window->KeyUp(VK_UP)) {
+        //Translate(60 * gameTime, 60 * gameTime);
         up = false;
+
+        state = IDLE;
     }
     else if (window->KeyDown(VK_UP)) {
-        // comando para animação quando aperta para cima
-        if (up && window->KeyUp(VK_UP)) {
-            Translate(60 * gameTime, 60 * gameTime);
-            state = IDLE;
-        }
-        else if (window->KeyDown(VK_UP)) {
-            Translate(60 * gameTime, -60 * gameTime);
+        //Translate(60 * gameTime, -60 * gameTime);
 
-            state = JUMPING;
-            up = true;
-            animJump->Select(state);
-            animJump->NextFrame();
-        }
+        state = JUMPING;
+        up = true;
+        animJump->Select(state);
+        animJump->NextFrame();
     }
+    
     //------------------------------------------------------
     // comando para animação quando aperta espaço(attack)
     if (space && window->KeyUp(VK_SPACE)) {
+        attacking = false;
         state = IDLE;
         space = false;
         animAtck->Restart();
@@ -249,12 +250,12 @@ void Player::Update()
     else if (window->KeyDown(VK_SPACE)) {
         space = true;
         if (state == IDLE) {
+            attacking = true;
             state = ATCK1;
-            BBox(new Rect(*new Point(0, 30), *new Point(112, -60) ));
         }
 
         if (state == ATCK1 && animAtck->Inactive()) {
-            delete attack1;
+            
             state = ATCK2;
             animAtck->Restart();
             if (animAtck->Inactive())

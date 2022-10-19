@@ -81,14 +81,7 @@ Worm::~Worm()
 
 void Worm::OnCollision(Object* obj)
 {
-    stringstream ss;
-    if (obj->Type() == PLAYER) {
-        state = TAKEHIT;
-        life -= 110;
-        
-        
-
-    }
+    
 }
 
 // ---------------------------------------------------------------------------------
