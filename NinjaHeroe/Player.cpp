@@ -136,10 +136,7 @@ Player::~Player()
     delete tilesetAtck;
     delete tilesetTake;
     delete tilesetFall;
-    //delete attack1;
-    delete rect;
-    delete circle;
-    delete mixed;
+
 }
 
 // ---------------------------------------------------------------------------------
@@ -166,7 +163,7 @@ void Player::OnCollision(Object* obj)
     }
     if (obj->Type() == BRICK) {
         if (state == FALLING) {
-            state == IDLE;
+            state = IDLE;
         }
         jumping = false;
         speed = 0;
@@ -183,8 +180,8 @@ void Player::OnCollision(Object* obj)
 void Player::Update() 
 {   
     stringstream ss;
-    ss << "Life - " << life->life << endl;
-    OutputDebugStringA(ss.str().c_str());
+    //ss << "Life - " << life->life << endl;
+    //OutputDebugStringA(ss.str().c_str());
 
 
     if (life->LifeValue() <= 0){
@@ -271,34 +268,35 @@ void Player::Update()
     }
     else if (window->KeyDown(VK_SPACE)) {
         space = true;
-
-        if (state == IDLE) {
-            
-            state = ATCK1;
-        }
-
-        if (state == ATCK1 && animAtck->Frame() == 1 && mixed->shapes.size() < 2) {
-            circle->MoveTo(X() + 65, Y() - 20);
+        if (mixed->shapes.size() < 2) {
+            circle->MoveTo(X() + 75, Y() - 20);
             mixed->Insert(circle);
         }
+        if (state == IDLE && space) {
+            state = ATCK1;
+            OutputDebugString("NEXT FRAME");
+        }
 
-       
         if (state == ATCK1 && animAtck->Inactive()) {
+            OutputDebugString("ATCK2");
             state = ATCK2;
             animAtck->Restart();
         }
-        if (state == ATCK2 && animAtck->Inactive()) {
-            if (mixed->shapes.size() == 2) {
-                mixed->Remove(circle);
+
+
+        if (state == ATCK1 || state == ATCK2) {
+            animAtck->Select(state);
+            animAtck->NextFrame();
+            if (state == ATCK2 && animAtck->Inactive()) {
+                //state = RUNING;
+                if(mixed->shapes.size() > 1){
+                    mixed->Remove(circle);
+                    OutputDebugString("state = idle");
+                }
             }
-            state = IDLE;
         }
-
-
-        animAtck->Select(state);
-        animAtck->NextFrame();
-
     }
+
     //------------------------------------------------------
     // enquanto está parado roda a animação
     if (state == IDLE) {
