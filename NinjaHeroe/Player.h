@@ -79,6 +79,8 @@ public:
     int Level();                        // último nível finalizado
     float Bottom();                     // coordenadas da base
     float Top();                        // coordenadas do topo
+    float Left();                       // coordenadas do topo
+    float Right();                      // coordenadas do topo
 
     void OnCollision(Object* obj);      // resolução da colisão
     void Update();                      // atualização do objeto
@@ -103,6 +105,15 @@ inline float Player::Top()
     return y - tilesetIdle->Height() / 2;
 }
 
+inline float Player::Left()
+{
+    return x - tilesetIdle->Width() / 2;
+}
+
+inline float Player::Right()
+{
+    return x + tilesetIdle->Width() / 2;
+}
 
 // ---------------------------------------------------------------------------------
 

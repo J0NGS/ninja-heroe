@@ -35,7 +35,7 @@ Player::Player()
     level = 0;
     life = new Life(400);
     speed = 10;
-    gravity = 30;
+    gravity = 50;
 
 
     // posição inicial 
@@ -98,7 +98,7 @@ Player::Player()
     circle = new Circle(40);
     rect = new Rect(-1.0f * tilesetRun->TileWidth() / 7.0f,
         -1.0f * tilesetRun->TileHeight() / 6.0f,
-        tilesetRun->TileWidth() / 9.0f,
+        tilesetRun->TileWidth() / 10.0f,
         tilesetRun->TileHeight() / 8.0f);
 
     circle->MoveTo(X() + 65, Y() - 20);
@@ -169,11 +169,20 @@ void Player::OnCollision(Object* obj)
         //gravity = 0;
         Translate(0, -gravity * gameTime);
     }
+    
     if (obj->Type() == BRICKVOID) {
         //speed = 750;
         state = FALLING;
-        Translate(0, 20 * gameTime);
+        Translate(0, 80 * gameTime);
     }
+
+    if (obj->Type() == MINIBRICK) {
+        //speed = 750;
+        state = FALLING;
+        Translate(0, -gravity * gameTime);
+    }
+
+
 
 }
 
@@ -200,7 +209,7 @@ void Player::Update()
         state = IDLE;
         //l -= 50;
     }
-    else if (window->KeyDown(VK_RIGHT)) {
+    else if (window->KeyDown(VK_RIGHT) && state != FALLING) {
         if (mixed->shapes.size() > 1) {
             mixed->Remove(circle);
             OutputDebugString("state = idle");
@@ -279,7 +288,7 @@ void Player::Update()
         space = false;
         animAtck->Restart();
     }
-    else if (window->KeyDown(VK_SPACE)) {
+    else if (window->KeyDown(VK_SPACE) && right == false && left == false && up == false) {
         space = true;
         
         if (mixed->shapes.size() < 2) {

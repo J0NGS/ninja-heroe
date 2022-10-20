@@ -57,10 +57,10 @@ FortOfIllusion::FortOfIllusion(){
     brick2      = new Brick("Resources/FortOfIllusion/layers/Bloco2.png", BRICK);
     brick3      = new Brick("Resources/FortOfIllusion/layers/Bloco3.png", BRICK);
     // tijolo
-    brick4      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", BRICK);
-    brick5      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", BRICK);
-    brick6      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", BRICK);
-    brick7      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", BRICK);
+    brick4      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", MINIBRICK);
+    brick5      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", MINIBRICK);
+    brick6      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", MINIBRICK);
+    brick7      = new Brick("Resources/FortOfIllusion/layers/tijolo2.png", MINIBRICK);
 }
 FortOfIllusion::~FortOfIllusion(){}
 
@@ -139,10 +139,13 @@ void FortOfIllusion::Update()
         scene->Remove(worm3, MOVING);
     }
 
+    //segurando a tela e movendo o player
+    if (backg->X() + 2500 > 1360) {
+        backg->MoveTo(1360, window->CenterY());
+    };
 
-
-    if (!NinjaHeroe::player->jumping && window->KeyDown(VK_RIGHT)) {
-        //backg->posX -= brickSpeed * gameTime;
+    if (!NinjaHeroe::player->jumping && NinjaHeroe::player->state != FALLING && window->KeyDown(VK_RIGHT)) {
+        backg->posX -= brickSpeed * gameTime;
         brickVoid->Translate(-brickSpeed * gameTime, 0);
         brickVoid2->Translate(-brickSpeed * gameTime, 0);
         brick1->Translate(-brickSpeed * gameTime, 0);
@@ -161,7 +164,7 @@ void FortOfIllusion::Update()
 
         worm3->Translate(-brickSpeed * gameTime, 0);
         worm3->fireball->Translate(-brickSpeed * gameTime, 0);
-    }
+    } 
 
     
     if (!NinjaHeroe::player->jumping && window->KeyDown(VK_LEFT) && backg->posX < 2500) {

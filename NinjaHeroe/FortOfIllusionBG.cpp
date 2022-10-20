@@ -34,7 +34,6 @@ void FortOfIllusionBG::Update()
 {
     
 }
-
 // -------------------------------------------------------------------------------
 
 void FortOfIllusionBG::Draw()
