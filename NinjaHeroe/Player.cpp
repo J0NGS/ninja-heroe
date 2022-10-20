@@ -34,7 +34,8 @@ Player::Player()
     state = IDLE;
     level = 0;
     life = new Life(400);
-    speed = 10;
+    speedX = 30;
+    speedY = 100;
     gravity = 50;
 
 
@@ -156,7 +157,7 @@ void Player::OnCollision(Object* obj)
 {
 
     if (obj->Type() == FIREBALL) {
-        Translate(speed * gameTime, 0);
+        Translate(speedX * gameTime, 0);
         state = TAKEHIT;
         /*l = life->life - 50*/
     }
@@ -165,7 +166,7 @@ void Player::OnCollision(Object* obj)
             state = IDLE;
         }
         jumping = false;
-        speed = 0;
+        speedX = 0;
         //gravity = 0;
         Translate(0, -gravity * gameTime);
     }
@@ -202,7 +203,7 @@ void Player::Update()
         animDeath->NextFrame();
     }
 
-    Translate(0, speed * gameTime);
+
     // comando para animação quando aperta para a direita
     if (right && window->KeyUp(VK_RIGHT)) {
         right = false;
@@ -242,18 +243,21 @@ void Player::Update()
 
     
     if (jumping) {
-        
+        speedX += 1;
+        speedY += 0.3f;
         if (jumpTimer->Elapsed(0.5f)) {
-            Translate(100 * gameTime, 200 * gameTime);
+            Translate(speedX * gameTime, speedY * gameTime);
             state = FALLING;
             animFall->Select(state);
             animFall->NextFrame();
-
-
+            
         }
         else {
-            Translate(100 * gameTime, -200 * gameTime);
+            Translate(speedX * gameTime, -speedY * gameTime);
         }
+    } else{
+        speedX = 30;
+        speedY = 100;
     }
 
     if (up && window->KeyUp(VK_UP)) {

@@ -140,9 +140,7 @@ void FortOfIllusion::Update()
     }
 
     //segurando a tela e movendo o player
-    if (backg->X() + 2500 > 1360) {
-        backg->MoveTo(1360, window->CenterY());
-    };
+ 
 
     if (!NinjaHeroe::player->jumping && NinjaHeroe::player->state != FALLING && window->KeyDown(VK_RIGHT)) {
         backg->posX -= brickSpeed * gameTime;
