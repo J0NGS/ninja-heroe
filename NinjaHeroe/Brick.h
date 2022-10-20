@@ -25,7 +25,7 @@ class Brick : public Object
 {
 private:
     Sprite   * sprite = nullptr;
-    Geometry * geom   = nullptr;
+    Rect     * geom   = nullptr;
 public:
     Brick(string filename, uint t);                 // construtor
     ~Brick();                // destrutor
@@ -37,6 +37,8 @@ public:
     void Draw();                        // desenho do objeto
     void Finalize();
 };
+
+
 
 // ---------------------------------------------------------------------------------
 

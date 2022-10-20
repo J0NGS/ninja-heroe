@@ -61,7 +61,8 @@ private:
 
 public:
     //layerAttack * attack;
-    uint        speed;
+    int         gravity;
+    int         speed;
     uint        state;                  // estado do jogador
     float velY;
     bool moving = false;

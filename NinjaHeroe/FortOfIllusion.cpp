@@ -83,7 +83,7 @@ void FortOfIllusion::Init()
 
     //
     //// adiciona jogador na cena
-    NinjaHeroe::player->MoveTo(60, window->CenterY() + 20);
+    NinjaHeroe::player->MoveTo(60, window->CenterY() + 30);
     scene->Add(NinjaHeroe::player, MOVING);
     scene->Add(NinjaHeroe::player->life, STATIC);
 
@@ -142,7 +142,7 @@ void FortOfIllusion::Update()
 
 
     if (!NinjaHeroe::player->jumping && window->KeyDown(VK_RIGHT)) {
-        backg->posX -= brickSpeed * gameTime;
+        //backg->posX -= brickSpeed * gameTime;
         brickVoid->Translate(-brickSpeed * gameTime, 0);
         brickVoid2->Translate(-brickSpeed * gameTime, 0);
         brick1->Translate(-brickSpeed * gameTime, 0);
