@@ -156,6 +156,12 @@ void Player::Reset()
 void Player::OnCollision(Object* obj)
 {
 
+    if (obj->Type() == WORM) {
+        if (state != ATCK1 && state != ATCK2) {
+            state = TAKEHIT;
+        }
+    }
+
     if (obj->Type() == FIREBALL) {
         Translate(speedX * gameTime, 0);
         state = TAKEHIT;
@@ -201,6 +207,7 @@ void Player::Update()
         state = DEATH;
         animDeath->Select(state);
         animDeath->NextFrame();
+        Reset();
     }
 
 

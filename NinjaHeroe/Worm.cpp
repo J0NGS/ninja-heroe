@@ -45,7 +45,8 @@ Worm::Worm(float x, float y)
 
     // ---------------------------------------------------------------------------------
     //incializando state
-    state = ATCK1;
+    state = IDLE;
+    life = 200;
     //Posição inicial
     MoveTo(x, y);
     //bola de fogo
@@ -56,6 +57,7 @@ Worm::Worm(float x, float y)
         -1.0f * tilesetRun->TileHeight() / 5.0,
         tilesetRun->TileWidth() / 4.0,
         tilesetRun->TileHeight() / 6.0));
+
 }
 // ---------------------------------------------------------------------------------
 
@@ -83,11 +85,12 @@ void Worm::OnCollision(Object* obj)
 {
     stringstream ss;
     if (obj->Type() == PLAYER) {
-        state = TAKEHIT;
-        life -= 110;
-        
-        
-
+        if(((Player*)obj)->state == ATCK1 || ((Player*)obj)->state == ATCK2){
+            state = TAKEHIT;
+        }
+        else {
+            ((Player*)obj)->life->Damage(25);
+        }
     }
 }
 
@@ -95,6 +98,13 @@ void Worm::OnCollision(Object* obj)
 
 void Worm::Update()
 {
+    
+    if (life <= 0) {
+        state = DEATH;
+        animDeath->Select(state);
+        animDeath->NextFrame();
+    }
+    
     if (state == IDLE)
         animIdle->NextFrame();
     

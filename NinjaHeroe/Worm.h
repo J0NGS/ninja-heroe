@@ -44,6 +44,7 @@ private:
     Animation* animAtck;                // animação do personagem
     Animation* animTakeH;               // animação do personagem
     Animation* animIdle;                // animação do personagem
+    uint life;
             
 public:
     
@@ -51,21 +52,21 @@ public:
     Worm(float x, float y);             // construtor
     ~Worm();                            // destrutor
     
-    uint life;
-    uint damage;
     Fireball* fireball;                 //
+    uint      damage;
     uint      state;                    // Estado da minhoca
-
-    int State();
     
+    
+    void TakeHit(int d);
     void OnCollision(Object* obj);      // resolução da colisão
     void Update();                      // atualização do objeto
     void Draw();                        // desenho do objeto
 };
 
 // ---------------------------------------------------------------------------------
-inline int Worm::State()
-{
-    return state;
+
+
+inline void Worm::TakeHit(int d) {
+    life -= d;
 }
 #endif

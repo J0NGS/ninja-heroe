@@ -129,13 +129,13 @@ void FortOfIllusion::Init()
 // ------------------------------------------------------------------------------
 void FortOfIllusion::Update()
 {
-    if (worm->life < 0 ) {
+    if (worm->state == DEATH ) {
         scene->Remove(worm, MOVING);
     }
-    if (worm2->life < 0) {
+    if (worm2->state == DEATH) {
         scene->Remove(worm2, MOVING);
     }
-    if (worm3->life < 0) {
+    if (worm3->state == DEATH) {
         scene->Remove(worm3, MOVING);
     }
 
@@ -228,6 +228,10 @@ void FortOfIllusion::Update()
     //comando para animação quando aperta para a direita
     
     
+    if (NinjaHeroe::player->Right() == window->Width()) {
+        NinjaHeroe::player->MoveTo(1360, NinjaHeroe::player->Y());
+    }
+
     if (worm->fireball->X() > window->Width()) {
         worm->fireball->shootOff();
     }
