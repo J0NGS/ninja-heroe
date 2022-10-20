@@ -26,19 +26,27 @@ class FortOfIllusionBG : public Object
 private:
     Image * mountainImg     = nullptr;        // imagem de fundo frontal
     Sprite* mountains[10]   = {};
-    Sprite* fortOfIllusion  = nullptr;
     
     
 public:
+    Sprite* fortOfIllusion  = nullptr;
     float posX, posY;
     bool moving;
     FortOfIllusionBG();                 // construtor
     ~FortOfIllusionBG();                // destrutor
 
+    float Left();
+    float Right();
+    float Top();
+
     void Update();                      // atualização do objeto
     void Draw();                        // desenho do objeto
     void Finalize();
+
+
+
 };
+
 
 // ---------------------------------------------------------------------------------
 

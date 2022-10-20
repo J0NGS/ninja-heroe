@@ -34,8 +34,8 @@ Player::Player()
     state = IDLE;
     level = 0;
     life = new Life(400);
-    speed = 0;
-    
+    speed = 10;
+    gravity = 50;
 
 
     // posi��o inicial 
@@ -98,7 +98,7 @@ Player::Player()
     circle = new Circle(40);
     rect = new Rect(-1.0f * tilesetRun->TileWidth() / 7.0f,
         -1.0f * tilesetRun->TileHeight() / 6.0f,
-        tilesetRun->TileWidth() / 7.0f,
+        tilesetRun->TileWidth() / 10.0f,
         tilesetRun->TileHeight() / 8.0f);
 
     circle->MoveTo(X() + 65, Y() - 20);
@@ -136,10 +136,7 @@ Player::~Player()
     delete tilesetAtck;
     delete tilesetTake;
     delete tilesetFall;
-    //delete attack1;
-    delete rect;
-    delete circle;
-    delete mixed;
+
 }
 
 // ---------------------------------------------------------------------------------
@@ -161,20 +158,31 @@ void Player::OnCollision(Object* obj)
     if (obj->Type() == FIREBALL) {
         Translate(speed * gameTime, 0);
         state = TAKEHIT;
-        life->Damage(((Fireball*)obj)->damage);
         /*l = life->life - 50*/
     }
     if (obj->Type() == BRICK) {
         if (state == FALLING) {
-            state == IDLE;
+            state = IDLE;
         }
         jumping = false;
         speed = 0;
+        //gravity = 0;
+        Translate(0, -gravity * gameTime);
     }
+    
     if (obj->Type() == BRICKVOID) {
-        speed = 750;
+        //speed = 750;
         state = FALLING;
+        Translate(0, 80 * gameTime);
     }
+
+    if (obj->Type() == MINIBRICK) {
+        //speed = 750;
+        state = FALLING;
+        Translate(0, -gravity * gameTime);
+    }
+
+
 
 }
 
@@ -182,9 +190,10 @@ void Player::OnCollision(Object* obj)
 
 void Player::Update() 
 {   
+    Translate(0, gravity * gameTime);
     stringstream ss;
-    ss << "Life - " << life->life << endl;
-    OutputDebugStringA(ss.str().c_str());
+    //ss << "Life - " << life->life << endl;
+    //OutputDebugStringA(ss.str().c_str());
 
 
     if (life->LifeValue() <= 0){
@@ -200,7 +209,11 @@ void Player::Update()
         state = IDLE;
         //l -= 50;
     }
-    else if (window->KeyDown(VK_RIGHT)) {
+    else if (window->KeyDown(VK_RIGHT) && state != FALLING) {
+        if (mixed->shapes.size() > 1) {
+            mixed->Remove(circle);
+            OutputDebugString("state = idle");
+        }
         state = RUNING;
         right = true;
         animRun->Select(state);
@@ -212,8 +225,13 @@ void Player::Update()
         left = false;
         state = IDLE;
 
+
     }
     else if (window->KeyDown(VK_LEFT)) {
+        if (mixed->shapes.size() > 1) {
+            mixed->Remove(circle);
+            OutputDebugString("state = idle");
+        }
         state = RUNINGLEFT;
         left = true;
         animRun->Select(state);
@@ -244,11 +262,11 @@ void Player::Update()
     else if (window->KeyDown(VK_UP)) {
         // comando para animação quando aperta para cima
         if (up && window->KeyUp(VK_UP)) {
-            Translate(60 * gameTime, 60 * gameTime);
+            //Translate(60 * gameTime, 60 * gameTime);
             state = IDLE;
         }
         else if (window->KeyDown(VK_UP)) {
-            Translate(60 * gameTime, -60 * gameTime);
+            //Translate(60 * gameTime, -60 * gameTime);
 
             state = JUMPING;
             up = true;
@@ -258,28 +276,50 @@ void Player::Update()
     }
     //------------------------------------------------------
     // comando para animação quando aperta espaço(attack)
+    
+    //convertendo posatacking para idle
+    if (state == POSATACKING) {
+        state = IDLE;
+    }
+    
+    
+
     if (space && window->KeyUp(VK_SPACE)) {
         space = false;
         animAtck->Restart();
     }
-    else if (window->KeyDown(VK_SPACE)) {
+    else if (window->KeyDown(VK_SPACE) && right == false && left == false && up == false) {
         space = true;
         
-        if (state == IDLE) {
-        state = ATCK1;
-        //bbox do ataque
+        if (mixed->shapes.size() < 2) {
+            circle->MoveTo(X() + 75, Y() - 20);
+            mixed->Insert(circle);
+        }
+
+        if (state == IDLE && space) {
+            state = ATCK1;
+            OutputDebugString("NEXT FRAME");
         }
 
         if (state == ATCK1 && animAtck->Inactive()) {
+            OutputDebugString("ATCK2");
             state = ATCK2;
             animAtck->Restart();
         }
-        circle->MoveTo(X() + 65, Y() - 20);
-        mixed->Insert(circle);
-        animAtck->Select(state);
-        animAtck->NextFrame();
 
+
+        if (state == ATCK2 && animAtck->Inactive()) {
+            if (mixed->shapes.size() > 1) {
+                mixed->Remove(circle);
+                OutputDebugString("state = idle");
+            }
+            //state = POSATACKING;
+        }
+            animAtck->Select(state);
+            animAtck->NextFrame();
+        
     }
+
     //------------------------------------------------------
     // enquanto está parado roda a animação
     if (state == IDLE) {
@@ -290,13 +330,13 @@ void Player::Update()
     //------------------------------------------------------
     // Animação quando toma um hit
     if (state == TAKEHIT) {
-        
         animTake->Select(state);
         animTake->NextFrame();
-        if (animTake->Inactive())
-
+        if (animTake->Inactive()) {
             animTake->Restart();
             state = IDLE;
+        }
+
     }
 
 

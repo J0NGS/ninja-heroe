@@ -54,7 +54,7 @@ inline int Life::LifeValue()
 }
 
 inline void Life::Draw() {
-    anim->Draw(x, y, z, 1.15);
+    anim->Draw(x, y, z, 1.15f);
 }
 // ---------------------------------------------------------------------------------
 
