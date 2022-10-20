@@ -262,16 +262,16 @@ void Player::Update()
 
     if (space && window->KeyUp(VK_SPACE)) {
         space = false;
-        state = IDLE;
         animAtck->Restart();
-        
     }
     else if (window->KeyDown(VK_SPACE)) {
         space = true;
+        
         if (mixed->shapes.size() < 2) {
             circle->MoveTo(X() + 75, Y() - 20);
             mixed->Insert(circle);
         }
+
         if (state == IDLE && space) {
             state = ATCK1;
             OutputDebugString("NEXT FRAME");
@@ -284,17 +284,16 @@ void Player::Update()
         }
 
 
-        if (state == ATCK1 || state == ATCK2) {
-            animAtck->Select(state);
-            animAtck->NextFrame();
-            if (state == ATCK2 && animAtck->Inactive()) {
-                //state = RUNING;
-                if(mixed->shapes.size() > 1){
-                    mixed->Remove(circle);
-                    OutputDebugString("state = idle");
-                }
+        if (state == ATCK2 && animAtck->Inactive()) {
+            //state = RUNING;
+            if (mixed->shapes.size() > 1) {
+                mixed->Remove(circle);
+                OutputDebugString("state = idle");
             }
         }
+            animAtck->Select(state);
+            animAtck->NextFrame();
+        
     }
 
     //------------------------------------------------------
